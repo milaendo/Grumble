@@ -8,4 +8,10 @@ router.get('/foo', function(req, res, next) {
   })
 });
 
+
+
+router.get('/register', function(req, res, next) {
+	
+})
+
 module.exports = router;

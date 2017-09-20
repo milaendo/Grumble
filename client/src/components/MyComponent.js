@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {getFoo} from '../actions/app'
+// import {getFoo} from '../actions/app'
 
 class MyComponent extends Component {
-  componentWillMount() {
-    getFoo()
-  }
+  // componentWillMount() {
+  //   getFoo()
+  // }
 
   render() {
     return (
