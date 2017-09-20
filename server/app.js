@@ -4,10 +4,8 @@ var favicon = require('serve-favicon')
 var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
-
 var apiRoutes = require('./routes/api')
 var webRoutes = require('./routes/web')
-
 var app = express()
 
 // uncomment after placing your favicon in /public
@@ -30,5 +28,7 @@ app.use(function(err, req, res, next) {
     error: app.get('env') === 'development' ? err : {}
   })
 })
+
+
 
 module.exports = app
