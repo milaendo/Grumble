@@ -12,8 +12,9 @@ const conn = mysql.createConnection({
 
 /* /api starting endpoint */
 router.post('/register', function(req, res, next) {
-	const user_name = req.body.user_name
+	const user_name = req.body.username
 	const password = req.body.password
+	const display_name = req.body.displayName
 
 	const sql='INSERT INTO users (user_name, password, display_name) values (?, ?, ?);'
 	conn.query(sql,[user_name, password, display_name],function(err,results,fields){
@@ -31,10 +32,5 @@ router.post('/register', function(req, res, next) {
 	})
 });
 
-
-
-router.get('/register', function(req, res, next) {
-	
-})
 
 module.exports = router;

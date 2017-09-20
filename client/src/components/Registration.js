@@ -18,7 +18,7 @@ class Registration extends Component {
   	handleFormSubmit = e => {
   	e.preventDefault()
 
-  	fetch('/register', { 
+  	fetch('http://localhost:3001/api/register', { 
         method: 'POST',
         data: {
           	displayName: this.state.message,
