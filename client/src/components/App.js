@@ -12,6 +12,7 @@ import Layout from './Layout'
 
 // page components
 import MyComponent from './MyComponent'
+import Registration from './Registration'
 
 // base styles and icons
 import 'normalize.css/normalize.css'
@@ -28,6 +29,7 @@ class App extends Component {
           <Layout>
             <Switch>
               <Route exact path="/" component={MyComponent} />
+              <Route path="/registration" component={Registration} />
             </Switch>
           </Layout>
         </Router>
