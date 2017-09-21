@@ -9,30 +9,33 @@ class Registration extends Component {
 	}
 
 
-	handleChange = e => {
+	handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
 
-  	handleFormSubmit = e => {
+  	handleFormSubmit = (e) => {
   	e.preventDefault()
-
-  	fetch('http://localhost:3001/api/register', { 
+  	fetch('/api/register', { 
         method: 'POST',
-        data: {
-          	displayName: this.state.displayName,
-    		username: this.state.username,
-    		password: this.state.password
+        body: {
+          displayName: this.state.displayName,
+      		username: this.state.username,
+      		password: this.state.password
+        },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         }
-      })
-      .then(function(response) {
-        return response.json()
-      }).then(function(body) {
-        console.log(body);
-      });
+    }
+    ).then(response => {
+      console.log(response, "yay");
 
-      this.props.history.push('/')
+    }).catch(err => {
+      console.log(err, "boo!");
+    });
+    this.props.history.push('/')
   }
   render() {
     return (
