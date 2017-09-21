@@ -14,6 +14,7 @@ conn.on("error",function(err){
 })
 /* /api starting endpoint */
 router.post('/register', function(req, res, next) {
+	console.log("Backend", req.body)
 	const user_name = req.body.username
 	const password = req.body.password
 	const display_name = req.body.displayName
