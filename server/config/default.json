@@ -1,8 +1,8 @@
 {
 	"db": {
-		"host":"localhost",
-		"database": "Grumble",
-		"user": "root",
-		"password": ""
+		"host":"us-cdbr-iron-east-05.cleardb.net",
+		"database": "heroku_aa21e4f06373d30",
+		"user": "ba94854c8c2485",
+		"password": "f3471179"
 	}
 }
