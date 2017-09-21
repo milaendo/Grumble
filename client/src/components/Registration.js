@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
    
 
 class Registration extends Component {
@@ -17,24 +18,33 @@ class Registration extends Component {
 
   	handleFormSubmit = (e) => {
   	e.preventDefault()
-  	fetch('/api/register', { 
-        method: 'POST',
-        body: {
-          displayName: this.state.displayName,
-      		username: this.state.username,
-      		password: this.state.password
-        },
-        headers: {
+    console.log("FrontEnd", this.state)
+  	// axios.post('/api/register', { 
+   //        displayName: this.state.displayName,
+   //    		username: this.state.username,
+   //    		password: this.state.password
+   //      })
+
+    axios({
+    method: 'post',
+    url: '/api/register',
+    data: {
+        displayName: this.state.displayName,
+        username: this.state.username,
+        password: this.state.password
+      },
+    headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }
-    }
-    ).then(response => {
+    })
+    .then(response => {
       console.log(response, "yay");
 
     }).catch(err => {
       console.log(err, "boo!");
     });
+
     this.props.history.push('/')
   }
   render() {
