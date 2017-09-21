@@ -39,7 +39,7 @@ class Registration extends Component {
   }
   render() {
     return (
-    	<div>
+    	<div className="container">
     		<h1>Signup for Grumble!</h1>
 	    		<form className="signUp" onSubmit={this.handleFormSubmit}>
 	    		<input type="text" onChange={this.handleChange} name="displayName" value={this.state.displayName} placeholder="Choose a display name" />
