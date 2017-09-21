@@ -11,7 +11,7 @@ const conn = mysql.createConnection({
 })
 
 /* /api starting endpoint */
-router.post('/api/register', function(req, res, next) {
+router.post('/register', function(req, res, next) {
 	const user_name = req.body.username
 	const password = req.body.password
 	const display_name = req.body.displayName
