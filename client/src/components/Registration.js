@@ -21,16 +21,16 @@ class Registration extends Component {
   	fetch('http://localhost:3001/api/register', { 
         method: 'POST',
         data: {
-          	displayName: this.state.message,
+          	displayName: this.state.displayName,
     		username: this.state.username,
     		password: this.state.password
         }
       })
-      // .then(function(response) {
-      //   return response.json()
-      // }).then(function(body) {
-      //   console.log(body);
-      // });
+      .then(function(response) {
+        return response.json()
+      }).then(function(body) {
+        console.log(body);
+      });
 
       this.props.history.push('/')
   }
