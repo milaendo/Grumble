@@ -3,7 +3,7 @@ import axios from 'axios'
 
 class GrumbForm extends Component {
 	state = {
-		grumb: "",
+		grumb: ""
 	}
 
 	handleChange = (e) => {

@@ -64,7 +64,7 @@ router.post('/register', function(req, res, next) {
 });
 ///////////POSTING A GRUMB//////////////////////////////////////////////////////
 router.post('/grumb', function(req,res,next){
-	const grumb = req.body.grumbf
+	const grumb = req.body.grumb
 	const userid = req.body.id
 
 	const sql = 'insert into grumbs (grumb,userid) values (?,?)'
