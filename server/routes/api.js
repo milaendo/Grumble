@@ -16,11 +16,18 @@ conn.on("error",function(err){
 
 
 
-//////////////TEMPORARY GET GRUMBS FOR NOW/////////////////////////////////
+//////////////GET GRUMBS/////////////////////////////////
 
 router.get('/grumbs', function(req, res, next) {
 
-	const sql='SELECT * FROM Grumbles'
+	const sql=`
+	SELECT g.*, u.display_name
+	FROM grumbs g
+    JOIN users u 
+    ON g.userid = u.id
+	WHERE parentid IS NULL
+	ORDER BY timestamp DESC`
+
 	conn.query(sql, function(err, results, fields){
 		if (err){
 			res.json({
@@ -30,7 +37,7 @@ router.get('/grumbs', function(req, res, next) {
 		else {
 			res.json({
 				message: 'Data sucessfully pulled',
-				grumbles: results
+				grumbs: results
 			})
 		}
 	})

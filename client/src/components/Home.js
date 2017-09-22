@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getGrumbs } from '../actions/action'
+import GrumbleList from './GrumbleList'
 
 class MyComponent extends Component {
   componentWillMount() {
@@ -11,6 +12,9 @@ class MyComponent extends Component {
     return (
       <div className="container">
         <h1>Grumble :-|</h1>
+          <div className="mainGrumbs">
+            <GrumbleList />
+          </div>
       </div>
     )
   }
