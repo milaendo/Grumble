@@ -19,25 +19,20 @@ class Registration extends Component {
   	handleFormSubmit = (e) => {
   	e.preventDefault()
     console.log("FrontEnd", this.state)
-  	// axios.post('/api/register', { 
-   //        displayName: this.state.displayName,
-   //    		username: this.state.username,
-   //    		password: this.state.password
-   //      })
 
     axios({
-    method: 'post',
-    url: '/api/register',
-    data: {
-        displayName: this.state.displayName,
-        username: this.state.username,
-        password: this.state.password
-      },
-    headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-    })
+      method: 'post',
+      url: '/api/register',
+      data: {
+          displayName: this.state.displayName,
+          username: this.state.username,
+          password: this.state.password
+        },
+      headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+      })
     .then(response => {
       console.log(response, "yay");
 
@@ -49,7 +44,7 @@ class Registration extends Component {
   }
   render() {
     return (
-    	<div>
+    	<div className="container">
     		<h1>Signup for Grumble!</h1>
 	    		<form className="signUp" onSubmit={this.handleFormSubmit}>
 	    		<input type="text" onChange={this.handleChange} name="displayName" value={this.state.displayName} placeholder="Choose a display name" />
