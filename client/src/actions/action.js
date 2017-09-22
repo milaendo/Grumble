@@ -17,3 +17,13 @@ export function getGrumbs() {
     })
     
 }
+
+export function singleGrumb(){
+  axios.get('/singleGrumb')
+  .then(response => {
+    console.log('axois winn')
+    store.dispatch({
+      type: GET_GRUMBS
+    })
+  })
+}
