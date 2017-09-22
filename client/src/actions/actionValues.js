@@ -1,1 +1,1 @@
-export const MY_ACTION = 'MY_ACTION'
+export const GET_GRUMBS = 'GET_GRUMBS'

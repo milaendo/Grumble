@@ -11,8 +11,9 @@ import store from '../store'
 import Layout from './Layout'
 
 // page components
-import MyComponent from './MyComponent'
+import Home from './Home'
 import Registration from './Registration'
+import GrumbForm from './GrumbForm'
 
 // base styles and icons
 import 'normalize.css/normalize.css'
@@ -28,8 +29,9 @@ class App extends Component {
         <Router>
           <Layout>
             <Switch>
-              <Route exact path="/" component={MyComponent} />
+              <Route exact path="/" component={Home} />
               <Route path="/registration" component={Registration} />
+              <Route path="/grumb" component={GrumbForm} />
             </Switch>
           </Layout>
         </Router>

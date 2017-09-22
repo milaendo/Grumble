@@ -1,15 +1,15 @@
 // if you so choose, you may name your actions and import them here
 // for reducing typing errors
-import {MY_ACTION} from '../actions/actionValues'
+import {GET_GRUMBS} from '../actions/actionValues'
 
 const initialState = {
-  foo: 'bar'
+  grumbs: []
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case MY_ACTION:
-      return {...state, foo: action.payload}
+    case GET_GRUMBS:
+      return {...state, grumbs: action.payload}
     default:
       return state
   }
