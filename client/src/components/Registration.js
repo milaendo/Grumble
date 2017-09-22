@@ -19,25 +19,20 @@ class Registration extends Component {
   	handleFormSubmit = (e) => {
   	e.preventDefault()
     console.log("FrontEnd", this.state)
-  	// axios.post('/api/register', { 
-   //        displayName: this.state.displayName,
-   //    		username: this.state.username,
-   //    		password: this.state.password
-   //      })
 
     axios({
-    method: 'post',
-    url: '/api/register',
-    data: {
-        displayName: this.state.displayName,
-        username: this.state.username,
-        password: this.state.password
-      },
-    headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-    })
+      method: 'post',
+      url: '/api/register',
+      data: {
+          displayName: this.state.displayName,
+          username: this.state.username,
+          password: this.state.password
+        },
+      headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+      })
     .then(response => {
       console.log(response, "yay");
 

@@ -10,6 +10,30 @@ const conn = mysql.createConnection({
   password: config.get('db.password')
 })
 
+
+//////////////TEMPORARY GET GRUMBS FOR NOW/////////////////////////////////
+
+router.get('/grumbs', function(req, res, next) {
+
+	const sql='SELECT * FROM Grumbles'
+	conn.query(sql, function(err, results, fields){
+		if (err){
+			res.json({
+				message: 'Could not pull data'
+			})
+		}
+		else {
+			res.json({
+				message: 'Data sucessfully pulled',
+				grumbles: results
+			})
+		}
+	})
+});
+
+
+
+///////////USER REGISTRATION////////////////////////////////////////////
 /* /api starting endpoint */
 router.post('/register', function(req, res, next) {
 	console.log("Backend", req.body)
@@ -32,6 +56,7 @@ router.post('/register', function(req, res, next) {
 		}
 	})
 });
+
 
 
 

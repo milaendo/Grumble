@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
-// import {getFoo} from '../actions/app'
+import { connect } from 'react-redux'
+import { getGrumbs } from '../actions/action'
 
 class MyComponent extends Component {
-  // componentWillMount() {
-  //   getFoo()
-  // }
+  componentWillMount() {
+    getGrumbs()
+  }
 
   render() {
     return (
-      <div>
-        <h1>{this.props.foo}</h1>
+      <div className="container">
+        <h1>Grumble :-|</h1>
       </div>
     )
   }
@@ -18,7 +18,7 @@ class MyComponent extends Component {
 
 const stateToProps = function(appState) {
   return {
-    foo: appState.app.foo // ".app" because we ran combineReducers
+    grumb: appState.app.grumbs // ".app" because we ran combineReducers
   }
 }
 
