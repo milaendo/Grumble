@@ -11,7 +11,6 @@ class MyComponent extends Component {
   render() {
     return (
       <div className="container">
-        <h1>Grumble :-|</h1>
           <div className="mainGrumbs">
             <GrumbleList />
           </div>

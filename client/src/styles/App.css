@@ -1,3 +1,8 @@
-/*
-  Custom styles here
- */
+
+li {
+	list-style: none;
+}
+
+li:hover {
+	color: red;
+}

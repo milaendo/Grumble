@@ -7,6 +7,7 @@ class Layout extends Component {
       <div>
         {/* this is just an example layout*/}
         <header>
+          <h1>Grumble :-|</h1>
           <nav>
             <ul>
               <li><Link to="/">Home Page</Link></li>
