@@ -5,12 +5,12 @@ import axios from 'axios'
 import {GET_GRUMBS} from './actionValues'
 
 export function getGrumbs() {
-  axios.get('/api/grumbles')
+  axios.get('/api/grumbs')
    .then(response => {
       console.log(response, "yay")
       store.dispatch({
       type: GET_GRUMBS,
-      payload: response.grumbles
+      payload: response.data.grumbs
     });
     }).catch(err => {
       console.log(err, "boo!");
