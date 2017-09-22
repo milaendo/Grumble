@@ -3,7 +3,8 @@ var router = express.Router();
 const mysql = require('mysql')
 const config = require('config')
 
-const conn = mysql.createConnection({
+const conn = mysql.createPool({
+	connectionLimit : 10,
   host: config.get('db.host'),
   database: config.get('db.database'),
   user: config.get('db.user'),
@@ -37,8 +38,8 @@ router.post('/register', function(req, res, next) {
 });
 
 router.post('/grumb', function(req,res,next){
-	const grumb = req.body.grumb
-	const userid = req.params.id
+	const grumb = req.body.grumbf
+	const userid = req.body.id
 
 	const sql = 'insert into grumbs (grumb,userid) values (?,?)'
 	conn.query(sql,[grumb,userid], function(err,results,fields){
@@ -56,4 +57,5 @@ router.post('/grumb', function(req,res,next){
 		}
 	})
 })
+
 module.exports = router;
