@@ -13,8 +13,26 @@ const conn = mysql.createPool({
 conn.on("error",function(err){
 	console.log(err)
 })
-
-
+//////single grumb/////////////
+router.post('/singleGrumb', function(req,res,next){
+	const id = req.body.grumbid
+	const sql='select * from grumbs where id=? and parentid is null'
+	conn.query(sql, [id], function(err,results,next){
+		if(err){
+			console.log(err)
+			res.json({
+				message: 'Cannot view singleGrumb'
+			})
+		}
+		else {
+			console.log(results)
+			res.json({
+				message: 'heres yer grumb',
+				grumb:results
+			})
+		}
+	})
+})
 
 //////////////TEMPORARY GET GRUMBS FOR NOW/////////////////////////////////
 
