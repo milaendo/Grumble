@@ -1,7 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express')
+const router = express.Router()
 const mysql = require('mysql')
 const config = require('config')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+
 
 const conn = mysql.createPool({
 	connectionLimit : 10,
@@ -13,6 +16,9 @@ const conn = mysql.createPool({
 conn.on("error",function(err){
 	console.log(err)
 })
+
+
+
 //////single grumb/////////////
 router.post('/singleGrumb', function(req,res,next){
 	const id = req.body.grumbid
@@ -64,15 +70,23 @@ router.get('/grumbs', function(req, res, next) {
 
 
 ///////////USER REGISTRATION///////////////////////////////////////////
-/* /api starting endpoint */
+
 router.post('/register', function(req, res, next) {
-	console.log("Backend", req.body)
+	
 	const user_name = req.body.username
 	const password = req.body.password
 	const display_name = req.body.displayName
 
-	const sql='INSERT INTO users (user_name, password, display_name) values (?, ?, ?);'
-	conn.query(sql,[user_name, password, display_name],function(err,results,fields){
+	const sql=`
+	INSERT INTO users (user_name, password, display_name) 
+	VALUES (?, ?, ?);`
+
+
+	bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(password, salt, function(err, hash) {
+
+	
+	conn.query(sql,[user_name, hash, display_name],function(err,results,fields){
 		if (err){
 			console.log(err)
 			res.json({
@@ -86,8 +100,46 @@ router.post('/register', function(req, res, next) {
 			})
 		}
 	})
+	})
+	})
 });
+
+
+
+/////////////LOGIN IN/////////////////////////////////////////////////////////////
+
+router.post('/token', function(req, res, next) {
+	const username = req.body.username
+	const password = req.body.password
+
+	const sql = `
+    SELECT password FROM users
+    WHERE user_name = ?`
+
+    conn.query(sql, [username], function(err, results, fields){
+    const hashedPassword = results[0].password
+
+    bcrypt.compare(password, hashedPassword).then(function(result){
+      if (result) {
+        res.json({
+          token: jwt.sign({username}, config.get('secret'), { expiresIn: config.get('sessionLengthInSeconds') })
+        })
+      } else {
+        res.status(401).json({
+          message: 'Invalid Credentials'
+        })
+      }
+    }).catch(function(err){
+      console.log(err)
+    })
+  })
+})
+
+
+
+
 ///////////POSTING A GRUMB//////////////////////////////////////////////////////
+
 router.post('/grumb', function(req,res,next){
 	const grumb = req.body.grumb
 	const userid = req.body.id
@@ -109,4 +161,4 @@ router.post('/grumb', function(req,res,next){
 	})
 })
 
-module.exports = router;
+module.exports = router
