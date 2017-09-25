@@ -14,9 +14,13 @@ conn.on("error",function(err){
 	console.log(err)
 })
 //////single grumb/////////////
-router.post('/singleGrumb', function(req,res,next){
-	const id = req.body.grumbid
-	const sql='select * from grumbs where id=? and parentid is null'
+router.get('/singleGrumb/:grumbid', function(req,res,next){
+	const id = req.params.grumbid
+	const sql=`	SELECT g.*, u.display_name,g.timestamp
+				FROM grumbs g
+			    JOIN users u 
+			    ON g.userid = u.id
+				WHERE parentid IS NULL and g.id=?`
 	conn.query(sql, [id], function(err,results,next){
 		if(err){
 			console.log(err)
@@ -25,7 +29,7 @@ router.post('/singleGrumb', function(req,res,next){
 			})
 		}
 		else {
-			console.log(results)
+			console.log('results',results)
 			res.json({
 				message: 'heres yer grumb',
 				grumb:results
