@@ -16,6 +16,8 @@ import Home from './Home'
 import Registration from './Registration'
 import GrumbForm from './GrumbForm'
 import Login from './Login'
+import SingleGrumb from './SingleGrumb'
+
 
 // base styles and icons
 import 'normalize.css/normalize.css'
@@ -35,6 +37,7 @@ class App extends Component {
               <Route path="/registration" component={Registration} />
               <Route path="/grumb" component={GrumbForm} />
               <Route path="/login" component={Login} />
+              <Route path='/singleGrumb/:grumbid' component={SingleGrumb} />
             </Switch>
           </Layout>
         </Router>

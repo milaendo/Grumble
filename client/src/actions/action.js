@@ -2,7 +2,7 @@ import store from '../store'
 import axios from 'axios'
 // example actions
 
-import {GET_GRUMBS} from './actionValues'
+import {GET_GRUMBS, ONE_GRUMB} from './actionValues'
 
 export function getGrumbs() {
   axios.get('/api/grumbs')
@@ -18,12 +18,14 @@ export function getGrumbs() {
     
 }
 
-export function singleGrumb(){
-  axios.get('/singleGrumb')
+export function oneGrumb(grumbid){
+  axios.get('/api/singleGrumb/' + grumbid)
   .then(response => {
-    console.log('axois winn')
     store.dispatch({
-      type: GET_GRUMBS
+      type: ONE_GRUMB,
+      payload:response.data.grumb[0]
     })
+  }).catch(err => {
+    console.log(err, "not working")
   })
 }

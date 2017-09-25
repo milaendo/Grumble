@@ -1,27 +1,35 @@
 import React, { Component } from 'react'
-import CommentButton from './CommentButton'
+import {connect} from 'react-redux'
+import {oneGrumb} from '../actions/action'
+
 
 class SingleGrumb extends Component {
 	static defaultProps={
-		grumb:[]
+		grumb:{}
 	}
 	componentWillMount(){
-		SingleGrumb()
+		oneGrumb(this.props.match.params.grumbid)
 	}
 	render () {
+		console.log('info',this.props)
 		return (
 			<div>
-				<h1>1 is the loneliest number :(</h1>
-					{this.props.grumb}
-				<CommentButton />
+				<div>
+					<h1>Single Grumb</h1>
+				</div>
+				<div>
+					<div>{this.props.grumb.grumb}</div>
+					<div>written by:{this.props.grumb.display_name}</div>
+					<div>{this.props.grumb.timestamp}</div>
+				</div>
 			</div>
 		)
 	}
 }
 
-function stateToProps(appState,compProps){
+function stateToProps(appState){
 	return {
-		grumb:appState.grumbs
+		grumb: appState.app.grumb //*app because combined reducers
 	}
 }
 

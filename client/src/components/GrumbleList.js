@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import GrumbleItem from './GrumbleItem'
 
+
 class GrumbleList extends Component {
 
   render() {
@@ -12,13 +13,12 @@ class GrumbleList extends Component {
     				<GrumbleItem data={item} />
     			</div>
     		))}
-    	</div>     
+    	</div>    
     )
   }
 }
 
 const stateToProps = function(appState) {
-	console.log("Grumbstate", appState)
   return {
     grumb: appState.app.grumbs // ".app" because we ran combineReducers
   }
