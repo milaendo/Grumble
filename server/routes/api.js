@@ -113,16 +113,22 @@ router.post('/token', function(req, res, next) {
 	const password = req.body.password
 
 	const sql = `
-    SELECT password FROM users
+    SELECT password, id, display_name FROM users
     WHERE user_name = ?`
+
 
     conn.query(sql, [username], function(err, results, fields){
     const hashedPassword = results[0].password
+    const userid = results[0].id
+    const displayName = results[0].display_name
 
     bcrypt.compare(password, hashedPassword).then(function(result){
       if (result) {
         res.json({
-          token: jwt.sign({username}, config.get('secret'), { expiresIn: config.get('sessionLengthInSeconds') })
+          token: jwt.sign({username}, config.get('secret'), { expiresIn: config.get('sessionLengthInSeconds') }),
+          username: username,
+          userid: userid,
+          displayName: displayName
         })
       } else {
         res.status(401).json({
@@ -142,7 +148,7 @@ router.post('/token', function(req, res, next) {
 
 router.post('/grumb', function(req,res,next){
 	const grumb = req.body.grumb
-	const userid = req.body.id
+	const userid = req.body.user
 
 	const sql = 'insert into grumbs (grumb,userid) values (?,?)'
 	conn.query(sql,[grumb,userid], function(err,results,fields){

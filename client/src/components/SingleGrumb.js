@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import CommentButton from './CommentButton'
 
 class SingleGrumb extends Component {
 	static defaultProps={
@@ -12,6 +13,7 @@ class SingleGrumb extends Component {
 			<div>
 				<h1>1 is the loneliest number :(</h1>
 					{this.props.grumb}
+				<CommentButton />
 			</div>
 		)
 	}

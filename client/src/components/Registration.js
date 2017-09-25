@@ -18,7 +18,7 @@ class Registration extends Component {
 
   	handleFormSubmit = (e) => {
   	e.preventDefault()
-    console.log("FrontEnd", this.state)
+  
 
     axios({
       method: 'post',
