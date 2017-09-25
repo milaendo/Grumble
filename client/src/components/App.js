@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 // router
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {AuthRoute} from '../lib/auth'
 
 // connecting react and redux
 import {Provider} from 'react-redux'
@@ -14,7 +15,9 @@ import Layout from './Layout'
 import Home from './Home'
 import Registration from './Registration'
 import GrumbForm from './GrumbForm'
+import Login from './Login'
 import SingleGrumb from './SingleGrumb'
+
 
 // base styles and icons
 import 'normalize.css/normalize.css'
@@ -33,6 +36,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/registration" component={Registration} />
               <Route path="/grumb" component={GrumbForm} />
+              <Route path="/login" component={Login} />
               <Route path='/singleGrumb/:grumbid' component={SingleGrumb} />
             </Switch>
           </Layout>

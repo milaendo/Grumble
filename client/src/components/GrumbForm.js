@@ -16,9 +16,10 @@ class GrumbForm extends Component {
   		e.preventDefault()
   		axios({
 	      method: 'post',
-	      url: '/api/grumb/',
+	      url: '/api/grumb',
 	      data: {
-	          grumb: this.state.grumb
+	          grumb: this.state.grumb,
+	          user: localStorage.getItem("userid")
 	        },
 	      headers: {
 	            'Accept': 'application/json',

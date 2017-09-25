@@ -13,6 +13,7 @@ class Layout extends Component {
               <li><Link to="/">Home Page</Link></li>
               <li><Link to="/registration">Register</Link></li>
               <li><Link to="/grumb">Post a Grumb</Link></li>
+              <li><Link to="/login">Login</Link></li>
             </ul>
           </nav>
         </header>
