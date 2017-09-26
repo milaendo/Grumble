@@ -13,6 +13,31 @@ const conn = mysql.createPool({
 conn.on("error",function(err){
 	console.log(err)
 })
+
+//////post response////////////
+router.post('/response', function(req,res,next){
+	const parentid = req.body.parentid
+	const userid = req.body.userid
+	const grumb = req.body.grumb
+	const sql = `insert into grumbs (grumb, userid, parentid) values (?,?,?);`
+
+	conn.query(sql, [grumb, userid, parentid], function(err,results,fields){
+		if (err){
+			console.log(err)
+			res.json({
+				message: 'response not entered'
+			})
+		}
+		else {
+			console.log('response', results)
+			res.json({
+				message:'response entered',
+				response: results
+			})
+		}
+	})
+})
+
 //////single grumb/////////////
 router.get('/singleGrumb/:grumbid', function(req,res,next){
 	const id = req.params.grumbid
@@ -21,7 +46,7 @@ router.get('/singleGrumb/:grumbid', function(req,res,next){
 			    JOIN users u 
 			    ON g.userid = u.id
 				WHERE parentid IS NULL and g.id=?`
-	conn.query(sql, [id], function(err,results,next){
+	conn.query(sql, [id], function(err,results,fields){
 		if(err){
 			console.log(err)
 			res.json({
@@ -29,7 +54,7 @@ router.get('/singleGrumb/:grumbid', function(req,res,next){
 			})
 		}
 		else {
-			console.log('results',results)
+			console.log('singlegrumb',results)
 			res.json({
 				message: 'heres yer grumb',
 				grumb:results

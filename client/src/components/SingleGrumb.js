@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {oneGrumb} from '../actions/action'
+import Response from './Response'
 
 
 class SingleGrumb extends Component {
@@ -17,11 +18,12 @@ class SingleGrumb extends Component {
 				<div>
 					<h1>Single Grumb</h1>
 				</div>
-				<div>
+				<div className='singleGrumb'>
 					<div>{this.props.grumb.grumb}</div>
 					<div>written by:{this.props.grumb.display_name}</div>
 					<div>{this.props.grumb.timestamp}</div>
 				</div>
+				<Response />
 			</div>
 		)
 	}
