@@ -7,6 +7,7 @@ import {getResponses} from '../actions/action'
 import Response from './Response'
 import GrumbleList from './GrumbleList'
 import SingleGrumb from './SingleGrumb'
+import Vote from './Vote'
 
 
 class Grumb extends Component {
@@ -30,10 +31,19 @@ class Grumb extends Component {
 
 	render () {
 		return (
-			<div>
-				<SingleGrumb data={this.props.grumb} />
-				<Response data={this.props.grumb.id}/>
-				<GrumbleList data={this.props.responses}/>
+			<div className="container">
+				<div>
+					<Vote data={this.props.grumb} />
+				</div>
+				<div>
+					<SingleGrumb data={this.props.grumb} />
+				</div>
+				<div>
+					<Response data={this.props.grumb.id}/>
+				</div>
+				<div>
+					<GrumbleList data={this.props.responses}/>
+				</div>
 			</div>
 		)
 	}

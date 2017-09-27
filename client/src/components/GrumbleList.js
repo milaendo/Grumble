@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import GrumbleItem from './GrumbleItem'
+import Vote from './Vote'
 
 
 class GrumbleList extends Component {
@@ -11,7 +12,12 @@ class GrumbleList extends Component {
     	<div className="container">
     		{this.props.data.map(item => (
     			<div key={item.id}>
-    				<GrumbleItem data={item} />
+            <div>
+              <Vote data={item} />
+            </div>
+            <div>
+    				  <GrumbleItem data={item} />
+            </div>
     			</div>
     		))}
     	</div>    
