@@ -121,7 +121,7 @@ router.get('/responses/:grumbid', function(req, res, next){
 
 
 //////////////////////single grumb////////////////////////////////////////////////
-
+////////NEED TO PULL VOTE DIFFERENTIAL AND TOTAL VOTE COUNT VIA JOIN WITH VOTE TABLE
 router.get('/singleGrumb/:grumbid', function(req,res,next){
 	const id = req.params.grumbid
 	const sql=`	SELECT g.*, u.display_name,g.timestamp
