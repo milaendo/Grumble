@@ -5,10 +5,11 @@ import GrumbleItem from './GrumbleItem'
 
 class GrumbleList extends Component {
 
+
   render() {
     return (
     	<div className="container">
-    		{this.props.grumb.map(item => (
+    		{this.props.data.map(item => (
     			<div key={item.id}>
     				<GrumbleItem data={item} />
     			</div>
@@ -18,11 +19,17 @@ class GrumbleList extends Component {
   }
 }
 
-const stateToProps = function(appState) {
-  return {
-    grumb: appState.app.grumbs // ".app" because we ran combineReducers
-  }
-}
+//////I decided to make this a dumb component so essentially, it'll map whatever we send it via props. -RC
 
-export default connect(stateToProps)(GrumbleList)
+
+// const stateToProps = function(appState) {
+//   return {
+//     grumb: appState.app.grumbs // ".app" because we ran combineReducers
+//   }
+// }
+
+// export default connect(stateToProps)(GrumbleList)
+
+
+export default GrumbleList
 

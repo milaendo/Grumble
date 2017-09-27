@@ -8,7 +8,7 @@ class GrumbleItem extends Component {
             <Link to={/singleGrumb/ + this.props.data.id}>
         		<div>
         			<h2>{this.props.data.grumb}</h2>
-                    <span>Grumbled by:{this.props.data.display_name} {this.props.data.timestamp}</span> 
+                    <span>Grumbled by:{this.props.data.display_name} {this.props.data.timestamp}</span>
         		</div>
         	</Link>			
     	</div>     
