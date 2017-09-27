@@ -20,6 +20,13 @@ class Grumb extends Component {
 	// 	getResponses(this.props.match.params.grumbid)  ///////This isn't working right. Need advice.
 	// }
 
+	// componentWillReceiveProps(props){
+	// 	if (props.grumb.id !== props.match.params.grumbid) {
+	// 		getResponses(props.match.params.grumbid)
+	// 	}
+
+	// }
+
 
 	render () {
 		return (
