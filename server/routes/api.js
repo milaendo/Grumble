@@ -17,8 +17,53 @@ conn.on("error",function(err){
 	console.log(err)
 })
 
+//////////downvote////////////////
+
+router.post('/downvote', function(req,res,next){
+	const userid = req.body.userid
+	const grumbid = req.body.grumbid
+	const parentid = req.body.parentid
+	const sql = `insert into votes (downvote, userid, grumbid, parentid) values (1, ?, ?, ?)`
+
+	conn.query(sql, [userid,grumbid, parentid], function(err, results,fields){
+		if (err){
+			console.log(err)
+			res.json({
+				message: 'downvote fool'
+			})
+		}else {
+			console.log('vote', results)
+			res.json({
+				message: 'downvote win'
+			})
+		}
+	})
+})
+
+//////////////upvote////////////////
+
+router.post('/upvote', function(req,res,next){
+	const userid = req.body.userid
+	const grumbid = req.body.grumbid
+	const parentid = req.body.parentid
+	const sql = `insert into votes (upvote, userid, grumbid, parentid) values (1, ?, ?, ?)`
+	conn.query(sql, [userid,grumbid,parentid], function(err, results,fields){
+		if (err){
+			console.log(err)
+			res.json({
+				message: 'upvote fool'
+			})
+		}else {
+			console.log('voteup', results)
+			res.json({
+				message: 'upvote win'
+			})
+		}
+	})
+})
 
 //////post response////////////
+
 router.post('/response', function(req,res,next){
 	const parentid = req.body.parentid
 	const userid = req.body.userid
