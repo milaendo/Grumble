@@ -18,8 +18,65 @@ conn.on("error",function(err){
 })
 
 
+//////post response////////////
+router.post('/response', function(req,res,next){
+	const parentid = req.body.parentid
+	const userid = req.body.userid
+	const response = req.body.response
+	const sql = `insert into grumbs (grumb, userid, parentid) values (?,?,?);`
 
-//////single grumb/////////////
+	conn.query(sql, [response, userid, parentid], function(err,results,fields){
+		if (err){
+			console.log(err)
+			res.json({
+				message: 'response not entered'
+			})
+		}
+		else {
+			console.log('response', results)
+			res.json({
+				message:'response entered',
+				response: results
+			})
+		}
+	})
+})
+
+/////////////////////GET RESPONSES////////////////////////////////////////////
+
+router.get('/responses/:grumbid', function(req, res, next){
+
+	const id = req.params.grumbid
+
+	const sql=`	
+	SELECT g.*, u.display_name, g.timestamp
+	FROM grumbs g
+	JOIN users u 
+	ON g.userid = u.id
+	WHERE parentid =?
+	ORDER BY timestamp DESC`
+
+	conn.query(sql, [id], function(err,results,next){
+		if(err){
+			console.log(err)
+			res.json({
+				message: 'Cannot view responses'
+			})
+		}
+		else {
+			res.json({
+				message: 'Here are the responses',
+				responses: results
+			})
+		}
+	})
+})
+
+
+
+
+//////////////////////single grumb////////////////////////////////////////////////
+
 router.get('/singleGrumb/:grumbid', function(req,res,next){
 	const id = req.params.grumbid
 	const sql=`	SELECT g.*, u.display_name,g.timestamp
@@ -35,7 +92,6 @@ router.get('/singleGrumb/:grumbid', function(req,res,next){
 			})
 		}
 		else {
-			console.log('results',results)
 			res.json({
 				message: 'heres yer grumb',
 				grumb:results

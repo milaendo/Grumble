@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getGrumbs } from '../actions/action'
 import GrumbleList from './GrumbleList'
+import { getGrumbs } from '../actions/action'
 
 class MyComponent extends Component {
+
   componentWillMount() {
     getGrumbs()
   }
@@ -12,7 +13,7 @@ class MyComponent extends Component {
     return (
       <div className="container">
           <div className="mainGrumbs">
-            <GrumbleList />
+            <GrumbleList data={this.props.grumbData} />
           </div>
       </div>
     )
@@ -21,7 +22,7 @@ class MyComponent extends Component {
 
 const stateToProps = function(appState) {
   return {
-    grumb: appState.app.grumbs // ".app" because we ran combineReducers
+    grumbData: appState.app.grumbs 
   }
 }
 

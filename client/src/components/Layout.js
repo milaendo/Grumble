@@ -13,14 +13,14 @@ class Layout extends Component {
               <li><Link to="/">Home Page</Link></li>
               <li><Link to="/registration">Register</Link></li>
               <li><Link to="/grumb">Post a Grumb</Link></li>
-              <li><Link to="/login">Login</Link></li>
+              <li><Link to="/login">Login/Logout</Link></li>
             </ul>
           </nav>
         </header>
         {/* Rendering of the page below */}
         {this.props.children}
         <footer>
-          &copy; 2017 Ross & Mila Enterprises 3000
+          &copy; 2017 Grumbliees International
         </footer>
       </div>
     )
