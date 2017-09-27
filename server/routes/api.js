@@ -24,20 +24,43 @@ router.post('/downvote', function(req,res,next){
 	const grumbid = req.body.grumbid
 	const parentid = req.body.parentid
 	const sql = `insert into votes (downvote, userid, grumbid, parentid) values (1, ?, ?, ?)`
-
-	conn.query(sql, [userid,grumbid, parentid], function(err, results,fields){
-		if (err){
-			console.log(err)
-			res.json({
-				message: 'downvote fool'
-			})
-		}else {
-			console.log('vote', results)
-			res.json({
-				message: 'downvote win'
-			})
-		}
-	})
+	const checkVote = `
+					SELECT 
+    				userid, grumbid
+					FROM
+    				votes
+					WHERE
+    				userid = ? and grumbid = ?`
+    conn.query(checkVote, [userid,grumbid], function(err,results,fields){
+    	console.log('length', results.length)
+    	if(err){
+    		res.json({
+    			message:'NO VOTE FOR YOU'
+    		})
+    	}
+    	else if(results.length>0){
+    		res.json({
+    			message:'YOU ALREADY VOTED IDIOT'
+    		})
+    	}
+    	else {
+    		conn.query(sql, [userid,grumbid,parentid], function(err, results,fields){
+    			if (err){
+    				console.log(err)
+    				res.json({
+    					message: 'downvote fool'
+    				})
+    			}
+    			else {
+    				console.log('vote', results)
+    				res.json({
+    					message: 'downvote win'
+    				})
+    			}
+    		})
+    	}
+    })
+	
 })
 
 //////////////upvote////////////////
@@ -47,19 +70,42 @@ router.post('/upvote', function(req,res,next){
 	const grumbid = req.body.grumbid
 	const parentid = req.body.parentid
 	const sql = `insert into votes (upvote, userid, grumbid, parentid) values (1, ?, ?, ?)`
-	conn.query(sql, [userid,grumbid,parentid], function(err, results,fields){
-		if (err){
-			console.log(err)
-			res.json({
-				message: 'upvote fool'
-			})
-		}else {
-			console.log('voteup', results)
-			res.json({
-				message: 'upvote win'
-			})
-		}
-	})
+	const checkVote = `
+					SELECT 
+    				userid, grumbid
+					FROM
+    				votes
+					WHERE
+    				userid = ? and grumbid = ?`
+    conn.query(checkVote, [userid,grumbid], function(err,results,fields){
+    	if(err){
+    		res.json({
+    			message:'NO VOTE FOR YOU'
+    		})
+    	}
+    	else if(results.length>0){
+    		res.json({
+    			message:'YOU ALREADY VOTED IDIOT'
+    		})
+    	}
+    	else {
+    		conn.query(sql, [userid,grumbid,parentid], function(err, results,fields){
+    			if (err){
+    				console.log(err)
+    				res.json({
+    					message: 'upvote fool'
+    				})
+    			}else {
+    				console.log('voteup', results)
+    				res.json({
+    					message: 'upvote win'
+    				})
+    			}
+    		})
+    	}
+
+    })
+	
 })
 
 //////post response////////////
