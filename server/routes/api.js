@@ -22,7 +22,7 @@ conn.on("error",function(err){
 router.post('/downvote', function(req,res,next){
 	const userid = req.body.userid
 	const grumbid = req.body.grumbid
-	const parentid = req.body.parentid
+	const parentid = req.body.parentid || 0
 	////////// inserting vote//////////////
 
 	const sql = `
@@ -42,7 +42,7 @@ router.post('/downvote', function(req,res,next){
     ////////parent delete will delete all responses and votes attached to it////////
 
     const parentIdDelete = `
-    DELETE grumbs 
+    DELETE grumb 
     WHERE parentid = ?`
 
     ////////grumb delete will delete the grumb and all votes attached to it/////////
@@ -54,8 +54,12 @@ router.post('/downvote', function(req,res,next){
     ///////checking to see if they voted
 
     const voteTally = ` 
-    SELECT upvote,downvote 
-    FROM votes where grumbid = ?`
+    SELECT 
+    SUM(upvote - downvote) AS total
+    FROM
+    votes
+    WHERE
+    grumbid = ?`
 
     conn.query(checkVote, [userid, grumbid], function(err, results, fields){
     	console.log('length', results.length)
@@ -81,15 +85,16 @@ router.post('/downvote', function(req,res,next){
     			else{
     				//////grabbing vote totals ///////
     				conn.query(voteTally, [grumbid], function(err, results, fields){
+    					console.log("vote totals", results[0].total)
     					if(err){
     						console.log(err)
     						res.json({
     							message: 'Could not select votes'
     						})
     					}
-    					///////checking to see if this post is close to -10 votes/////
-    					else if(results.upvote - results.downvote >= -10) {
+    					else if (results[0].total <= -10){
     						///////deleting all responses to parent id //////
+    						console.log('parent', parentid)
     						conn.query(parentIdDelete, [parentid], function(err, results, fields){
     							if(err){
     								console.log(err)
@@ -115,6 +120,8 @@ router.post('/downvote', function(req,res,next){
     							}
     						})
     					}
+    					///////checking to see if this post is close to -10 votes/////  					
+ 						
     					else {
 		    				console.log('vote', results)
 		    				res.json({
