@@ -23,15 +23,41 @@ router.post('/downvote', function(req,res,next){
 	const userid = req.body.userid
 	const grumbid = req.body.grumbid
 	const parentid = req.body.parentid
-	const sql = `insert into votes (downvote, userid, grumbid, parentid) values (1, ?, ?, ?)`
+	////////// inserting vote//////////////
+
+	const sql = `
+	INSERT INTO
+	votes (downvote, userid, grumbid, parentid) 
+	VALUES (1, ?, ?, ?)`
+
+	////////checking to see if they have voted//////////
+
 	const checkVote = `
-					SELECT 
-    				userid, grumbid
-					FROM
-    				votes
-					WHERE
-    				userid = ? and grumbid = ?`
-    conn.query(checkVote, [userid,grumbid], function(err,results,fields){
+	SELECT 
+	userid, parentid
+	FROM
+	votes
+	WHERE
+	userid = ? and grumbid = ?`
+    ////////parent delete will delete all responses and votes attached to it////////
+
+    const parentIdDelete = `
+    DELETE grumbs 
+    WHERE parentid = ?`
+
+    ////////grumb delete will delete the grumb and all votes attached to it/////////
+
+    const grumbDelete = `
+    DELETE FROM grumbs 
+    WHERE id = ?`
+
+    ///////checking to see if they voted
+
+    const voteTally = ` 
+    SELECT upvote,downvote 
+    FROM votes where grumbid = ?`
+
+    conn.query(checkVote, [userid, grumbid], function(err, results, fields){
     	console.log('length', results.length)
     	if(err){
     		res.json({
@@ -43,6 +69,7 @@ router.post('/downvote', function(req,res,next){
     			message:'YOU ALREADY VOTED IDIOT'
     		})
     	}
+    	////voting
     	else {
     		conn.query(sql, [userid,grumbid,parentid], function(err, results,fields){
     			if (err){
@@ -51,12 +78,51 @@ router.post('/downvote', function(req,res,next){
     					message: 'downvote fool'
     				})
     			}
-    			else {
-    				console.log('vote', results)
-    				res.json({
-    					message: 'downvote win'
+    			else{
+    				//////grabbing vote totals ///////
+    				conn.query(voteTally, [grumbid], function(err, results, fields){
+    					if(err){
+    						console.log(err)
+    						res.json({
+    							message: 'Could not select votes'
+    						})
+    					}
+    					///////checking to see if this post is close to -10 votes/////
+    					else if(results.upvote - results.downvote >= -10) {
+    						///////deleting all responses to parent id //////
+    						conn.query(parentIdDelete, [parentid], function(err, results, fields){
+    							if(err){
+    								console.log(err)
+    								res.json({
+    									message: 'parentId not deleted.'
+    								})
+    							}
+    							else{
+    								//////deleting grumb////////
+    								conn.query(grumbDelete, [grumbid], function(err, results, fields){
+    									if(err){
+    										console.log(err)
+    										res.json({
+    											message: 'grumbid not deleted.'
+    										})
+    									}
+    									else {
+    										res.json({
+    											message: 'Congrats, you voted this grumb off the island.'
+    										})
+    									}
+    								})
+    							}
+    						})
+    					}
+    					else {
+		    				console.log('vote', results)
+		    				res.json({
+		    					message: 'downvote win'
+		    				})
+		    			}
     				})
-    			}
+    			}	
     		})
     	}
     })
@@ -69,14 +135,20 @@ router.post('/upvote', function(req,res,next){
 	const userid = req.body.userid
 	const grumbid = req.body.grumbid
 	const parentid = req.body.parentid
-	const sql = `insert into votes (upvote, userid, grumbid, parentid) values (1, ?, ?, ?)`
+
+	const sql = `
+	INSERT INTO 
+	votes (upvote, userid, grumbid, parentid) 
+	VALUES (1, ?, ?, ?)`
+
 	const checkVote = `
-					SELECT 
-    				userid, grumbid
-					FROM
-    				votes
-					WHERE
-    				userid = ? and grumbid = ?`
+	SELECT 
+	userid, grumbid
+	FROM
+	votes
+	WHERE
+	userid = ? and grumbid = ?`
+
     conn.query(checkVote, [userid,grumbid], function(err,results,fields){
     	if(err){
     		res.json({
@@ -114,7 +186,10 @@ router.post('/response', function(req,res,next){
 	const parentid = req.body.parentid
 	const userid = req.body.userid
 	const response = req.body.response
-	const sql = `insert into grumbs (grumb, userid, parentid) values (?,?,?);`
+	const sql = `
+	INSERT INTO 
+	grumbs (grumb, userid, parentid) 
+	VALUES (?,?,?);`
 
 	conn.query(sql, [response, userid, parentid], function(err,results,fields){
 		if (err){
@@ -170,11 +245,14 @@ router.get('/responses/:grumbid', function(req, res, next){
 ////////NEED TO PULL VOTE DIFFERENTIAL AND TOTAL VOTE COUNT VIA JOIN WITH VOTE TABLE
 router.get('/singleGrumb/:grumbid', function(req,res,next){
 	const id = req.params.grumbid
-	const sql=`	SELECT g.*, u.display_name,g.timestamp
-				FROM grumbs g
-			    JOIN users u 
-			    ON g.userid = u.id
-				WHERE parentid IS NULL and g.id=?`
+
+	const sql=`	
+	SELECT g.*, u.display_name,g.timestamp
+	FROM grumbs g
+    JOIN users u 
+    ON g.userid = u.id
+	WHERE parentid IS NULL and g.id=?`
+
 	conn.query(sql, [id], function(err,results,next){
 		if(err){
 			console.log(err)
@@ -229,7 +307,8 @@ router.post('/register', function(req, res, next) {
 	const display_name = req.body.displayName
 
 	const sql=`
-	INSERT INTO users (user_name, password, display_name) 
+	INSERT INTO 
+	users (user_name, password, display_name) 
 	VALUES (?, ?, ?);`
 
 
@@ -264,7 +343,8 @@ router.post('/token', function(req, res, next) {
 	const password = req.body.password
 
 	const sql = `
-    SELECT password, id, display_name FROM users
+    SELECT password, id, display_name 
+    FROM users
     WHERE user_name = ?`
 
 
@@ -301,7 +381,10 @@ router.post('/grumb', function(req,res,next){
 	const grumb = req.body.grumb
 	const userid = req.body.user
 
-	const sql = 'insert into grumbs (grumb,userid) values (?,?)'
+	const sql = `
+	INSERT INTO 
+	grumbs (grumb,userid)
+	values (?,?)`
 	conn.query(sql,[grumb,userid], function(err,results,fields){
 		if (err){
 			console.log(err)
