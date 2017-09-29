@@ -17,25 +17,44 @@ conn.on("error",function(err){
 	console.log(err)
 })
 
+///////////get all votes//////////
+
+router.get('getallvotes', function(req,res,next){
+	const sql= `
+	SELECT 
+    SUM(downvote) AS downvote, SUM(upvote) AS upvote, grumbid
+	FROM
+    votes
+	GROUP BY grumbid`
+})
 //////////gather all votes////////
 router.post('/getvotes', function(req, res, next){
-	const grumbid = req.body.userid
+	const grumbid = req.body.grumbid
 	const sql = `
 	SELECT sum(downvote) as downvote, sum(upvote) as upvote
 	FROM votes 
 	WHERE grumbid = ?`
 
 	conn.query(sql, [grumbid], function(err, results, fields){
-		console.log('upvote',results[0])
 		if(err){
 			res.json({
 				message:'votes not sent'
 			})
 		}
 		else{
-			res.json({
-				message:'heres yer votes'
-			})
+			if(results[0].length = 0){
+				res.json({
+					message:'there are no votes'
+					
+				})
+			}
+			else {
+				res.json({
+				message:'heres yer votes',
+				upvote:results[0].upvote,
+				downvote:results[0].downvote
+				})
+			}
 		}
 	})
 })
@@ -288,12 +307,20 @@ router.get('/singleGrumb/:grumbid', function(req,res,next){
 router.get('/grumbs', function(req, res, next) {
 
 	const sql=`
-	SELECT g.*, u.display_name
-	FROM grumbs g
-    JOIN users u 
-    ON g.userid = u.id
-	WHERE parentid IS NULL
-	ORDER BY timestamp DESC`
+	SELECT 
+    SUM(v.downvote) AS downvote,
+    SUM(v.upvote) AS upvote,
+    grumbid,
+    g.*,
+    u.display_name
+	FROM
+    votes v
+        JOIN
+    grumbs g ON grumbid = g.id
+        JOIN
+    users u ON g.userid = u.id
+	GROUP BY grumbid
+	ORDER BY g.timestamp DESC`
 
 	conn.query(sql, function(err, results, fields){
 		if (err){

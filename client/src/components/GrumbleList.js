@@ -15,7 +15,7 @@ class GrumbleList extends Component {
                       <GrumbleItem data={item} />
                     </div>
                     <div>           			
-                        <Vote data={item} />
+                        <Vote votes={item.upvote - item.downvote} />
                     </div>
     			</div>
     		))}

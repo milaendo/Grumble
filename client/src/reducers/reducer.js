@@ -21,7 +21,7 @@ export default function(state = initialState, action) {
     case GET_RESPONSES:
       return {...state, responses: action.payload}
     case GET_VOTES:
-      return {...state, grumbVote: {upvote: action.payload.upvote, downvote: action.payload.downvote}
+      return {...state, grumbVote: {upvote: action.payload.upvote, downvote: action.payload.downvote}}
     default:
       return state
   }

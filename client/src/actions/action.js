@@ -67,9 +67,5 @@ export function getVotes(grumbid) {
     });
     }).catch(err => {
       console.log(err, "boo!");
-    
-
-
-
-
+      })
 }
