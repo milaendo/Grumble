@@ -17,9 +17,32 @@ conn.on("error",function(err){
 	console.log(err)
 })
 
+//////////gather all votes////////
+router.get('/getvotes', function(req, res, next){
+	const grumbid = req.body.userid
+	const sql = `
+	SELECT sum(downvote) as downvote, sum(upvote) as upvote
+	FROM votes 
+	WHERE grumbid = 411`
+
+	conn.query(sql, [grumbid], function(err, results, fields){
+		console.log('upvote',results[0])
+		if(err){
+			res.json({
+				message:'votes not sent'
+			})
+		}
+		else{
+			res.json({
+				message:'heres yer votes'
+			})
+		}
+	})
+})
+
 //////////downvote////////////////
 
-router.post('/downvote', function(req,res,next){
+router.post('/downvote', function(req, res, next){
 	const userid = req.body.userid
 	const grumbid = req.body.grumbid
 	const parentid = req.body.parentid 
