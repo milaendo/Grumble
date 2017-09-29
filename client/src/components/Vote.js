@@ -4,6 +4,11 @@ import axios from 'axios'
 
 class Vote extends Component {
 
+  componentWillMount(){
+    getVotes(this.props.data.id)
+  }
+
+
 
 	handleUpClick = (e) => {
 		const userid = localStorage.getItem('userid')

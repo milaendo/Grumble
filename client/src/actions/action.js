@@ -2,7 +2,7 @@ import store from '../store'
 import axios from 'axios'
 // example actions
 
-import {GET_GRUMBS, ONE_GRUMB, GET_RESPONSES} from './actionValues'
+import {GET_GRUMBS, ONE_GRUMB, GET_RESPONSES, GET_VOTES} from './actionValues'
 
 export function getGrumbs() {
   axios.get('/api/grumbs')
@@ -41,4 +41,35 @@ export function getResponses(grumbid) {
     }).catch(err => {
       console.log(err, "boo!");
     })
+}
+
+
+export function getVotes(grumbid) {
+  axios({
+        method: 'post',
+        url: '/api/getvotes',
+        data: {
+            grumbid: grumbid
+          },
+        headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+        })
+  .then(response => {
+      console.log("got Votes", response)
+      store.dispatch({
+      type: GET_VOTES,
+      payload: {
+        upvote: response.data.upvote,
+        downvote: response.data.downvote
+      }
+    });
+    }).catch(err => {
+      console.log(err, "boo!");
+    
+
+
+
+
 }
