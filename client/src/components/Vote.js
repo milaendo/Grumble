@@ -2,12 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
+
 class Vote extends Component {
-
-  componentWillMount(){
-    getVotes(this.props.data.id)
-  }
-
 
 
 	handleUpClick = (e) => {
@@ -43,8 +39,8 @@ class Vote extends Component {
 	      url: '/api/downvote',
 	      data: {
 	          userid: userid,
-	          grumbid: this.props.data.id,
-	          parentid: this.props.data.parentid
+	          grumbid: this.props.votes.id,
+	          parentid: this.props.votes.parentid
 	        },
 	      headers: {
 	            'Accept': 'application/json',
@@ -66,14 +62,14 @@ class Vote extends Component {
     	<div>
     		<div>
     			<button type="submit" onClick={this.handleUpClick}>Agrumb</button>
-    			<span>+11</span>
+    			<span>{this.props.votes}</span>
     			<button type="submit" onClick={this.handleDownClick}>Disagrumb</button>
     		</div>
     	</div> :
     	<div>
     		<div>
     			<button type="submit">Agrumb</button>
-    			<span>-9</span>
+    			<span>{this.props.votes}</span>
     			<button type="submit">Disagrumb</button>
     		</div>
     	</div>
@@ -81,9 +77,11 @@ class Vote extends Component {
 }
 
 function mapStateToProps(appState, ownProps) {
+  console.log('appState', appState)
   return {
     isAuthenticated: appState.auth.isAuthenticated,
     ...ownProps,
+    
   }
 }
 

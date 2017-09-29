@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 
 class GrumbleItem extends Component {
   render() {
-    console.log("Active", this.props.data.active)
     return this.props.data.active ?
     	<div className="grumbItem">
             <Link to={/singleGrumb/ + this.props.data.id}>

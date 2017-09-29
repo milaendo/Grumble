@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {oneGrumb} from '../actions/action'
 import {getResponses} from '../actions/action'
+import {getVotes} from '../actions/action'
 
 import Response from './Response'
 import GrumbleList from './GrumbleList'
@@ -15,6 +16,7 @@ class Grumb extends Component {
 	componentWillMount(){
 		oneGrumb(this.props.match.params.grumbid)
 		getResponses(this.props.match.params.grumbid)
+    	getVotes(this.props.match.params.grumbid)
 	}
 
 	// componentWillUpdate(){
@@ -30,6 +32,7 @@ class Grumb extends Component {
 
 
 	render () {
+		console.log('voteDiff', this.props.voteDiff)
 		return (
 			<div className="container">
 				<div className="voteGrumb">
@@ -37,7 +40,7 @@ class Grumb extends Component {
 						<SingleGrumb data={this.props.grumb} />
 					</div>
 					<div>
-						<Vote data={this.props.grumb} />
+						<Vote data={this.props.grumb} votes={this.props.voteDiff} />
 					</div>
 				</div>
 				<div>
@@ -54,7 +57,8 @@ class Grumb extends Component {
 function stateToProps(appState){
 	return {
 		grumb: appState.app.grumb, 
-		responses: appState.app.responses
+		responses: appState.app.responses,
+		voteDiff: appState.app.grumbVote.upvote - appState.app.grumbVote.downvote
 	}
 }
 
