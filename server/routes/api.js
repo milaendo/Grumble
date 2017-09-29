@@ -18,12 +18,12 @@ conn.on("error",function(err){
 })
 
 //////////gather all votes////////
-router.get('/getvotes', function(req, res, next){
+router.post('/getvotes', function(req, res, next){
 	const grumbid = req.body.userid
 	const sql = `
 	SELECT sum(downvote) as downvote, sum(upvote) as upvote
 	FROM votes 
-	WHERE grumbid = 411`
+	WHERE grumbid = ?`
 
 	conn.query(sql, [grumbid], function(err, results, fields){
 		console.log('upvote',results[0])
