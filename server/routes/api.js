@@ -22,7 +22,7 @@ conn.on("error",function(err){
 router.post('/downvote', function(req,res,next){
 	const userid = req.body.userid
 	const grumbid = req.body.grumbid
-	const parentid = req.body.parentid || 0
+	const parentid = req.body.parentid 
 	////////// inserting vote//////////////
 
 	const sql = `
@@ -41,14 +41,9 @@ router.post('/downvote', function(req,res,next){
 	userid = ? and grumbid = ?`
     ////////parent delete will delete all responses and votes attached to it////////
 
-    const parentIdDelete = `
-    DELETE grumb 
-    WHERE parentid = ?`
-
-    ////////grumb delete will delete the grumb and all votes attached to it/////////
-
-    const grumbDelete = `
-    DELETE FROM grumbs 
+    const rmGrumb = `
+    UPDATE grumbs 
+    SET active = false 
     WHERE id = ?`
 
     ///////checking to see if they voted
@@ -94,30 +89,19 @@ router.post('/downvote', function(req,res,next){
     					}
     					else if (results[0].total <= -10){
     						///////deleting all responses to parent id //////
-    						console.log('parent', parentid)
-    						conn.query(parentIdDelete, [parentid], function(err, results, fields){
+    						console.log('rmgrumb', grumbid)
+    						conn.query(rmGrumb, [grumbid], function(err, results, fields){
     							if(err){
     								console.log(err)
     								res.json({
     									message: 'parentId not deleted.'
     								})
     							}
-    							else{
-    								//////deleting grumb////////
-    								conn.query(grumbDelete, [grumbid], function(err, results, fields){
-    									if(err){
-    										console.log(err)
-    										res.json({
-    											message: 'grumbid not deleted.'
-    										})
-    									}
-    									else {
-    										res.json({
-    											message: 'Congrats, you voted this grumb off the island.'
-    										})
-    									}
-    								})
-    							}
+    							else {
+		    						res.json({
+		    							message: 'Congrats, you voted this grumb off the island.'
+		    							})
+		    						}    									
     						})
     					}
     					///////checking to see if this post is close to -10 votes/////  					
