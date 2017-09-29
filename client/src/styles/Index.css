@@ -4,3 +4,9 @@ body {
   width: 800px;
   font-family: 'Open Sans Condensed', sans-serif;
 }
+
+.voteGrumb{
+	border: 1px solid black;
+	margin: 10px;	
+}
+

@@ -32,11 +32,13 @@ class Grumb extends Component {
 	render () {
 		return (
 			<div className="container">
-				<div>
-					<Vote data={this.props.grumb} />
-				</div>
-				<div>
-					<SingleGrumb data={this.props.grumb} />
+				<div className="voteGrumb">
+					<div>
+						<SingleGrumb data={this.props.grumb} />
+					</div>
+					<div>
+						<Vote data={this.props.grumb} />
+					</div>
 				</div>
 				<div>
 					<Response data={this.props.grumb.id}/>
