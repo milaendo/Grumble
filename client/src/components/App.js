@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 // router
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import {AuthRoute} from '../lib/auth'
+// import {AuthRoute} from '../lib/auth'///////If we need to have Auth routes. RC
 
 // connecting react and redux
 import {Provider} from 'react-redux'

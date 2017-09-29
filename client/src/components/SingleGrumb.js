@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class SingleGrumb extends Component {
 	
 	render () {
-		return(
+		return this.props.data.active ?
 			<div>
 				<div>
 					<h1>{this.props.data.grumb}</h1>
@@ -14,8 +14,18 @@ class SingleGrumb extends Component {
 				<div>
 					<span>{this.props.data.timestamp}</span>
 				</div>
+			</div> :
+			<div>
+				<div>
+					<h1>This grumb is no more!!</h1>
+				</div>
+				<div>
+					<h3>written by: {this.props.data.display_name}</h3>
+				</div>
+				<div>
+					<span>{this.props.data.timestamp}</span>
+				</div>
 			</div>
-		)
 	}
 }
 
