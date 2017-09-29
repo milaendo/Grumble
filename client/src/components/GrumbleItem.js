@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom'
 
 class GrumbleItem extends Component {
   render() {
-    return (
+    console.log("Active", this.props.data.active)
+    return this.props.data.active ?
     	<div className="grumbItem">
             <Link to={/singleGrumb/ + this.props.data.id}>
         		<div>
@@ -11,8 +12,15 @@ class GrumbleItem extends Component {
                     <span>Grumbled by:{this.props.data.display_name} {this.props.data.timestamp}</span>
         		</div>
         	</Link>			
-    	</div>     
-    )
+    	</div> :
+        <div className="grumbItem">
+            <Link to={/singleGrumb/ + this.props.data.id}>
+                <div>
+                    <h2>This grumb is no more!</h2>
+                    <span>Grumbled by:{this.props.data.display_name} {this.props.data.timestamp}</span>
+                </div>
+            </Link>         
+        </div>     
   }
 }
 
