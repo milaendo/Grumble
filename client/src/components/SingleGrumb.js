@@ -6,7 +6,7 @@ class SingleGrumb extends Component {
 		return this.props.data.active ?
 			<div>
 				<div>
-					<h1>{this.props.data.grumb}</h1>
+					<h1 className="singleGrumb">{this.props.data.grumb}</h1>
 				</div>
 				<div>
 					<h3>written by: {this.props.data.display_name}</h3>

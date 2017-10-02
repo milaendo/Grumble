@@ -1,10 +1,81 @@
 
+header {
+	width: 800px;
+	height: 225px;
+	margin: 0 auto;
+	background-image: url(../images/grump3.jpg);
+	background-size: cover;
+	background-position: center;
+	padding: 15px;
+}
+
+.container {
+	width: 800px;
+	margin: 0 auto;
+}
+
+.voteButton {
+	width: 50px;
+}
+
+.buttonUp {
+	width: 50px;
+	height: 50px;
+	border-style: none;
+	background-image: url(../images/icons/fingerup.png);
+	background-size: cover;
+	background-color: inherit;
+}
+
+.buttonDown {
+	width: 50px;
+	height: 50px;
+	border-style: none;
+	background-image: url(../images/icons/fingerdown.png);
+	background-size: cover;
+	background-color: inherit;
+}
+
+.voteCount {
+	width: 50px;
+	font-size: 24px;
+	text-align: center;
+	padding: 10px;
+}
+
+.voteGrumb{
+	border: 1px solid black;
+	margin: 10px;
+	display: flex;	
+}
+
+.link {
+	text-decoration: none;
+	color: black;
+}
+
+
+h2 {
+	font-size: 36px;
+}
+
+.singleGrumb {
+	font-size: 48px;
+}
+
 li {
 	list-style: none;
 }
 
 li:hover {
 	color: red;
+}
+
+
+footer {
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
 }
 
 

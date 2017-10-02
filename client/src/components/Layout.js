@@ -5,7 +5,6 @@ class Layout extends Component {
   render() {
     return (
       <div>
-        {/* this is just an example layout*/}
         <header>
           <h1>Grumble :-|</h1>
           <nav>
@@ -17,7 +16,6 @@ class Layout extends Component {
             </ul>
           </nav>
         </header>
-        {/* Rendering of the page below */}
         {this.props.children}
         <footer>
           &copy; 2017 Grumbliees International

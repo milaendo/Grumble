@@ -39,8 +39,8 @@ class Vote extends Component {
 	      url: '/api/downvote',
 	      data: {
 	          userid: userid,
-	          grumbid: this.props.votes.id,
-	          parentid: this.props.votes.parentid
+	          grumbid: this.props.data.id,
+	          parentid: this.props.data.parentid
 	        },
 	      headers: {
 	            'Accept': 'application/json',
@@ -59,18 +59,18 @@ class Vote extends Component {
 
   render() {
     return this.props.isAuthenticated ?
-    	<div>
+    	<div className="voteButton">
     		<div>
-    			<button type="submit" onClick={this.handleUpClick}>Agrumb</button>
-    			<span>{this.props.votes}</span>
-    			<button type="submit" onClick={this.handleDownClick}>Disagrumb</button>
+    			<button className="buttonUp" type="submit" onClick={this.handleUpClick}></button>
+    			<span className="voteCount">{this.props.votes}</span>
+    			<button className="buttonDown" type="submit" onClick={this.handleDownClick}></button>
     		</div>
     	</div> :
     	<div>
-    		<div>
-    			<button type="submit">Agrumb</button>
-    			<span>{this.props.votes}</span>
-    			<button type="submit">Disagrumb</button>
+    		<div className="voteButton">
+    			<button className="buttonUp" type="submit"></button>
+    			<span className="voteCount">{this.props.votes}</span>
+    			<button className="buttonDown" type="submit"></button>
     		</div>
     	</div>
   }

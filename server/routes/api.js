@@ -248,11 +248,13 @@ router.get('/responses/:grumbid', function(req, res, next){
 	const id = req.params.grumbid
 
 	const sql=`	
-	SELECT g.*, u.display_name, g.timestamp
-	FROM grumbs g
-	JOIN users u 
-	ON g.userid = u.id
-	WHERE parentid =?
+	SELECT g.*, u.display_name, v.upvote, v.downvote
+	FROM votes v
+    JOIN grumbs g 
+    ON v.grumbid = g.id
+    JOIN users u 
+    ON g.userid = u.id
+	WHERE g.parentid = ?
 	ORDER BY timestamp DESC`
 
 	conn.query(sql, [id], function(err,results,next){
@@ -280,7 +282,7 @@ router.get('/singleGrumb/:grumbid', function(req,res,next){
 	const id = req.params.grumbid
 
 	const sql=`	
-	SELECT g.*, u.display_name,g.timestamp
+	SELECT g.*, u.display_name
 	FROM grumbs g
     JOIN users u 
     ON g.userid = u.id
@@ -319,6 +321,7 @@ router.get('/grumbs', function(req, res, next) {
     grumbs g ON grumbid = g.id
         JOIN
     users u ON g.userid = u.id
+    WHERE g.parentid IS NULL
 	GROUP BY grumbid
 	ORDER BY g.timestamp DESC`
 
