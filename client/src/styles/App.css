@@ -140,5 +140,41 @@ footer {
 	margin: 0 auto;
 	text-align: center;
 }
+button {
+	border-radius: 5px;
+	background-color: white;
+}
+input{
+	border-radius: 5px;
+	background-color: white;
+	width:100%;
+}
+#grumbform {
+	border:1px black solid;
+	display:flex;
+	border-radius: 5px;
+	padding: 15px;
+	width: 570px;
+}
+.formGrumb {
+	display: flex;
+	width: 100%
+}
+#reg {
+	border:1px black solid;
+	border-radius: 5px;
+	padding: 15px;
+	width: 570px;
 
-
+}
+.signWrap {
+	width: 500px;
+	margin:  auto;
+	margin-top: 275px;
+	text-align: center;
+}
+#logIN {
+	width: 500px;
+	margin:  auto;
+	text-align: center;
+}
