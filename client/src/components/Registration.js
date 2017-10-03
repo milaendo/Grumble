@@ -50,7 +50,7 @@ class Registration extends Component {
   	    		<form className="signUp" onSubmit={this.handleFormSubmit}>
   	    		<input type="text" onChange={this.handleChange} name="displayName" value={this.state.displayName} placeholder="Choose a display name" /><br/>
   	    		<input type="text" onChange={this.handleChange} name="username" value={this.state.username} placeholder="Create a username" /><br/>
-  	    		<input type="text" onChange={this.handleChange} name="password" value={this.state.password} placeholder="Create a password" /><br/>
+  	    		<input type="password" onChange={this.handleChange} name="password" value={this.state.password} placeholder="Create a password" /><br/>
   	    		<button type="submit">Submit</button>
   	    		</form>
           </div>

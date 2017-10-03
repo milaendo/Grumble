@@ -27,8 +27,6 @@ class Login extends Component {
 	}
 
 
-
-
   render() {
     return (
     	<div className="signWrap">
@@ -36,7 +34,7 @@ class Login extends Component {
     		<div id='logIN'>
 	    		<form onSubmit={this.handleFormSubmit}>
 		    		<input type="text" onChange={this.handleChange} name="username" value={this.state.username} placeholder="Username" />
-		    		<input type="text" onChange={this.handleChange} name="password" value={this.state.password} placeholder="Password" />
+		    		<input type="password" onChange={this.handleChange} name="password" value={this.state.password} placeholder="Password" />
 		    		<button type="submit">Nobody Cares.</button>
 		    	</form>
 	    	</div>
