@@ -22,7 +22,7 @@ class MyComponent extends Component {
 
 const stateToProps = function(appState) {
   return {
-    grumbData: appState.app.grumbs 
+    grumbData: appState.app.grumbs
   }
 }
 
