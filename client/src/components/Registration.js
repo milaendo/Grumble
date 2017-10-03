@@ -40,7 +40,7 @@ class Registration extends Component {
       console.log(err, "boo!");
     });
 
-    this.props.history.push('/')
+    this.props.history.push('/Login')
   }
   render() {
     return (
