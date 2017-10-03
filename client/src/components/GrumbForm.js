@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { getGrumbs } from '../actions/action'
 
 class GrumbForm extends Component {
 	state = {
@@ -29,7 +30,9 @@ class GrumbForm extends Component {
   		.then(response => {
       		console.log(response, "yay");
 
-    	}).catch(err => {
+    	}).then(e =>{getGrumbs()})
+
+      .catch(err => {
       		console.log(err, "boo!");
     	});
 

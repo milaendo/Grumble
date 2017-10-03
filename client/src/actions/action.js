@@ -57,7 +57,6 @@ export function getVotes(grumbid) {
             }
         })
   .then(response => {
-      console.log("got Votes", response)
       store.dispatch({
       type: GET_VOTES,
       payload: {
