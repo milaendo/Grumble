@@ -32,15 +32,14 @@ class Grumb extends Component {
 
 
 	render () {
-		console.log('voteDiff', this.props.voteDiff)
 		return (
 			<div className="container">
 				<div className="voteGrumb">
 					<div>
-						<SingleGrumb data={this.props.grumb} />
+						<Vote data={this.props.grumb} votes={this.props.voteDiff.upvote - this.props.voteDiff.downvote} />
 					</div>
 					<div>
-						<Vote data={this.props.grumb} votes={this.props.voteDiff} />
+						<SingleGrumb data={this.props.grumb} />
 					</div>
 				</div>
 				<div>
@@ -55,10 +54,11 @@ class Grumb extends Component {
 }
 
 function stateToProps(appState){
+	console.log("grumbvote", appState.app.grumbVote)
 	return {
 		grumb: appState.app.grumb, 
 		responses: appState.app.responses,
-		voteDiff: appState.app.grumbVote.upvote - appState.app.grumbVote.downvote
+		voteDiff: appState.app.grumbVote
 	}
 }
 

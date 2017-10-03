@@ -5,19 +5,22 @@ class Layout extends Component {
   render() {
     return (
       <div>
-        {/* this is just an example layout*/}
         <header>
-          <h1>Grumble :-|</h1>
-          <nav>
-            <ul>
-              <li><Link to="/">Home Page</Link></li>
-              <li><Link to="/registration">Register</Link></li>
-              <li><Link to="/grumb">Post a Grumb</Link></li>
-              <li><Link to="/login">Login/Logout</Link></li>
-            </ul>
-          </nav>
+          <div className="mainNav">
+            <h1 className="logo">Grumble :-|</h1>
+            <nav>
+              <ul>
+                <li><Link to="/">Home Page</Link></li>
+                <li><Link to="/registration">Register</Link></li>
+                <li><Link to="/grumb">Post a Grumb</Link></li>
+                <li><Link to="/login">Login/Logout</Link></li>
+              </ul>
+            </nav>
+          </div>
+          <div className="haroldBox">
+            <h3 className="harold">Harold says, "Why is it called, 'Taking a Crap'? It's not like you are taking it with you anywhere."</h3>
+          </div>
         </header>
-        {/* Rendering of the page below */}
         {this.props.children}
         <footer>
           &copy; 2017 Grumbliees International

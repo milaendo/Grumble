@@ -52,14 +52,14 @@ class Response extends Component {
 
 	render () {
 		return this.props.isAuthenticated ?
-			<div>
-				<form onSubmit={this.handleSubmit}>
+			<div className="responseBox">
+				<form className="response" onSubmit={this.handleSubmit}>
 					<h3>Post a comment {localStorage.getItem('displayName')}! Or don't. We don't care.</h3>
-					<input type="text" onChange={this.handleChange} name="response" value={this.state.response} placeholder="Post your response" />
+					<input className="responseInput" type="text" onChange={this.handleChange} name="response" value={this.state.response} />
 					<button type= "submit">Submit</button>
 				</form>
 			</div> :
-			<div>
+			<div className="responseBox">
 		        <h3>You Must Be Logged In or Registered to Comment</h3> 
 		        <Link to="/registration"><button type="submit">Register</button></Link>
 		        <Link to="/login"><button type="submit">Login</button></Link>

@@ -6,10 +6,10 @@ class SingleGrumb extends Component {
 		return this.props.data.active ?
 			<div>
 				<div>
-					<h1>{this.props.data.grumb}</h1>
+					<h1 className="singleGrumb">{this.props.data.grumb}</h1>
 				</div>
 				<div>
-					<h3>written by: {this.props.data.display_name}</h3>
+					<h3>Grumbled by: {this.props.data.display_name}</h3>
 				</div>
 				<div>
 					<span>{this.props.data.timestamp}</span>
@@ -17,10 +17,10 @@ class SingleGrumb extends Component {
 			</div> :
 			<div>
 				<div>
-					<h1>This grumb is no more!!</h1>
+					<h1 className="singleGrumb">This grumb is no more!!</h1>
 				</div>
 				<div>
-					<h3>written by: {this.props.data.display_name}</h3>
+					<h3>Grumbled by: {this.props.data.display_name}</h3>
 				</div>
 				<div>
 					<span>{this.props.data.timestamp}</span>

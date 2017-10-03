@@ -11,12 +11,12 @@ class GrumbleList extends Component {
     	<div className="container">
     		{this.props.data.map(item => (
     			<div key={item.id} className="voteGrumb">
-                    <div className="vote">
-                      <GrumbleItem data={item} />
-                    </div>
-                    <div>           			
-                        <Vote votes={item.upvote - item.downvote} />
-                    </div>
+            <div>                 
+              <Vote data={item} votes={item.upvote - item.downvote} />
+            </div>
+            <div className="vote">
+              <GrumbleItem data={item} />
+            </div>
     			</div>
     		))}
     	</div>    
