@@ -17,16 +17,6 @@ conn.on("error",function(err){
 	console.log(err)
 })
 
-///////////get all votes//////////
-
-router.get('getallvotes', function(req,res,next){
-	const sql= `
-	SELECT 
-    SUM(downvote) AS downvote, SUM(upvote) AS upvote, grumbid
-	FROM
-    votes
-	GROUP BY grumbid`
-})
 //////////gather all votes////////
 router.post('/getvotes', function(req, res, next){
 	const grumbid = req.body.grumbid
