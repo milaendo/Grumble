@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom' 
+import {getResponses} from '../actions/action'
 
 
 
@@ -38,7 +39,10 @@ class Response extends Component {
   		.then(response => {
       		console.log(response, "working response");
 
-    	}).catch(err => {
+    	}).then(e =>{getResponses(this.props.data)})
+
+
+    	.catch(err => {
       		console.log(err, "not working response");
     	});
 

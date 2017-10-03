@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { getGrumbs } from '../actions/action'
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
+
 
 class GrumbForm extends Component {
 
@@ -32,7 +34,9 @@ class GrumbForm extends Component {
   		.then(response => {
       		console.log(response, "yay");
 
-    	}).catch(err => {
+    	}).then(e =>{getGrumbs()})
+
+      .catch(err => {
       		console.log(err, "boo!");
     	});
 

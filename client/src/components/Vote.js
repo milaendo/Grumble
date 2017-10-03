@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import {getVotes} from '../actions/action'
+import { getGrumbs } from '../actions/action'
 
 
 class Vote extends Component {
@@ -25,7 +27,10 @@ class Vote extends Component {
   		.then(response => {
       		console.log("Upvote Submitted Successfully", response);
 
-    	}).catch(err => {
+    	}).then(e =>{getVotes(this.props.data.id); getGrumbs()})
+
+
+      .catch(err => {
       		console.log("Upvote Not Submitted. Crap.", err);
     	});
 	}
@@ -50,7 +55,9 @@ class Vote extends Component {
   		.then(response => {
       		console.log("Downvote Submitted Successfully", response);
 
-    	}).catch(err => {
+    	}).then(e =>{getVotes(this.props.data.id)})
+
+      .catch(err => {
       		console.log("Downvote Not Submitted. Crap.", err);
     	});
 	}
@@ -77,7 +84,6 @@ class Vote extends Component {
 }
 
 function mapStateToProps(appState, ownProps) {
-  console.log('appState', appState)
   return {
     isAuthenticated: appState.auth.isAuthenticated,
     ...ownProps,

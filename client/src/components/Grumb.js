@@ -24,8 +24,11 @@ class Grumb extends Component {
 	// }
 
 	// componentWillReceiveProps(props){
-	// 	if (props.grumb.id !== props.match.params.grumbid) {
+	// 	console.log("new props", props)
+	// 	console.log("old props", this.props)
+	// 	if (props.grumb.id != props.match.params.grumbid) {
 	// 		getResponses(props.match.params.grumbid)
+	// 		getVotes(props.match.params.grumbid)
 	// 	}
 
 	// }
@@ -47,14 +50,13 @@ class Grumb extends Component {
 				</div>
 				<div>
 					<GrumbleList data={this.props.responses}/>
-				</div>
+				</div>				
 			</div>
 		)
 	}
 }
 
 function stateToProps(appState){
-	console.log("grumbvote", appState.app.grumbVote)
 	return {
 		grumb: appState.app.grumb, 
 		responses: appState.app.responses,
