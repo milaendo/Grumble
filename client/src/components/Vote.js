@@ -55,7 +55,7 @@ class Vote extends Component {
   		.then(response => {
       		console.log("Downvote Submitted Successfully", response);
 
-    	}).then(e =>{getVotes(this.props.data.id)})
+    	}).then(e =>{getVotes(this.props.data.id); getGrumbs()})
 
       .catch(err => {
       		console.log("Downvote Not Submitted. Crap.", err);
