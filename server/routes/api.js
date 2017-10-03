@@ -248,14 +248,23 @@ router.get('/responses/:grumbid', function(req, res, next){
 	const id = req.params.grumbid
 
 	const sql=`	
-	SELECT g.*, u.display_name, v.upvote, v.downvote
-	FROM votes v
-    JOIN grumbs g 
-    ON v.grumbid = g.id
-    JOIN users u 
-    ON g.userid = u.id
-	WHERE g.parentid = ?
-	ORDER BY timestamp DESC`
+
+	SELECT 
+    SUM(v.downvote) AS downvote,
+    SUM(v.upvote) AS upvote,
+    v.grumbid,
+    g.*,
+    u.display_name
+	FROM
+    grumbs g
+        LEFT JOIN
+    votes v ON g.id = grumbid
+        JOIN
+    users u ON g.userid = u.id
+    WHERE g.parentid = ?
+	GROUP BY g.id
+	ORDER BY g.timestamp DESC
+	`
 
 	conn.query(sql, [id], function(err,results,next){
 		if(err){
@@ -312,17 +321,17 @@ router.get('/grumbs', function(req, res, next) {
 	SELECT 
     SUM(v.downvote) AS downvote,
     SUM(v.upvote) AS upvote,
-    grumbid,
+    v.grumbid,
     g.*,
     u.display_name
 	FROM
-    votes v
-        JOIN
-    grumbs g ON grumbid = g.id
+    grumbs g
+        LEFT JOIN
+    votes v ON g.id = grumbid
         JOIN
     users u ON g.userid = u.id
     WHERE g.parentid IS NULL
-	GROUP BY grumbid
+	GROUP BY g.id
 	ORDER BY g.timestamp DESC`
 
 	conn.query(sql, function(err, results, fields){
