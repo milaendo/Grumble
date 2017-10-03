@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import GrumbleList from './GrumbleList'
 import { getGrumbs } from '../actions/action'
+import GrumbForm from './GrumbForm'
 
 class MyComponent extends Component {
 
@@ -13,6 +14,7 @@ class MyComponent extends Component {
     return (
       <div className="container">
           <div className="mainGrumbs">
+            <GrumbForm />
             <GrumbleList data={this.props.grumbData} />
           </div>
       </div>

@@ -44,14 +44,16 @@ class Registration extends Component {
   }
   render() {
     return (
-    	<div className="container">
+    	<div className='signWrap' >
     		<h1>Signup for Grumble!</h1>
-	    		<form className="signUp" onSubmit={this.handleFormSubmit}>
-	    		<input type="text" onChange={this.handleChange} name="displayName" value={this.state.displayName} placeholder="Choose a display name" />
-	    		<input type="text" onChange={this.handleChange} name="username" value={this.state.username} placeholder="Create a username" />
-	    		<input type="text" onChange={this.handleChange} name="password" value={this.state.password} placeholder="Create a password" />
-	    		<button type="submit">Submit</button>
-	    		</form>
+          <div id='reg'>
+  	    		<form className="signUp" onSubmit={this.handleFormSubmit}>
+  	    		<input type="text" onChange={this.handleChange} name="displayName" value={this.state.displayName} placeholder="Choose a display name" /><br/>
+  	    		<input type="text" onChange={this.handleChange} name="username" value={this.state.username} placeholder="Create a username" /><br/>
+  	    		<input type="text" onChange={this.handleChange} name="password" value={this.state.password} placeholder="Create a password" /><br/>
+  	    		<button type="submit">Submit</button>
+  	    		</form>
+          </div>
 	    </div>      
     )
   }

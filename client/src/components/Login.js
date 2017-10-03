@@ -31,13 +31,15 @@ class Login extends Component {
 
   render() {
     return (
-    	<div className="container">
+    	<div className="signWrap">
     		<h1>Login</h1>
-    		<form onSubmit={this.handleFormSubmit}>
-	    		<input type="text" onChange={this.handleChange} name="username" value={this.state.username} placeholder="Username" />
-	    		<input type="text" onChange={this.handleChange} name="password" value={this.state.password} placeholder="Password" />
-	    		<button type="submit">Nobody Cares.</button>
-	    	</form>
+    		<div id='logIN'>
+	    		<form onSubmit={this.handleFormSubmit}>
+		    		<input type="text" onChange={this.handleChange} name="username" value={this.state.username} placeholder="Username" />
+		    		<input type="text" onChange={this.handleChange} name="password" value={this.state.password} placeholder="Password" />
+		    		<button type="submit">Nobody Cares.</button>
+		    	</form>
+	    	</div>
 	    </div>     
     )
   }
