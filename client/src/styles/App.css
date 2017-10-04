@@ -8,11 +8,11 @@ header {
 	padding: 15px;
 	display: flex;
 	border: 1px solid black;
-	border-radius: 10px;
+	border-radius: 3px;
 	box-shadow: 10px 10px 5px #888888;
-	position: fixed;
+	/*position: fixed;*/
 	top: 0;
-	margin-left: 350px;
+	margin-left: 300px;
 }
 
 .mainNav {
@@ -20,15 +20,17 @@ header {
 }
 
 .logo {
-	font-family: 'Frijole', cursive;
+	font-family: 'Sedgwick Ave Display', cursive;
+	/*font-family: 'Frijole', cursive;*/
 	color: rgb(131, 119, 188);
-	font-size: 36px;
+	font-size: 46px;
 }
 
 .haroldBox {
 	width: 300px;
 	margin-left: 400px;
 	font-size: 24px;
+	color:rgb(131, 119, 188);
 }
 
 .singleGrumb {
@@ -38,31 +40,31 @@ header {
 .container {
 	width: 1000px;
 	margin: 0 auto;
-	margin-top: 275px;
+	/*margin-top: 275px;*/
 
 }
 
 .voteButton {
 	width: 50px;
-	border: 1px solid black;
-	border-radius: 5px;
+	/*border: 1px solid black;
+	border-radius: 5px;*/
 	margin: 10px;
 }
 
 .buttonUp {
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 	border-style: none;
-	background-image: url(../images/icons/fingerup.png);
+	background-image: url(../images/icons/buttonUp.png);
 	background-size: cover;
 	background-color: inherit;
 }
 
 .buttonDown {
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 	border-style: none;
-	background-image: url(../images/icons/fingerdown.png);
+	background-image: url(../images/icons/buttonDown.png);
 	background-size: cover;
 	background-color: inherit;
 }
@@ -72,6 +74,7 @@ header {
 	font-size: 24px;
 	text-align: center;
 	padding: 10px;
+	color:rgb(131, 119, 188);
 }
 
 .voteGrumb {
@@ -79,8 +82,12 @@ header {
 	border-radius: 5px;*/
 	margin: 10px auto;
 	display: flex;	
+	border: 1px solid #ccc;
+	background-color: white;
 }
-
+.voteGrumb:hover {
+	background-color: rgb(245,248,250);
+}
 
 form {
 	margin: 10px;
@@ -92,7 +99,7 @@ form > h3 {
 
 
 .responseBox {
-	width: 1000px;
+	/*width: 1000px;*/
 /*	border: 1px solid black;
 	border-radius: 5px;*/
 	margin: 0 auto;
@@ -101,8 +108,8 @@ form > h3 {
 
 
 .responseInput {
-	width: 945px;
-	height: 250px;
+	/*width: 945px;
+	height: 250px;*/
 	margin: 15px;
 	border-radius: 5px;
 	border-style: inherit;
@@ -123,7 +130,7 @@ h2 {
 
 .singleGrumb {
 	font-size: 48px;
-	font-family: 'Sedgwick Ave Display', cursive;
+	
 }
 
 li {
@@ -150,11 +157,12 @@ input{
 	width:100%;
 }
 #grumbform {
-	border:1px black solid;
+	border:1px white solid;
 	display:flex;
-	border-radius: 5px;
+	/*border-radius: 5px;*/
 	padding: 15px;
-	width: 570px;
+	width: 970px;
+	margin-top: 10px;
 }
 .formGrumb {
 	display: flex;
@@ -162,7 +170,7 @@ input{
 }
 #reg {
 	border:1px black solid;
-	border-radius: 5px;
+	/*border-radius: 5px;*/
 	padding: 15px;
 	width: 570px;
 
@@ -177,4 +185,14 @@ input{
 	width: 500px;
 	margin:  auto;
 	text-align: center;
+}
+.mainGrumbs{
+	/*background-color: white;*/
+}
+textarea {
+	border-radius: 4px;
+	width:100%;
+}
+#grumbdby {
+	color:rgb(131, 119, 188);
 }

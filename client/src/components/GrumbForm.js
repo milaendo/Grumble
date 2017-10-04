@@ -49,7 +49,7 @@ class GrumbForm extends Component {
     	<div className="container" id='grumbform'>
     		 {/*<h1>Post a Grumb!</h1>*/}
     		<form onSubmit={this.handleSubmit} className='formGrumb'>
-    			<input type="textarea" onChange={this.handleChange} name="grumb" value={this.state.grumb} placeholder="Post a grumb" />
+    			<textarea rows='4' cols='100' onChange={this.handleChange} name="grumb" value={this.state.grumb} placeholder="Post a grumb" />
     			<button type="submit">Grumblize</button>
     		</form>
     	</div> : 
