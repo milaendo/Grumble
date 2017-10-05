@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import {getVotes} from '../actions/action'
-import { getGrumbs } from '../actions/action'
+import { getVotes } from '../actions/action'
+
 
 
 class Vote extends Component {
+
 
 
 	handleUpClick = (e) => {
@@ -16,8 +17,8 @@ class Vote extends Component {
 	      url: '/api/upvote',
 	      data: {
 	          userid: userid,
-	          grumbid: this.props.data.id,
-	          parentid: this.props.data.parentid
+	          grumbid: this.props.grumbid,
+	          parentid: this.props.parentid
 	        },
 	      headers: {
 	            'Accept': 'application/json',
@@ -27,7 +28,7 @@ class Vote extends Component {
   		.then(response => {
       		console.log("Upvote Submitted Successfully", response);
 
-    	}).then(e =>{getVotes(this.props.data.id); getGrumbs()})
+    	}).then(e =>{getVotes()})
 
 
       .catch(err => {
@@ -44,8 +45,8 @@ class Vote extends Component {
 	      url: '/api/downvote',
 	      data: {
 	          userid: userid,
-	          grumbid: this.props.data.id,
-	          parentid: this.props.data.parentid
+	          grumbid: this.props.grumbid,
+	          parentid: this.props.parentid
 	        },
 	      headers: {
 	            'Accept': 'application/json',
@@ -55,7 +56,7 @@ class Vote extends Component {
   		.then(response => {
       		console.log("Downvote Submitted Successfully", response);
 
-    	}).then(e =>{getVotes(this.props.data.id); getGrumbs()})
+    	}).then(e => {getVotes()})
 
       .catch(err => {
       		console.log("Downvote Not Submitted. Crap.", err);
@@ -65,20 +66,43 @@ class Vote extends Component {
 
 
   render() {
+    
+    let totalUpVotes = []
+    let totalDownVotes = []
+
+    this.props.voteData.forEach(function(item) {    
+      totalUpVotes.push(item.upvote)
+      totalDownVotes.push(item.downvote)           
+    });
+
+    let totalUp = totalUpVotes.reduce((a, b) => a + b, 0);
+    let totalDown = totalDownVotes.reduce((a, b) => a + b, 0);
+
+    const totalDiff = totalUp - totalDown
+    const total = totalUp + totalDown
+
+
+
+    
+    
+    
+
     return this.props.isAuthenticated ?
     	<div className="voteButton">
     		<div>
     			<button className="buttonUp" type="submit" onClick={this.handleUpClick}></button>
-    			<span className="voteCount">{this.props.votes}</span>
+    			<span className="voteCount">{totalDiff}</span>
     			<button className="buttonDown" type="submit" onClick={this.handleDownClick}></button>
-    		</div>
+        </div>
+        <span>Total votes: {total}</span>
     	</div> :
     	<div>
     		<div className="voteButton">
     			<button className="buttonUp" type="submit"></button>
-    			<span className="voteCount">{this.props.votes}</span>
+    			<span className="voteCount">{totalDiff}</span>
     			<button className="buttonDown" type="submit"></button>
     		</div>
+        <span>Total votes: {total}</span>
     	</div>
   }
 }
@@ -86,8 +110,7 @@ class Vote extends Component {
 function mapStateToProps(appState, ownProps) {
   return {
     isAuthenticated: appState.auth.isAuthenticated,
-    ...ownProps,
-    
+    ...ownProps       
   }
 }
 

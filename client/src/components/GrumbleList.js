@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import GrumbleItem from './GrumbleItem'
 import Vote from './Vote'
 
@@ -11,8 +12,8 @@ class GrumbleList extends Component {
     	<div className="container">
     		{this.props.data.map(item => (
     			<div key={item.id} className="voteGrumb">
-            <div>                 
-              <Vote data={item} votes={item.upvote - item.downvote} />
+            <div> 
+              <Vote grumbid={item.id} parentid={item.parentid} voteData={this.props.votes.filter(vote => item.id === vote.grumbid)}/> 
             </div>
             <div className="vote">
               <GrumbleItem data={item} />
@@ -24,17 +25,17 @@ class GrumbleList extends Component {
   }
 }
 
-//////I decided to make this a dumb component so essentially, it'll map whatever we send it via props. -RC
 
 
-// const stateToProps = function(appState) {
-//   return {
-//     grumb: appState.app.grumbs // ".app" because we ran combineReducers
-//   }
-// }
 
-// export default connect(stateToProps)(GrumbleList)
+const mapStateToProps = function(appState) {
+  return {
+    votes: appState.app.grumbVotes 
+  }
+}
+
+export default connect(mapStateToProps)(GrumbleList)
 
 
-export default GrumbleList
+
 

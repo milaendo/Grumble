@@ -35,11 +35,17 @@ header {
 	font-size: 36px;
 }
 
+.containerHome {
+	width: 1000px;
+	margin: 0 auto;
+	position: relative;
+}
+
+
 .container {
 	width: 1000px;
 	margin: 0 auto;
-	margin-top: 275px;
-
+	position: relative;
 }
 
 .voteButton {
@@ -75,10 +81,13 @@ header {
 }
 
 .voteGrumb {
-/*	border: 1px solid black;
-	border-radius: 5px;*/
-	margin: 10px auto;
+	width: 1000px;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 0 auto;
 	display: flex;	
+	background-color: white;
+	box-shadow: 10px 10px 5px #888888;
 }
 
 
@@ -93,9 +102,11 @@ form > h3 {
 
 .responseBox {
 	width: 1000px;
-/*	border: 1px solid black;
-	border-radius: 5px;*/
-	margin: 0 auto;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 15px auto;
+	background-color: white;
+	box-shadow: 10px 10px 5px #888888;
 
 }
 
@@ -120,6 +131,8 @@ form > h3 {
 h2 {
 	font-size: 36px;
 }
+
+
 
 .singleGrumb {
 	font-size: 48px;
@@ -154,8 +167,13 @@ input{
 	display:flex;
 	border-radius: 5px;
 	padding: 15px;
-	width: 570px;
+	width: 970px;
+	margin-top: 270px;
+	background-color: white;
 }
+
+
+
 .formGrumb {
 	display: flex;
 	width: 100%
@@ -170,7 +188,6 @@ input{
 .signWrap {
 	width: 500px;
 	margin:  auto;
-	margin-top: 275px;
 	text-align: center;
 }
 #logIN {
