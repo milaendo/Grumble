@@ -13,9 +13,9 @@ class GrumbleItem extends Component {
     return this.props.active ?
     	<div className="grumbItem">
         		<div>
-        			<Comment.Text as='h3' className="singleGrumb">{this.props.data.grumb}</Comment.Text>
-                <Comment.Author>Grumbled by:{this.props.data.display_name}</Comment.Author>
-                <Comment.Metadata>{this.props.data.timestamp} Votes: {this.props.upvote + this.props.downvote}</Comment.Metadata>
+        			<Comment.Text as='h3' className="singleGrumb">{this.props.grumb}</Comment.Text>
+                <Comment.Author>Grumbled by:{this.props.display_name}</Comment.Author>
+                <Comment.Metadata>{this.props.timestamp} Votes: {this.props.upvote + this.props.downvote}</Comment.Metadata>
         		</div>
     	</div> :
 
