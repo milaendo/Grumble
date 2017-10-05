@@ -1,25 +1,22 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import { Menu, Input } from 'semantic-ui-react'
+
 
 class Layout extends Component {
+  state = {}
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   render() {
+    const { activeItem } = this.state
     return (
       <div>
-        <header>
-          <div className="mainNav">
-            <h1 className="logo">Grumble :-|</h1>
-            <nav>
-              <ul>
-                <li><Link to="/">Home Page</Link></li>
-                <li><Link to="/registration">Register</Link></li>
-                <li><Link to="/login">Login/Logout</Link></li>
-              </ul>
-            </nav>
-          </div>
-          <div className="haroldBox">
-            <h3 className="harold">Harold says, "Why is it called, 'Taking a Crap'? It's not like you are taking it with you anywhere."</h3>
-          </div>
-        </header>
+        <Menu>
+            <Menu.Item className="logo">Grumble :-|</Menu.Item>
+            <Menu.Item name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick}><Link to='/'>Home</Link></Menu.Item>
+            <Menu.Item name='SignUp' active={activeItem === 'SignUp'} onClick={this.handleItemClick}><Link to='/registration'>Sign Up</Link></Menu.Item>
+            <Menu.Item name='Login/Logout' active={activeItem === 'Login/Logout'} onClick={this.handleItemClick}><Link to='/Login'>Log in/Log out</Link></Menu.Item>
+            <Menu.Item><Input icon='search' placeholder='Search...' /></Menu.Item>
+        </Menu>
         {this.props.children}
         <footer>
           &copy; 2017 Grumbliees International

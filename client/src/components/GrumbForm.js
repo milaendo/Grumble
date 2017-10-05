@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { grumbSubmit } from '../actions/action'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Message } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 
 
 class GrumbForm extends Component {
@@ -15,7 +17,7 @@ class GrumbForm extends Component {
       		[e.target.name]: e.target.value
     	})
   	}
-	
+
   	handleSubmit = (e) => {
   		e.preventDefault()
       const userid = localStorage.getItem("userid")
@@ -25,16 +27,16 @@ class GrumbForm extends Component {
   render() {
     return this.props.isAuthenticated ?
     	<div id='grumbform'>
-    		<form onSubmit={this.handleSubmit} className='formGrumb'>
-    			<textarea rows='4' cols='100' onChange={this.handleChange} name="grumb" value={this.state.grumb} placeholder={localStorage.getItem('displayName')+" ,What do you want to Grumble about today?" }/>
-          <button type="submit">Grumblize</button>
-    		</form>
-    	</div> : 
+    		<Form onSubmit={this.handleSubmit} className='formGrumb'>
+    			<Form.TextArea onChange={this.handleChange} name="grumb" value={this.state.grumb} placeholder={localStorage.getItem('displayName')+" ,What do you want to Grumble about today?" } />
+					<Button content='Submit' labelPosition='left' icon='edit' primary />
+    		</Form>
+    	</div> :
       <div id="grumbform">
-        <h3>You Must Be Logged In or Registered to Comment</h3> 
-        <Link to="/registration"><button type="submit">Register</button></Link>
-        <Link to="/login"><button type="submit">Login</button></Link>
-      </div>  
+			 	<Message negative>
+	        <Message.Header>Hey, Genius, you need to <Link to="/login">Log in</Link> or <Link to="/registration">Sign up</Link> to post a grumb</Message.Header>
+			 	</Message>
+      </div>
   }
 }
 

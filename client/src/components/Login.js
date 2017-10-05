@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {loginUser, logoutUser} from '../lib/auth'
 import {connect} from 'react-redux'
+import { Button, Form, Input } from 'semantic-ui-react'
+
 
 class Login extends Component {
 
@@ -31,14 +33,20 @@ class Login extends Component {
     return (
     	<div className="signWrap">
     		<h1>Login</h1>
-    		<div id='logIN'>
-	    		<form onSubmit={this.handleFormSubmit}>
-		    		<input type="text" onChange={this.handleChange} name="username" value={this.state.username} placeholder="Username" />
-		    		<input type="password" onChange={this.handleChange} name="password" value={this.state.password} placeholder="Password" />
-		    		<button type="submit">Nobody Cares.</button>
-		    	</form>
+    		<div>
+	    		<Form onSubmit={this.handleFormSubmit}>
+						<Form.Field>
+			    		<Input type="text" onChange={this.handleChange} name="username" value={this.state.username} placeholder="Username" />
+						</Form.Field>
+						<Form.Field>
+			    		<Input type="password" onChange={this.handleChange} name="password" value={this.state.password} placeholder="Password" />
+						</Form.Field>
+						<Form.Field>
+			    		<Button type="submit">Nobody Cares.</Button>
+						</Form.Field>
+		    	</Form>
 	    	</div>
-	    </div>     
+	    </div>
     )
   }
 }
