@@ -20,11 +20,11 @@ class GrumbForm extends Component {
 
   	handleSubmit = (e) => {
   		e.preventDefault()
-      const userid = localStorage.getItem("userid")
+      const userid = localStorage.getItem('userid')
       grumbSubmit({grumb: this.state.grumb, user: userid})
-			this.setState({
-				grumb:""
-			})
+      this.setState({
+        grumb: ""
+      })
   	}
 
   render() {

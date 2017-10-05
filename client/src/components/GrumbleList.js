@@ -21,7 +21,7 @@ class GrumbleList extends Component {
                     <Link className="link" to={/singleGrumb/ + item.id}>
                       <Comment>
                         <div className="vote">
-                          <GrumbleItem data={item} />
+                           <GrumbleItem {...item} />
                         </div>
               			  </Comment>
                     </Link>

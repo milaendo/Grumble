@@ -1,5 +1,4 @@
 
-
 .singleGrumb {
 	font-size: 36px;
 }
@@ -24,28 +23,46 @@
 }
 
 .buttonUp {
-	width: 40px;
-	height: 40px;
+	width: 50px;
+	height: 50px;
 	border-style: none;
 	background-image: url(../images/icons/buttonUp.png);
 	background-size: cover;
-	background-color: inherit;
+	background-color: rgb(131, 119, 188);
 }
 
 .buttonDown {
-	width: 40px;
-	height: 40px;
+	width: 50px;
+	height: 50px;
 	border-style: none;
 	background-image: url(../images/icons/buttonDown.png);
 	background-size: cover;
-	background-color: inherit;
+	background-color: rgb(131, 119, 188);
+}
+
+.buttonUpVoted {
+	width: 50px;
+	height: 50px;
+	border-style: none;
+	background-image: url(../images/icons/buttonUp.png);
+	background-size: cover;
+	background-color: orange;
+}
+
+.buttonDownVoted {
+	width: 50px;
+	height: 50px;
+	border-style: none;
+	background-image: url(../images/icons/buttonDown.png);
+	background-size: cover;
+	background-color: orange;
 }
 
 .voteCount {
+	margin: 0 auto;
 	width: 50px;
 	font-size: 24px;
 	text-align: center;
-	padding: 10px;
 	color:rgb(131, 119, 188);
 }
 
