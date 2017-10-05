@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { register } from '../actions/action'
-   
+import { Button, Form, Icon, Message } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 class Registration extends Component {
 	state = {
@@ -26,16 +27,23 @@ class Registration extends Component {
   render() {
     return (
     	<div className='signWrap' >
-    		<h1>Signup for Grumble!</h1>
-          <div id='reg'>
-  	    		<form className="signUp" onSubmit={this.handleFormSubmit}>
-  	    		<input type="text" onChange={this.handleChange} name="displayName" value={this.state.displayName} placeholder="Choose a display name" /><br/>
-  	    		<input type="text" onChange={this.handleChange} name="username" value={this.state.username} placeholder="Create a username" /><br/>
-  	    		<input type="password" onChange={this.handleChange} name="password" value={this.state.password} placeholder="Create a password" /><br/>
-  	    		<button type="submit">Submit</button>
-  	    		</form>
-          </div>
-	    </div>      
+        <Message
+          attached
+          header='Welcome Grumble'
+          content='Fill out the form below to sign-up for a new account...or Dont.'
+        />
+	    		<Form className="signUp" onSubmit={this.handleFormSubmit}>
+  	    		<Form.Input type="text" onChange={this.handleChange} name="displayName" value={this.state.displayName} placeholder="Choose a display name" />
+  	    		<Form.Input type="text" onChange={this.handleChange} name="username" value={this.state.username} placeholder="Create a username" />
+  	    		<Form.Input type="password" onChange={this.handleChange} name="password" value={this.state.password} placeholder="Create a password" />
+            <Form.Checkbox inline label='I agree to...stuff' />
+  	    		<Button type="submit">Submit</Button>
+	        </Form>
+        <Message attached='bottom' warning>
+          <Icon name='help' />
+          Already signed up?&nbsp;<Link to='/Login'>Login here</Link>&nbsp;instead.
+        </Message>
+	    </div>
     )
   }
 }

@@ -74,6 +74,7 @@ export function grumbSubmit(data) {
       .catch(err => {
           console.log(err, "boo!");
       });
+
 }
 
 
@@ -88,7 +89,7 @@ export function getGrumbs() {
     }).catch(err => {
       console.log(err, "boo!");
     })
-    
+
 }
 
 export function oneGrumb(grumbid){
@@ -225,11 +226,3 @@ export function getVotes() {
       console.log(err, "boo!");
     })
 }
-
-
-
-
-
-
-
-
