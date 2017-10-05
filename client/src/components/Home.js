@@ -17,7 +17,7 @@ class MyComponent extends Component {
       <div className="containerHome">
           <div className="mainGrumbs">
             <GrumbForm />
-            <GrumbleList data={this.props.grumbData} voteData={this.props.voteData} />
+            <GrumbleList data={this.props.grumbData} />
           </div>
       </div>
     )
@@ -27,7 +27,6 @@ class MyComponent extends Component {
 const stateToProps = function(appState) {
   return {
     grumbData: appState.app.grumbs,
-    voteData: appState.app.grumbVotes
   }
 }
 

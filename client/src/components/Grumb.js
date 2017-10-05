@@ -5,6 +5,7 @@ import {oneGrumb} from '../actions/action'
 import {getResponses} from '../actions/action'
 import {getVotes} from '../actions/action'
 import {clearGrumb} from '../actions/action'
+import {clearResponses} from '../actions/action'
 
 import Response from './Response'
 import GrumbleList from './GrumbleList'
@@ -23,6 +24,7 @@ class Grumb extends Component {
 
 	componentWillUnmount() {
 		clearGrumb()
+		clearResponses()
 	}
 
 
@@ -34,14 +36,14 @@ class Grumb extends Component {
 						<Vote grumbid={this.props.grumb.id} parentid={this.props.grumb.parentid} voteData={this.props.votes.filter(vote => this.props.grumb.id === vote.grumbid)}  />
 					</div>
 					<div>
-						<SingleGrumb data={this.props.grumb} />
+						<SingleGrumb {...this.props.grumb} />
 					</div>
 				</div>
 				<div>
 					<Response data={this.props.grumb.id} />
 				</div>
 				<div>
-					<GrumbleList data={this.props.responses} voteData={this.props.voteData} />
+					<GrumbleList data={this.props.responses} />
 				</div>				
 			</div>
 		)

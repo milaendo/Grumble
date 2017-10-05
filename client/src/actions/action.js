@@ -1,7 +1,7 @@
 import store from '../store'
 import axios from 'axios'
 
-import {GET_GRUMBS, ONE_GRUMB, CLEAR_GRUMB, GET_RESPONSES, GET_VOTE, GET_VOTES} from './actionValues'
+import {GET_GRUMBS, ONE_GRUMB, CLEAR_GRUMB, CLEAR_RESPONSES, GET_RESPONSES, GET_VOTE, GET_VOTES} from './actionValues'
 
 
 export function register(data) {
@@ -59,7 +59,7 @@ export function grumbSubmit(data) {
         url: '/api/grumb',
         data: {
             grumb: data.grumb,
-            user: data.userid
+            user: data.user
           },
         headers: {
               'Accept': 'application/json',
@@ -107,6 +107,13 @@ export function oneGrumb(grumbid){
 export function clearGrumb() {
   store.dispatch({
     type: CLEAR_GRUMB
+  })
+}
+
+
+export function clearResponses() {
+  store.dispatch({
+    type: CLEAR_RESPONSES
   })
 }
 

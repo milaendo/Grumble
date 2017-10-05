@@ -16,7 +16,7 @@ class GrumbleList extends Component {
               <Vote grumbid={item.id} parentid={item.parentid} voteData={this.props.votes.filter(vote => item.id === vote.grumbid)}/> 
             </div>
             <div className="vote">
-              <GrumbleItem data={item} />
+              <GrumbleItem {...item} />
             </div>
     			</div>
     		))}
