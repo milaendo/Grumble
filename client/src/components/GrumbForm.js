@@ -25,18 +25,16 @@ class GrumbForm extends Component {
   render() {
     return this.props.isAuthenticated ?
     	<div id='grumbform'>
-    		 {<h2>Post a Grumb!</h2>}
     		<form onSubmit={this.handleSubmit} className='formGrumb'>
-    			<input type="textarea" onChange={this.handleChange} className="grumbInput" name="grumb" value={this.state.grumb} placeholder="Post a grumb" />
-    			<button type="submit">Grumblize</button>
+    			<textarea rows='4' cols='100' onChange={this.handleChange} name="grumb" value={this.state.grumb} placeholder={localStorage.getItem('displayName')+" ,What do you want to Grumble about today?" }/>
+          <button type="submit">Grumblize</button>
     		</form>
     	</div> : 
       <div id="grumbform">
-            <h3>You Must Be Logged In or Registered to Comment</h3> 
-            <Link to="/registration"><button type="submit">Register</button></Link>
-            <Link to="/login"><button type="submit">Login</button></Link>
-        </div>   
-    
+        <h3>You Must Be Logged In or Registered to Comment</h3> 
+        <Link to="/registration"><button type="submit">Register</button></Link>
+        <Link to="/login"><button type="submit">Login</button></Link>
+      </div>  
   }
 }
 

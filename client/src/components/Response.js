@@ -33,7 +33,7 @@ class Response extends Component {
 			<div className="responseBox">
 				<form className="response" onSubmit={this.handleSubmit}>
 					<h3>Post a comment {localStorage.getItem('displayName')}! Or don't. We don't care.</h3>
-					<input className="responseInput" type="text" onChange={this.handleChange} name="response" value={this.state.response} />
+					<textarea rows='4' cols='120' className="responseInput" type="text" onChange={this.handleChange} name="response" value={this.state.response} />
 					<button type= "submit">Submit</button>
 				</form>
 			</div> :

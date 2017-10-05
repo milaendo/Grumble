@@ -5,7 +5,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^3.5.0"
+    "concurrently": "^3.5.0",
+    "semantic-ui-react": "^0.74.2"
   },
   "scripts": {
     "start": "concurrently \"yarn run server\" \"yarn run client\"",

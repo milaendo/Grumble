@@ -218,7 +218,8 @@ router.post('/upvote', function(req,res,next){
     	}
     	else if(results.length>0){
     		res.json({
-    			message:'YOU ALREADY VOTED IDIOT'
+    			message:'YOU ALREADY VOTED IDIOT',
+    			response: results
     		})
     	}
     	else {
@@ -319,11 +320,14 @@ router.get('/singleGrumb/:grumbid', function(req,res,next){
 	const id = req.params.grumbid
 
 	const sql=`	
-	SELECT g.*, u.display_name
-	FROM grumbs g
-    JOIN users u 
-    ON g.userid = u.id
-	WHERE parentid IS NULL and g.id=?`
+	SELECT 
+    g.*, u.display_name
+	FROM
+    grumbs g
+        JOIN
+    users u ON g.userid = u.id
+	WHERE
+    parentid IS NULL AND g.id = ?`
 
 	conn.query(sql, [id], function(err,results,next){
 		if(err){
