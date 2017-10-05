@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
-import { getVotes } from '../actions/action'
 import { voteUp } from '../actions/action'
 import { voteDown } from '../actions/action'
 
@@ -32,14 +30,18 @@ class Vote extends Component {
     
     let totalUpVotes = []
     let totalDownVotes = []
+    let voters = []
+    const userid = localStorage.getItem('userid')
 
     this.props.voteData.forEach(function(item) {    
       totalUpVotes.push(item.upvote)
-      totalDownVotes.push(item.downvote)           
+      totalDownVotes.push(item.downvote)
+      voters.push(item.userid)           
     });
 
-    let totalUp = totalUpVotes.reduce((a, b) => a + b, 0);
-    let totalDown = totalDownVotes.reduce((a, b) => a + b, 0);
+    let totalUp = totalUpVotes.reduce((a, b) => a + b, 0)
+    let totalDown = totalDownVotes.reduce((a, b) => a + b, 0)
+    let foundVoter = voters.filter(id => id == userid)
 
     const totalDiff = totalUp - totalDown
     const total = totalUp + totalDown
@@ -48,19 +50,17 @@ class Vote extends Component {
     return this.props.isAuthenticated ?
     	<div className="voteButton">
     		<div>
-    			<button className="buttonUp" type="submit" onClick={this.handleUpClick}></button>
-    			<span className="voteCount">{totalDiff}</span>
-    			<button className="buttonDown" type="submit" onClick={this.handleDownClick}></button>
+    			<button className={foundVoter != 0 ? "buttonUpVoted" : "buttonUp"} type="submit" onClick={this.handleUpClick}></button>
+    			<div className="voteCount">{totalDiff}</div>
+    			<button className={foundVoter != 0 ? "buttonDownVoted" : "buttonDown"} type="submit" onClick={this.handleDownClick}></button>
         </div>
-        <span>Total votes: {total}</span>
     	</div> :
     	<div>
     		<div className="voteButton">
-    			<button className="buttonUp" type="submit"></button>
-    			<span className="voteCount">{totalDiff}</span>
-    			<button className="buttonDown" type="submit"></button>
+    			<button className="buttonUpVoted" type="submit"></button>
+    			<div className="voteCount">{totalDiff}</div>
+    			<button className="buttonDownVoted" type="submit"></button>
     		</div>
-        <span>Total votes: {total}</span>
     	</div>
   }
 }
