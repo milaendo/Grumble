@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 
 class GrumbleItem extends Component {
+
+    componentWillReceiveProps() {
+    }
+
+
   render() {
     return this.props.data.active ?
     	<div className="grumbItem">

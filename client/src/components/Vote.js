@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import { getVotes } from '../actions/action'
+import { voteUp } from '../actions/action'
+import { voteDown } from '../actions/action'
 
 
 
@@ -10,57 +12,18 @@ class Vote extends Component {
 
 
 	handleUpClick = (e) => {
-		const userid = localStorage.getItem('userid')
 		e.preventDefault()
-  		axios({
-	      method: 'post',
-	      url: '/api/upvote',
-	      data: {
-	          userid: userid,
-	          grumbid: this.props.grumbid,
-	          parentid: this.props.parentid
-	        },
-	      headers: {
-	            'Accept': 'application/json',
-	            'Content-Type': 'application/json'
-	          }
-	      })
-  		.then(response => {
-      		console.log("Upvote Submitted Successfully", response);
+    const userid = localStorage.getItem('userid')
+    voteUp({userid: userid, grumbid: this.props.grumbid, parentid: this.props.parentid})
 
-    	}).then(e =>{getVotes()})
-
-
-      .catch(err => {
-      		console.log("Upvote Not Submitted. Crap.", err);
-    	});
 	}
 
 
 	handleDownClick = (e) => {
-		const userid = localStorage.getItem('userid')
 		e.preventDefault()
-  		axios({
-	      method: 'post',
-	      url: '/api/downvote',
-	      data: {
-	          userid: userid,
-	          grumbid: this.props.grumbid,
-	          parentid: this.props.parentid
-	        },
-	      headers: {
-	            'Accept': 'application/json',
-	            'Content-Type': 'application/json'
-	          }
-	      })
-  		.then(response => {
-      		console.log("Downvote Submitted Successfully", response);
-
-    	}).then(e => {getVotes()})
-
-      .catch(err => {
-      		console.log("Downvote Not Submitted. Crap.", err);
-    	});
+    const userid = localStorage.getItem('userid')
+    voteDown({userid: userid, grumbid: this.props.grumbid, parentid: this.props.parentid})
+  	
 	}
 
 
@@ -81,11 +44,6 @@ class Vote extends Component {
     const totalDiff = totalUp - totalDown
     const total = totalUp + totalDown
 
-
-
-    
-    
-    
 
     return this.props.isAuthenticated ?
     	<div className="voteButton">

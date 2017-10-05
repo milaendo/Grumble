@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { register } from '../actions/action'
    
 
 class Registration extends Component {
@@ -18,30 +18,11 @@ class Registration extends Component {
 
   	handleFormSubmit = (e) => {
   	e.preventDefault()
-  
-
-    axios({
-      method: 'post',
-      url: '/api/register',
-      data: {
-          displayName: this.state.displayName,
-          username: this.state.username,
-          password: this.state.password
-        },
-      headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          }
-      })
-    .then(response => {
-      console.log(response, "yay");
-
-    }).catch(err => {
-      console.log(err, "boo!");
-    });
+    register({displayName: this.state.displayName, username: this.state.username, password: this.state.password})
 
     this.props.history.push('/Login')
   }
+
   render() {
     return (
     	<div className='signWrap' >

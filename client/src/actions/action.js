@@ -1,8 +1,82 @@
 import store from '../store'
 import axios from 'axios'
-// example actions
 
-import {GET_GRUMBS, ONE_GRUMB, GET_RESPONSES, GET_VOTE, GET_VOTES} from './actionValues'
+import {GET_GRUMBS, ONE_GRUMB, CLEAR_GRUMB, GET_RESPONSES, GET_VOTE, GET_VOTES} from './actionValues'
+
+
+export function register(data) {
+  axios({
+      method: 'post',
+      url: '/api/register',
+      data: {
+          displayName: data.displayName,
+          username: data.username,
+          password: data.password
+        },
+      headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+      })
+    .then(response => {
+      console.log(response, "yay");
+
+    }).catch(err => {
+      console.log(err, "boo!");
+    });
+}
+
+
+export function response(data) {
+  axios({
+        method: 'post',
+        url: '/api/response/',
+        data: {
+            response: data.response,
+            userid: data.userid,
+            parentid: data.parentid
+          },
+        headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+        })
+      .then(response => {
+          console.log(response, "working response");
+
+      }).then(e =>{getResponses(data.parentid)})
+
+
+      .catch(err => {
+          console.log(err, "not working response");
+      });
+}
+
+
+export function grumbSubmit(data) {
+  axios({
+        method: 'post',
+        url: '/api/grumb',
+        data: {
+            grumb: data.grumb,
+            user: data.userid
+          },
+        headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+        })
+      .then(response => {
+          console.log(response, "yay");
+
+      }).then(e => {getGrumbs()})
+
+      .catch(err => {
+          console.log(err, "boo!");
+      });
+}
+
+
 
 export function getGrumbs() {
   axios.get('/api/grumbs')
@@ -30,6 +104,13 @@ export function oneGrumb(grumbid){
 }
 
 
+export function clearGrumb() {
+  store.dispatch({
+    type: CLEAR_GRUMB
+  })
+}
+
+
 
 export function getResponses(grumbid) {
   axios.get('/api/responses/' + grumbid)
@@ -42,6 +123,62 @@ export function getResponses(grumbid) {
       console.log(err, "boo!");
     })
 }
+
+
+export function voteUp(data) {
+  axios({
+        method: 'post',
+        url: '/api/upvote',
+        data: {
+            userid: data.userid,
+            grumbid: data.grumbid,
+            parentid: data.parentid
+          },
+        headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+        })
+      .then(response => {
+          console.log("Upvote Submitted Successfully", response);
+
+      }).then(e =>{getVotes()})
+
+
+      .catch(err => {
+          console.log("Upvote Not Submitted. Crap.", err);
+      });
+}
+
+
+export function voteDown(data) {
+  axios({
+        method: 'post',
+        url: '/api/downvote',
+        data: {
+            userid: data.userid,
+            grumbid: data.grumbid,
+            parentid: data.parentid
+          },
+        headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+        })
+      .then(response => {
+          console.log("Downvote Submitted Successfully", response);
+
+      }).then(e => {getVotes()})
+
+      .catch(err => {
+          console.log("Downvote Not Submitted. Crap.", err);
+      });
+}
+
+
+
+
+
 
 export function getVote(grumbid) {
   axios({
@@ -81,3 +218,11 @@ export function getVotes() {
       console.log(err, "boo!");
     })
 }
+
+
+
+
+
+
+
+

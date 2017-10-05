@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {oneGrumb} from '../actions/action'
 import {getResponses} from '../actions/action'
-import {getVote} from '../actions/action'
+import {getVotes} from '../actions/action'
+import {clearGrumb} from '../actions/action'
 
 import Response from './Response'
 import GrumbleList from './GrumbleList'
@@ -16,21 +17,13 @@ class Grumb extends Component {
 	componentWillMount(){
 		oneGrumb(this.props.match.params.grumbid)
 		getResponses(this.props.match.params.grumbid)
+		getVotes()
 	}
 
-	// componentWillUpdate(){
-	// 	getResponses(this.props.match.params.grumbid)  ///////This isn't working right. Need advice.
-	// }
 
-	// componentWillReceiveProps(props){
-	// 	console.log("new props", props)
-	// 	console.log("old props", this.props)
-	// 	if (props.grumb.id != props.match.params.grumbid) {
-	// 		getResponses(props.match.params.grumbid)
-	// 		getVotes(props.match.params.grumbid)
-	// 	}
-
-	// }
+	componentWillUnmount() {
+		clearGrumb()
+	}
 
 
 	render () {

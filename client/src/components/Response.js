@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
-import {Link} from 'react-router-dom' 
-import {getResponses} from '../actions/action'
+import { Link } from 'react-router-dom' 
+import { response } from '../actions/action'
 
 
 
@@ -16,43 +15,18 @@ class Response extends Component {
 		this.setState({
       		[e.target.name]: e.target.value
     	})
-	}
-
-	
+	}	
 
 	handleSubmit = (e) => {
-		const userid = localStorage.getItem('userid')
 		e.preventDefault()
-  		axios({
-	      method: 'post',
-	      url: '/api/response/',
-	      data: {
-	          response: this.state.response,
-	          userid: userid,
-	          parentid: this.props.data
-	        },
-	      headers: {
-	            'Accept': 'application/json',
-	            'Content-Type': 'application/json'
-	          }
-	      })
-  		.then(response => {
-      		console.log(response, "working response");
-
-    	}).then(e =>{getResponses(this.props.data)})
-
-
-    	.catch(err => {
-      		console.log(err, "not working response");
-    	});
+		const userid = localStorage.getItem('userid')
+		response({response: this.state.response, userid: userid, parentid: this.props.data})
 
     	this.setState({
       		response: ""
     	})
 
-	}
-
-	
+	}	
 
 	render () {
 		return this.props.isAuthenticated ?

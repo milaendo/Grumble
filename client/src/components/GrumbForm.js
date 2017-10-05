@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import { getGrumbs } from '../actions/action'
-import {Link} from 'react-router-dom'
+import { grumbSubmit } from '../actions/action'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 
@@ -19,35 +18,14 @@ class GrumbForm extends Component {
 	
   	handleSubmit = (e) => {
   		e.preventDefault()
-  		axios({
-	      method: 'post',
-	      url: '/api/grumb',
-	      data: {
-	          grumb: this.state.grumb,
-	          user: localStorage.getItem("userid")
-	        },
-	      headers: {
-	            'Accept': 'application/json',
-	            'Content-Type': 'application/json'
-	          }
-	      })
-  		.then(response => {
-      		console.log(response, "yay");
-
-    	}).then(e =>{getGrumbs()})
-
-      .catch(err => {
-      		console.log(err, "boo!");
-    	});
-
-  		// this.props.history.push('/')
-
-  		}
+      const userid = localStorage.getItem("userid")
+      grumbSubmit({grumb: this.state.grumb, user: userid})
+  	}
 
   render() {
     return this.props.isAuthenticated ?
     	<div id='grumbform'>
-    		 {/*<h1>Post a Grumb!</h1>*/}
+    		 {<h2>Post a Grumb!</h2>}
     		<form onSubmit={this.handleSubmit} className='formGrumb'>
     			<input type="textarea" onChange={this.handleChange} className="grumbInput" name="grumb" value={this.state.grumb} placeholder="Post a grumb" />
     			<button type="submit">Grumblize</button>
