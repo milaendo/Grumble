@@ -1,15 +1,15 @@
-// if you so choose, you may name your actions and import them here
-// for reducing typing errors
-import {GET_GRUMBS, ONE_GRUMB, GET_RESPONSES, GET_VOTES} from '../actions/actionValues'
+
+import {GET_GRUMBS, ONE_GRUMB, CLEAR_GRUMB, GET_RESPONSES, GET_VOTES, GET_VOTE} from '../actions/actionValues'
 
 const initialState = {
   grumbs: [],
+  grumbVotes: [],
   grumb:{},
-  responses: [],
   grumbVote: {
     upvote: "",
     downvote: ""
-  }
+  },
+  responses: [] 
 }
 
 export default function(state = initialState, action) {
@@ -21,7 +21,11 @@ export default function(state = initialState, action) {
     case GET_RESPONSES:
       return {...state, responses: action.payload}
     case GET_VOTES:
-      return {...state, grumbVote: {upvote: action.payload.upvote, downvote: action.payload.downvote}}
+      return {...state, grumbVotes: action.payload}
+    case GET_VOTE:
+      return {...state, grumbVote: {upvote: action.upvote, downvote: action.downvote}}
+    case CLEAR_GRUMB:
+      return {...state, grumb: {}}
     default:
       return state
   }

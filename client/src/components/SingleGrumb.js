@@ -4,7 +4,7 @@ class SingleGrumb extends Component {
 	
 	render () {
 		return this.props.data.active ?
-			<div>
+			<div className="singleGrumbBox">
 				<div>
 					<h1 className="singleGrumb">{this.props.data.grumb}</h1>
 				</div>
@@ -15,7 +15,7 @@ class SingleGrumb extends Component {
 					<span>{this.props.data.timestamp}</span>
 				</div>
 			</div> :
-			<div>
+			<div className="singleGrumbBox">
 				<div>
 					<h1 className="singleGrumb">This grumb is no more!!</h1>
 				</div>

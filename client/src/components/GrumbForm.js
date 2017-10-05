@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import { getGrumbs } from '../actions/action'
-import {Link} from 'react-router-dom'
+import { grumbSubmit } from '../actions/action'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 
@@ -19,48 +18,23 @@ class GrumbForm extends Component {
 	
   	handleSubmit = (e) => {
   		e.preventDefault()
-  		axios({
-	      method: 'post',
-	      url: '/api/grumb',
-	      data: {
-	          grumb: this.state.grumb,
-	          user: localStorage.getItem("userid")
-	        },
-	      headers: {
-	            'Accept': 'application/json',
-	            'Content-Type': 'application/json'
-	          }
-	      })
-  		.then(response => {
-      		console.log(response, "yay");
-
-    	}).then(e =>{getGrumbs()})
-
-      .catch(err => {
-      		console.log(err, "boo!");
-    	});
-      this.setState({
-        grumb:''
-      })
-  		// this.props.history.push('/')
-
-  		}
+      const userid = localStorage.getItem("userid")
+      grumbSubmit({grumb: this.state.grumb, user: userid})
+  	}
 
   render() {
     return this.props.isAuthenticated ?
-    	<div className="container" id='grumbform'>
-    		 {/*<h1>Post a Grumb!</h1>*/}
+    	<div id='grumbform'>
     		<form onSubmit={this.handleSubmit} className='formGrumb'>
     			<textarea rows='4' cols='100' onChange={this.handleChange} name="grumb" value={this.state.grumb} placeholder={localStorage.getItem('displayName')+" ,What do you want to Grumble about today?" }/>
-    			<button type="submit">Grumblize</button>
+          <button type="submit">Grumblize</button>
     		</form>
     	</div> : 
-      <div className="responseBox">
-            <h3>You Must Be Logged In or Registered to Comment</h3> 
-            <Link to="/registration"><button type="submit">Register</button></Link>
-            <Link to="/login"><button type="submit">Login</button></Link>
-        </div>   
-    
+      <div id="grumbform">
+        <h3>You Must Be Logged In or Registered to Comment</h3> 
+        <Link to="/registration"><button type="submit">Register</button></Link>
+        <Link to="/login"><button type="submit">Login</button></Link>
+      </div>  
   }
 }
 

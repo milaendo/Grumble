@@ -17,13 +17,17 @@ conn.on("error",function(err){
 	console.log(err)
 })
 
-//////////gather all votes////////
-router.post('/getvotes', function(req, res, next){
+
+
+////////////GET SUMS OF VOTES FOR PARTICULAR GRUMB///////////////////////////
+
+router.post('/getvote', function(req, res, next){
 	const grumbid = req.body.grumbid
 	const sql = `
 	SELECT sum(downvote) as downvote, sum(upvote) as upvote
 	FROM votes 
-	WHERE grumbid = ?`
+	WHERE grumbid = ? 
+	`
 
 	conn.query(sql, [grumbid], function(err, results, fields){
 		if(err){
@@ -43,6 +47,40 @@ router.post('/getvotes', function(req, res, next){
 				message:'heres yer votes',
 				upvote:results[0].upvote,
 				downvote:results[0].downvote
+				})
+			}
+		}
+	})
+})
+
+
+
+//////////GATHER ALL VOTE DATA////////
+
+router.get('/getvotes', function(req, res, next){
+	const grumbid = req.body.grumbid
+	const sql = `
+	SELECT *
+	FROM votes 
+	`
+
+	conn.query(sql, function(err, results, fields){
+		if(err){
+			res.json({
+				message:'votes not sent'
+			})
+		}
+		else{
+			if(results[0].length = 0){
+				res.json({
+					message:'there are no votes'
+					
+				})
+			}
+			else {
+				res.json({
+				message:'heres yer votes',
+				votes: results
 				})
 			}
 		}

@@ -37,11 +37,16 @@ header {
 	font-size: 36px;
 }
 
+.containerHome {
+	width: 1000px;
+	margin: 0 auto;
+  /*margin-top: 275px;*/
+}
+
 .container {
 	width: 1000px;
 	margin: 0 auto;
-	/*margin-top: 275px;*/
-
+	position: relative;
 }
 
 .voteButton {
@@ -78,15 +83,18 @@ header {
 }
 
 .voteGrumb {
-/*	border: 1px solid black;
-	border-radius: 5px;*/
-	margin: 10px auto;
+	width: 1000px;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 0 auto;
 	display: flex;	
 	border: 1px solid #ccc;
 	background-color: white;
 }
+
 .voteGrumb:hover {
 	background-color: rgb(245,248,250);
+
 }
 
 form {
@@ -97,15 +105,12 @@ form > h3 {
 	font-size: 24px;
 }
 
-
 .responseBox {
-	/*width: 1000px;*/
-/*	border: 1px solid black;
+/*width: 1000px;*/
+/*border: 1px solid black;
 	border-radius: 5px;*/
 	margin: 0 auto;
-
 }
-
 
 .responseInput {
 	/*width: 945px;
@@ -116,21 +121,17 @@ form > h3 {
 	border: 1px solid black;
 }
 
-
-
 .link {
 	text-decoration: none;
 	color: black;
 }
-
 
 h2 {
 	font-size: 36px;
 }
 
 .singleGrumb {
-	font-size: 48px;
-	
+	font-size: 48px;	
 }
 
 li {
@@ -164,10 +165,12 @@ input{
 	width: 970px;
 	margin-top: 10px;
 }
+
 .formGrumb {
 	display: flex;
 	width: 100%
 }
+
 #reg {
 	border:1px black solid;
 	/*border-radius: 5px;*/
@@ -178,7 +181,6 @@ input{
 .signWrap {
 	width: 500px;
 	margin:  auto;
-	margin-top: 275px;
 	text-align: center;
 }
 #logIN {
