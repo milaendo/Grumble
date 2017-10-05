@@ -13,7 +13,7 @@ class GrumbleItem extends Component {
             <Link className="link" to={/singleGrumb/ + this.props.data.id}>
         		<div>
         			<h2 className="singleGrumb">{this.props.data.grumb}</h2>
-                    <span>Grumbled by:{this.props.data.display_name} {this.props.data.timestamp}</span>
+                    <span>Grumbled by:{this.props.data.display_name} {this.props.data.timestamp} Votes: {this.props.data.upvote + this.props.data.downvote}</span>
         		</div>
         	</Link>			
     	</div> :
@@ -21,7 +21,7 @@ class GrumbleItem extends Component {
             <Link className="link" to={/singleGrumb/ + this.props.data.id}>
                 <div>
                     <h2 className="removed">This grumb is no more!</h2>
-                    <span id='grumdby'>Grumbled by:{this.props.data.display_name} {this.props.data.timestamp}</span>
+                    <span id='grumdby'>Grumbled by:{this.props.data.display_name} {this.props.data.timestamp} Votes: {this.props.data.upvote + this.props.data.downvote}</span>
                 </div>
             </Link>         
         </div>     
