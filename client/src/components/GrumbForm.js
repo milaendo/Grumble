@@ -22,14 +22,21 @@ class GrumbForm extends Component {
   		e.preventDefault()
       const userid = localStorage.getItem("userid")
       grumbSubmit({grumb: this.state.grumb, user: userid})
+			this.setState({
+				grumb:""
+			})
   	}
 
   render() {
     return this.props.isAuthenticated ?
     	<div id='grumbform'>
     		<Form onSubmit={this.handleSubmit} className='formGrumb'>
-    			<Form.TextArea onChange={this.handleChange} name="grumb" value={this.state.grumb} placeholder={localStorage.getItem('displayName')+" ,What do you want to Grumble about today?" } />
-					<Button content='Submit' labelPosition='left' icon='edit' primary />
+					<Form.Field>
+	    			<Form.TextArea onChange={this.handleChange} name="grumb" value={this.state.grumb} placeholder={localStorage.getItem('displayName')+" ,What do you want to Grumble about today?" } />
+					</Form.Field>
+					<Form.Field>
+						<Button content='Submit' labelPosition='left' icon='edit' primary />
+					</Form.Field>
     		</Form>
     	</div> :
       <div id="grumbform">

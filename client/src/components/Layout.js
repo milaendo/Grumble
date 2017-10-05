@@ -12,9 +12,9 @@ class Layout extends Component {
       <div>
         <Menu>
             <Menu.Item className="logo">Grumble :-|</Menu.Item>
-            <Menu.Item name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick}><Link to='/'>Home</Link></Menu.Item>
-            <Menu.Item name='SignUp' active={activeItem === 'SignUp'} onClick={this.handleItemClick}><Link to='/registration'>Sign Up</Link></Menu.Item>
-            <Menu.Item name='Login/Logout' active={activeItem === 'Login/Logout'} onClick={this.handleItemClick}><Link to='/Login'>Log in/Log out</Link></Menu.Item>
+            <Menu.Item as={Link} to="/" name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick}>Home</Menu.Item>
+            <Menu.Item as={Link} to='/registration' name='SignUp' active={activeItem === 'SignUp'} onClick={this.handleItemClick}>Sign Up</Menu.Item>
+            <Menu.Item as={Link} to="/Login" name='Login/Logout' active={activeItem === 'Login/Logout'} onClick={this.handleItemClick}>Log in/Log out</Menu.Item>
             <Menu.Item><Input icon='search' placeholder='Search...' /></Menu.Item>
         </Menu>
         {this.props.children}

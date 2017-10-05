@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { register } from '../actions/action'
 import { Button, Form, Icon, Message } from 'semantic-ui-react'
-import {Login} from './Login'
 import {Link} from 'react-router-dom'
 
 class Registration extends Component {

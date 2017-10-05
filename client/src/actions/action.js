@@ -59,7 +59,7 @@ export function grumbSubmit(data) {
         url: '/api/grumb',
         data: {
             grumb: data.grumb,
-            user: data.userid
+            user: data.user
           },
         headers: {
               'Accept': 'application/json',
@@ -74,6 +74,7 @@ export function grumbSubmit(data) {
       .catch(err => {
           console.log(err, "boo!");
       });
+
 }
 
 
@@ -88,7 +89,7 @@ export function getGrumbs() {
     }).catch(err => {
       console.log(err, "boo!");
     })
-    
+
 }
 
 export function oneGrumb(grumbid){
@@ -218,11 +219,3 @@ export function getVotes() {
       console.log(err, "boo!");
     })
 }
-
-
-
-
-
-
-
-
