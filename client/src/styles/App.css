@@ -1,63 +1,24 @@
 
-.singleGrumb {
-	font-size: 36px;
-}
 
 .containerHome {
-	width: 1000px;
-	margin: 0 auto;
-  /*margin-top: 275px;*/
+	float:left;
+	margin-left: 80px;
 }
 
 .container {
-	width: 1000px;
+	float:left;
 	margin: 0 auto;
 	position: relative;
 }
 
-/*.voteButton {
-	width: 50px;
-	border: 1px solid black;
-	border-radius: 5px;
-	margin: 10px;
-}*/
-
-.buttonUp {
-	width: 50px;
-	height: 50px;
-	border-style: none;
-	background-image: url(../images/icons/buttonUp.png);
-	background-size: cover;
-	/*background-color: rgb(131, 119, 188);*/
+.flexer {
+	display:flex;
 }
-
-.buttonDown {
-	background-image: url(../images/icons/buttonDown.png);
-}
-
-.buttonUpVoted {
-	width: 50px;
-	height: 50px;
-	border-style: none;
-	/*background-image: url(../images/icons/buttonUp.png);*/
-	background-size: cover;
-	background-color: orange;
-}
-
-.buttonDownVoted {
-	width: 50px;
-	height: 50px;
-	border-style: none;
-	/*background-image: url(../images/icons/buttonDown.png);*/
-	background-size: cover;
-	background-color: orange;
-}
-
 .voteCount {
-	margin: 0 auto;
-	font-size: 24px;
+	/*margin: 0 auto;
+	font-size: 24px;*/
 	text-align: center;
-	color:rgb(131, 119, 188);
+	color:black;
 }
 
 .voteGrumb {
@@ -122,9 +83,10 @@ li:hover {
 
 
 footer {
-	width: 1000px;
+	/*width: 1000px;*/
 	margin: 0 auto;
 	text-align: center;
+	clear: both;
 }
 button {
 	border-radius: 5px;
@@ -138,12 +100,12 @@ input{
 
 
 .signWrap {
-	width: 900px;
+	/*width: 900px;*/
 	margin:  auto;
 	text-align: center;
 }
 #logIN {
-	width: 500px;
+	/*width: 500px;*/
 	margin:  auto;
 	text-align: center;
 }
@@ -158,7 +120,7 @@ textarea {
 	color:rgb(131, 119, 188);
 }
 .grumbItem {
-	width:900px;
+	/*width:900px;*/
 	margin-left: 0;
 }
 #imgsize {
@@ -168,4 +130,17 @@ textarea {
 .removed{
 	width:50px;
 	height:50px;
+}
+#harold{
+	height:280px;
+	width:280px;
+}
+.haroldCard{
+	float: left;
+}
+body .ui.comments {
+	max-width:100%
+}
+.voteCenter{
+	margin-top: 10px;
 }

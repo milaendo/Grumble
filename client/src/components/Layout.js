@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import { Menu, Input } from 'semantic-ui-react'
 import facepalm from '../images/icons/facepalm.png'
+import Harold from './Harold'
 
 class Layout extends Component {
   state = {}
@@ -17,7 +18,11 @@ class Layout extends Component {
             <Menu.Item as={Link} to="/Login" name='Login/Logout' active={activeItem === 'Login/Logout'} onClick={this.handleItemClick}>Log in/Log out</Menu.Item>
             <Menu.Item><Input icon='search' placeholder='Search...' /></Menu.Item>
         </Menu>
-        {this.props.children}
+        <div className="flexer">
+          <Harold />
+          <div>{this.props.children}</div>
+        </div>
+
         <footer>
           &copy; 2017 Grumbliees International
         </footer>

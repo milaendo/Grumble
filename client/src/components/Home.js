@@ -5,6 +5,7 @@ import { getGrumbs } from '../actions/action'
 import { getVotes } from '../actions/action'
 import GrumbForm from './GrumbForm'
 
+
 class MyComponent extends Component {
 
   componentWillMount() {

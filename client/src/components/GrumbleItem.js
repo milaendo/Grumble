@@ -24,7 +24,6 @@ class GrumbleItem extends Component {
             <Link className="link" to={/singleGrumb/ + this.props.id}>
                 <div>
                     <Comment.Text as='h2'>This grumb is no more!</Comment.Text>
-                    <Comment.Text><img className='removed'src={facepalm} alt='facepalm'/></Comment.Text>
                     <Comment.Metadata id='grumdby'>Grumbled by:{this.props.display_name}</Comment.Metadata> <Comment.Metadata>{moment(this.props.timestamp).format('MMM Do YYYY')} Votes: {this.props.upvote + this.props.downvote}</Comment.Metadata>
                 </div>
             </Link>
