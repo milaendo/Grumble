@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { voteUp } from '../actions/action'
 import { voteDown } from '../actions/action'
+import { Icon } from 'semantic-ui-react'
 
 
 
@@ -21,22 +22,22 @@ class Vote extends Component {
 		e.preventDefault()
     const userid = localStorage.getItem('userid')
     voteDown({userid: userid, grumbid: this.props.grumbid, parentid: this.props.parentid})
-  	
+
 	}
 
 
 
   render() {
-    
+
     let totalUpVotes = []
     let totalDownVotes = []
     let voters = []
     const userid = localStorage.getItem('userid')
 
-    this.props.voteData.forEach(function(item) {    
+    this.props.voteData.forEach(function(item) {
       totalUpVotes.push(item.upvote)
       totalDownVotes.push(item.downvote)
-      voters.push(item.userid)           
+      voters.push(item.userid)
     });
 
     let totalUp = totalUpVotes.reduce((a, b) => a + b, 0)
@@ -50,16 +51,16 @@ class Vote extends Component {
     return this.props.isAuthenticated ?
     	<div className="voteButton">
     		<div>
-    			<button className={foundVoter != 0 ? "buttonUpVoted" : "buttonUp"} type="submit" onClick={this.handleUpClick}></button>
+    			<Icon link name='chevron up' className={foundVoter != 0 ? "buttonUpVoted" : "buttonUp"} type="submit" onClick={this.handleUpClick}></Icon>
     			<div className="voteCount">{totalDiff}</div>
-    			<button className={foundVoter != 0 ? "buttonDownVoted" : "buttonDown"} type="submit" onClick={this.handleDownClick}></button>
+    			<Icon link name='chevron down' className={foundVoter != 0 ? "buttonDownVoted" : "buttonDown"} type="submit" onClick={this.handleDownClick}></Icon>
         </div>
     	</div> :
     	<div>
     		<div className="voteButton">
-    			<button className="buttonUpVoted" type="submit"></button>
+    			<Icon link name='chevron up' type="submit"></Icon>
     			<div className="voteCount">{totalDiff}</div>
-    			<button className="buttonDownVoted" type="submit"></button>
+    			<Icon link name='chevron down'type="submit"></Icon>
     		</div>
     	</div>
   }
@@ -68,7 +69,7 @@ class Vote extends Component {
 function mapStateToProps(appState, ownProps) {
   return {
     isAuthenticated: appState.auth.isAuthenticated,
-    ...ownProps       
+    ...ownProps
   }
 }
 
