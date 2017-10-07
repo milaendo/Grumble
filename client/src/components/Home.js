@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import GrumbleList from './GrumbleList'
-import { getGrumbs } from '../actions/action'
-import { getVotes } from '../actions/action'
+// import { getGrumbs } from '../actions/action'
+// import { getVotes } from '../actions/action'
 import GrumbForm from './GrumbForm'
 
 class MyComponent extends Component {
 
-  componentWillMount() {
-    getGrumbs()
-    getVotes()
-  }
+  // componentWillMount() {
+  //   getGrumbs()
+  //   getVotes()
+  // }
 
   render() {
     return (

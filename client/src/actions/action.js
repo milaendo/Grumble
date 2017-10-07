@@ -1,7 +1,7 @@
 import store from '../store'
 import axios from 'axios'
 
-import {GET_GRUMBS, ONE_GRUMB, CLEAR_GRUMB, CLEAR_RESPONSES, GET_RESPONSES, GET_VOTE, GET_VOTES} from './actionValues'
+import {GET_GRUMBS, SEARCH_GRUMBS, ONE_GRUMB, CLEAR_GRUMB, CLEAR_RESPONSES, GET_RESPONSES, GET_VOTE, GET_VOTES} from './actionValues'
 
 
 export function register(data) {
@@ -90,6 +90,32 @@ export function getGrumbs() {
       console.log(err, "boo!");
     })
 
+}
+
+export function searchGrumbs(data) {
+  axios({
+        method: 'post',
+        url: '/api/search',
+        data: {
+            search: data
+          },
+        headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+        })
+      .then(response => {
+          console.log("Grumb Search Success!", response)
+          store.dispatch({
+          type: SEARCH_GRUMBS,
+          payload: response.data.grumbs
+          });
+      }).catch(err => {
+          console.log("Grumb Search Unsuccessful:(", err);
+      });
+
+
+      
 }
 
 export function oneGrumb(grumbid){
