@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import { getGrumbs } from '../actions/action'
-import { getVotes } from '../actions/action'
+// import { getVotes } from '../actions/action'
 import { searchGrumbs } from '../actions/action'
 import { connect } from 'react-redux'
 import { Menu, Input } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
+
+const userid = localStorage.getItem('userid')
 
 
 class Layout extends Component {
@@ -13,8 +15,8 @@ class Layout extends Component {
 
 
   componentWillMount() {
-    getGrumbs()
-    getVotes()
+    getGrumbs(userid)
+    // getVotes()
   }
 
 
@@ -22,7 +24,7 @@ class Layout extends Component {
 
   
   handleHomeClick = (e) => {
-    getGrumbs()
+    getGrumbs(userid)
   }
 
   handleChange = (e) => {
@@ -33,7 +35,7 @@ class Layout extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    searchGrumbs(this.state.search)
+    searchGrumbs({search: this.state.search, userid: userid})
     this.props.history.push('/')
   }
 

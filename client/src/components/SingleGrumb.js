@@ -16,7 +16,7 @@ class SingleGrumb extends Component {
 					<h3>Grumbled by: {this.props.display_name}</h3>
 				</div>
 				<div>
-					<span>{this.props.timestamp}</span>
+					<span>{this.props.timestamp} Total votes:{this.props.upvote + this.props.downvote}</span>
 				</div>
 			</div> 	:
 			<div className="singleGrumbBox">
@@ -27,7 +27,7 @@ class SingleGrumb extends Component {
 					<h3>Grumbled by: {this.props.display_name}</h3>
 				</div>
 				<div>
-					<span>{this.props.timestamp}</span>
+					<span>{this.props.timestamp} Total votes:{this.props.upvote + this.props.downvote}</span>
 				</div>
 			</div>
 		)	

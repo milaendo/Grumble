@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {oneGrumb} from '../actions/action'
 import {getResponses} from '../actions/action'
-import {getVotes} from '../actions/action'
+// import {getVotes} from '../actions/action'
 import {clearGrumb} from '../actions/action'
 import {clearResponses} from '../actions/action'
 
@@ -16,9 +16,11 @@ import Vote from './Vote'
 class Grumb extends Component {
 
 	componentWillMount(){
-		oneGrumb(this.props.match.params.grumbid)
-		getResponses(this.props.match.params.grumbid)
-		getVotes()
+		const grumbid = this.props.match.params.grumbid
+		const userid = localStorage.getItem('userid')
+		oneGrumb({grumbid: grumbid, userid: userid})
+		getResponses({grumbid: grumbid, userid: userid})
+		// getVotes()
 	}
 
 
@@ -33,7 +35,7 @@ class Grumb extends Component {
 			<div className="container">
 				<div className="voteGrumb">
 					<div>
-						<Vote grumbid={this.props.grumb.id} parentid={this.props.grumb.parentid} voteData={this.props.votes.filter(vote => this.props.grumb.id === vote.grumbid)}  />
+						<Vote {...this.props.grumb}  />
 					</div>
 					<div>
 						<SingleGrumb {...this.props.grumb} />
@@ -54,7 +56,7 @@ function stateToProps(appState){
 	return {
 		grumb: appState.app.grumb, 
 		responses: appState.app.responses,
-		votes: appState.app.grumbVotes
+		// votes: appState.app.grumbVotes
 	}
 }
 

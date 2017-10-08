@@ -272,22 +272,28 @@ router.post('/response', function(req,res,next){
 
 /////////////////////GET RESPONSES////////////////////////////////////////////
 
-router.get('/responses/:grumbid', function(req, res, next){
 
-	const id = req.params.grumbid
+/////////NEED TO PASS USERID, MIGHT AS WELL PASS GRUMB ID, NO MORE PARAMS
+
+router.post('/responses', function(req, res, next){
+
+	const userid = req.body.userid
+	const grumbid = req.body.grumbid
 
 	const sql=`	
 
 	SELECT 
     SUM(v.downvote) AS downvote,
     SUM(v.upvote) AS upvote,
+    SUM(v.upvote) - SUM(v.downvote) AS differential,
+    SUM(IF(v.userid = ?, 1,0)) AS voteStatus,
     v.grumbid,
     g.*,
     u.display_name
 	FROM
     grumbs g
         LEFT JOIN
-    votes v ON g.id = grumbid
+    votes v ON g.id = v.grumbid
         JOIN
     users u ON g.userid = u.id
     WHERE g.parentid = ?
@@ -295,7 +301,7 @@ router.get('/responses/:grumbid', function(req, res, next){
 	ORDER BY g.timestamp DESC
 	`
 
-	conn.query(sql, [id], function(err,results,next){
+	conn.query(sql, [userid, grumbid], function(err,results,next){
 		if(err){
 			console.log(err)
 			res.json({
@@ -315,21 +321,34 @@ router.get('/responses/:grumbid', function(req, res, next){
 
 
 //////////////////////single grumb////////////////////////////////////////////////
-////////NEED TO PULL VOTE DIFFERENTIAL AND TOTAL VOTE COUNT VIA JOIN WITH VOTE TABLE
-router.get('/singleGrumb/:grumbid', function(req,res,next){
-	const id = req.params.grumbid
+
+
+
+/////////////////////NEED TO PASS USER ID, MIGHT AS WELL PASS GRUMBID AS WELL
+
+router.post('/singleGrumb', function(req,res,next){
+	const userid = req.body.userid
+	const grumbid = req.body.grumbid
 
 	const sql=`	
 	SELECT 
-    g.*, u.display_name
+    SUM(v.downvote) AS downvote,
+    SUM(v.upvote) AS upvote,
+    SUM(v.upvote) - SUM(v.downvote) AS differential,
+    SUM(IF(v.userid = ?, 1,0)) AS voteStatus,
+    v.grumbid,
+    g.*,
+    u.display_name
 	FROM
     grumbs g
+        LEFT JOIN
+    votes v ON g.id = v.grumbid
         JOIN
     users u ON g.userid = u.id
-	WHERE
-    parentid IS NULL AND g.id = ?`
+    WHERE g.id = ?`
 
-	conn.query(sql, [id], function(err,results,next){
+
+	conn.query(sql, [userid, grumbid], function(err,results,next){
 		if(err){
 			console.log(err)
 			res.json({
@@ -347,26 +366,34 @@ router.get('/singleGrumb/:grumbid', function(req,res,next){
 
 //////////////GET GRUMBS/////////////////////////////////
 
-router.get('/grumbs', function(req, res, next) {
+
+
+/////NEED TO PASS USERID////////////////////////////////////////////
+
+router.post('/grumbs', function(req, res, next) {
+
+	const userid = req.body.userid
 
 	const sql=`
 	SELECT 
     SUM(v.downvote) AS downvote,
     SUM(v.upvote) AS upvote,
+    SUM(v.upvote) - SUM(v.downvote) AS differential,
+    SUM(IF(v.userid = ?, 1,0)) AS voteStatus,
     v.grumbid,
     g.*,
     u.display_name
 	FROM
     grumbs g
         LEFT JOIN
-    votes v ON g.id = grumbid
+    votes v ON g.id = v.grumbid
         JOIN
     users u ON g.userid = u.id
-    WHERE g.parentid IS NULL
+    WHERE g.parentid IS NULL AND g.active IS TRUE
 	GROUP BY g.id
-	ORDER BY g.timestamp DESC`
+	ORDER BY differential DESC`
 
-	conn.query(sql, function(err, results, fields){
+	conn.query(sql, [userid], function(err, results, fields){
 		if (err){
 			res.json({
 				message: 'Could not pull data'
@@ -384,17 +411,19 @@ router.get('/grumbs', function(req, res, next) {
 
 
 ////////////SEARCH GRUMBS/////////////////////////////////////////////
-
+////////////NEED TO PASS USERID///////////////////////////////////////
 router.post('/search', function(req, res, next){
 
 
 	const search = req.body.search
-	console.log("search", search)
+	const userid = req.body.userid
 
 	const sql=`
 	SELECT 
     SUM(v.downvote) AS downvote,
     SUM(v.upvote) AS upvote,
+    SUM(v.upvote) - SUM(v.downvote) AS differential,
+    SUM(IF(v.userid = ?, 1,0)) AS voteStatus,
     v.grumbid,
     g.*,
     u.display_name
@@ -408,7 +437,7 @@ router.post('/search', function(req, res, next){
 	GROUP BY g.id
 	ORDER BY g.timestamp DESC`
 
-	conn.query(sql,[search, search], function(err, results, fields){
+	conn.query(sql,[userid, search, search], function(err, results, fields){
 		if(err) {
 			res.json({
 				message: 'Could not search data'

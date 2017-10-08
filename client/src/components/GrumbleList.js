@@ -12,11 +12,11 @@ class GrumbleList extends Component {
     return (
       <Comment.Group size='massive'>
       	<div className="container">
-            <Header as='h2' dividing>Here is what people are Grumbling about today:</Header>
+            <Header as='h2' dividing>Here is what people are Grumbling about:</Header>
           		{this.props.data.map(item => (
                 <div key={item.id} className="voteGrumb">
                     <div>
-                      <Vote grumbid={item.id} parentid={item.parentid} voteData={this.props.votes.filter(vote => item.id === vote.grumbid)}/>
+                      <Vote {...item}/>
                     </div>
                     <Link className="link" to={/singleGrumb/ + item.id}>
                       <Comment>

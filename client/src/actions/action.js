@@ -3,6 +3,8 @@ import axios from 'axios'
 
 import {GET_GRUMBS, SEARCH_GRUMBS, ONE_GRUMB, CLEAR_GRUMB, CLEAR_RESPONSES, GET_RESPONSES, GET_VOTE, GET_VOTES} from './actionValues'
 
+const userid = localStorage.getItem('userid')
+
 
 export function register(data) {
   axios({
@@ -79,16 +81,27 @@ export function grumbSubmit(data) {
 
 
 
-export function getGrumbs() {
-  axios.get('/api/grumbs')
-   .then(response => {
-      store.dispatch({
-      type: GET_GRUMBS,
-      payload: response.data.grumbs
-    });
-    }).catch(err => {
-      console.log(err, "boo!");
-    })
+export function getGrumbs(userid) {
+  axios({
+        method: 'post',
+        url: '/api/grumbs',
+        data: {
+            userid: userid
+          },
+        headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+        })
+      .then(response => {
+          console.log("Grumbs Pull Success!", response)
+          store.dispatch({
+          type: GET_GRUMBS,
+          payload: response.data.grumbs
+          });
+      }).catch(err => {
+          console.log("Grumbs Pull Unsuccessful:(", err);
+      });
 
 }
 
@@ -97,7 +110,8 @@ export function searchGrumbs(data) {
         method: 'post',
         url: '/api/search',
         data: {
-            search: data
+            search: data.search,
+            userid: data.userid
           },
         headers: {
               'Accept': 'application/json',
@@ -118,16 +132,40 @@ export function searchGrumbs(data) {
       
 }
 
-export function oneGrumb(grumbid){
-  axios.get('/api/singleGrumb/' + grumbid)
-  .then(response => {
-    store.dispatch({
-      type: ONE_GRUMB,
-      payload:response.data.grumb[0]
-    })
-  }).catch(err => {
-    console.log(err, "not working")
-  })
+export function oneGrumb(data){
+//   axios.get('/api/singleGrumb/' + grumbid)
+//   .then(response => {
+//     store.dispatch({
+//       type: ONE_GRUMB,
+//       payload:response.data.grumb[0]
+//     })
+//   }).catch(err => {
+//     console.log(err, "not working")
+//   })
+
+
+
+  axios({
+        method: 'post',
+        url: '/api/singleGrumb',
+        data: {
+            userid: data.userid,
+            grumbid: data.grumbid
+          },
+        headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+        })
+      .then(response => {
+          console.log("Grumb Pull Success!", response)
+          store.dispatch({
+          type: ONE_GRUMB,
+          payload: response.data.grumb[0]
+          });
+      }).catch(err => {
+          console.log("Grumb Pull Unsuccessful:(", err);
+      });
 }
 
 
@@ -146,16 +184,39 @@ export function clearResponses() {
 
 
 
-export function getResponses(grumbid) {
-  axios.get('/api/responses/' + grumbid)
-  .then(response => {
-      store.dispatch({
-      type: GET_RESPONSES,
-      payload: response.data.responses
-    });
-    }).catch(err => {
-      console.log(err, "boo!");
-    })
+export function getResponses(data) {
+  // axios.get('/api/responses/' + grumbid)
+  // .then(response => {
+  //     store.dispatch({
+  //     type: GET_RESPONSES,
+  //     payload: response.data.responses
+  //   });
+  //   }).catch(err => {
+  //     console.log(err, "boo!");
+  //   })
+
+
+  axios({
+        method: 'post',
+        url: '/api/responses',
+        data: {
+            userid: data.userid,
+            grumbid: data.grumbid
+          },
+        headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+        })
+      .then(response => {
+          console.log("Grumb Pull Success!", response)
+          store.dispatch({
+          type: GET_RESPONSES,
+          payload: response.data.responses
+          });
+      }).catch(err => {
+          console.log("Grumb Pull Unsuccessful:(", err);
+      });
 }
 
 

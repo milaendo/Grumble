@@ -12,7 +12,7 @@ class Vote extends Component {
 	handleUpClick = (e) => {
 		e.preventDefault()
     const userid = localStorage.getItem('userid')
-    voteUp({userid: userid, grumbid: this.props.grumbid, parentid: this.props.parentid})
+    voteUp({userid: userid, grumbid: this.props.id, parentid: this.props.parentid})
 
 	}
 
@@ -20,7 +20,7 @@ class Vote extends Component {
 	handleDownClick = (e) => {
 		e.preventDefault()
     const userid = localStorage.getItem('userid')
-    voteDown({userid: userid, grumbid: this.props.grumbid, parentid: this.props.parentid})
+    voteDown({userid: userid, grumbid: this.props.id, parentid: this.props.parentid})
   	
 	}
 
@@ -28,37 +28,37 @@ class Vote extends Component {
 
   render() {
     
-    let totalUpVotes = []
-    let totalDownVotes = []
-    let voters = []
-    const userid = localStorage.getItem('userid')
+    // let totalUpVotes = []
+    // let totalDownVotes = []
+    // let voters = []
+    // const userid = localStorage.getItem('userid')
 
-    this.props.voteData.forEach(function(item) {    
-      totalUpVotes.push(item.upvote)
-      totalDownVotes.push(item.downvote)
-      voters.push(item.userid)           
-    });
+    // this.props.voteData.forEach(function(item) {    
+    //   totalUpVotes.push(item.upvote)
+    //   totalDownVotes.push(item.downvote)
+    //   voters.push(item.userid)           
+    // });
 
-    let totalUp = totalUpVotes.reduce((a, b) => a + b, 0)
-    let totalDown = totalDownVotes.reduce((a, b) => a + b, 0)
-    let foundVoter = voters.filter(id => id == userid)
+    // let totalUp = totalUpVotes.reduce((a, b) => a + b, 0)
+    // let totalDown = totalDownVotes.reduce((a, b) => a + b, 0)
+    // let foundVoter = voters.filter(id => id == userid)
 
-    const totalDiff = totalUp - totalDown
-    const total = totalUp + totalDown
+    // const totalDiff = totalUp - totalDown
+    // const total = totalUp + totalDown
 
 
     return this.props.isAuthenticated ?
     	<div className="voteButton">
     		<div>
-    			<button className={foundVoter != 0 ? "buttonUpVoted" : "buttonUp"} type="submit" onClick={this.handleUpClick}></button>
-    			<div className="voteCount">{totalDiff}</div>
-    			<button className={foundVoter != 0 ? "buttonDownVoted" : "buttonDown"} type="submit" onClick={this.handleDownClick}></button>
+    			<button className={this.props.voteStatus ? "buttonUpVoted" : "buttonUp"} type="submit" onClick={this.handleUpClick}></button>
+    			<div className="voteCount">{this.props.differential}</div>
+    			<button className={this.props.voteStatus ? "buttonDownVoted" : "buttonDown"} type="submit" onClick={this.handleDownClick}></button>
         </div>
     	</div> :
     	<div>
     		<div className="voteButton">
     			<button className="buttonUpVoted" type="submit"></button>
-    			<div className="voteCount">{totalDiff}</div>
+    			<div className="voteCount">{this.props.differential}</div>
     			<button className="buttonDownVoted" type="submit"></button>
     		</div>
     	</div>
