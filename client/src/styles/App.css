@@ -7,7 +7,7 @@
 
 .container {
 	float:left;
-	margin: 0 auto;
+	margin-left: 80px;
 	position: relative;
 }
 
@@ -45,10 +45,7 @@ form > h3 {
 }
 
 .responseBox {
-/*width: 1000px;*/
-/*border: 1px solid black;
-	border-radius: 5px;*/
-	margin: 0 auto;
+margin:30px;
 }
 
 .responseInput {
@@ -70,15 +67,7 @@ h2 {
 }
 
 .singleGrumb {
-	font-size: 48px;
-}
-
-li {
-	list-style: none;
-}
-
-li:hover {
-	color: red;
+	margin: auto;
 }
 
 
@@ -143,4 +132,7 @@ body .ui.comments {
 }
 .voteCenter{
 	margin-top: 10px;
+}
+#grumbform{
+	margin-left: 70px;
 }

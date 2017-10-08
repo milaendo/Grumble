@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import { Button, Comment, Form, Header } from 'semantic-ui-react'
 import moment from 'moment'
-import facepalm from '../images/icons/facepalm.png'
+
 
 class GrumbleItem extends Component {
 
