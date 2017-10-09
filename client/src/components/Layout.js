@@ -56,7 +56,6 @@ class Layout extends Component {
         </Menu>
         <div className="flexer">
           <div>
-            
             <Trending />
           </div>
           <div>{this.props.children}</div>
