@@ -29,7 +29,6 @@ class Registration extends Component {
     	<div className='signWrap' >
         <Message
           attached
-          header='Welcome Grumble'
           content='Fill out the form below to sign-up for a new account...or Dont.'
         />
 	    		<Form className="signUp" onSubmit={this.handleFormSubmit}>

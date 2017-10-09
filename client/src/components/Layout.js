@@ -22,7 +22,7 @@ class Layout extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  
+
   handleHomeClick = (e) => {
     getGrumbs()
   }
@@ -46,7 +46,7 @@ class Layout extends Component {
     return (
       <div>
         <Menu>
-            <Menu.Item className="logo">Grumble :-|</Menu.Item>
+            <Menu.Item as={Link} to='/' name='Home' className="logo">Grumble :-|</Menu.Item>
             <Menu.Item as={Link} to="/" name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick, this.handleHomeClick}>Home</Menu.Item>
             <Menu.Item as={Link} to='/registration' name='SignUp' active={activeItem === 'SignUp'} onClick={this.handleItemClick}>Sign Up</Menu.Item>
             <Menu.Item as={Link} to="/Login" name='Login/Logout' active={activeItem === 'Login/Logout'} onClick={this.handleItemClick}>{loginStatus}</Menu.Item>
@@ -73,5 +73,3 @@ function mapStateToProps(appState) {
 
 
 export default withRouter(connect(mapStateToProps)(Layout))
-
-
