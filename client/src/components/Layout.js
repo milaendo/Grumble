@@ -47,7 +47,7 @@ class Layout extends Component {
       <div>
         <Menu>
             <Menu.Item as={Link} to='/' name='Home' className="logo">Grumble :-|</Menu.Item>
-            <Menu.Item as={Link} to="/" name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick, this.handleHomeClick}>Home</Menu.Item>
+            <Menu.Item as={Link} to="/" name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick && this.handleHomeClick}>Home</Menu.Item>
             <Menu.Item as={Link} to='/registration' name='SignUp' active={activeItem === 'SignUp'} onClick={this.handleItemClick}>Sign Up</Menu.Item>
             <Menu.Item as={Link} to="/Login" name='Login/Logout' active={activeItem === 'Login/Logout'} onClick={this.handleItemClick}>{loginStatus}</Menu.Item>
             <Menu.Item><Input icon='search' placeholder='Search...' name='search' onChange={this.handleChange} value={this.state.search} onClick={this.handleSubmit} /></Menu.Item>

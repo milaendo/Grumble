@@ -45,7 +45,6 @@ class Vote extends Component {
     let foundVoter = voters.filter(id => id == userid)
 
     const totalDiff = totalUp - totalDown
-    const total = totalUp + totalDown
 
 
     return this.props.isAuthenticated ?

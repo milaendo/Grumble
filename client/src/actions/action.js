@@ -92,6 +92,60 @@ export function getGrumbs() {
 
 }
 
+export function getPositiveGrumbs() {
+  axios.get('/api/grumbs/positive')
+   .then(response => {
+      store.dispatch({
+      type: GET_GRUMBS,
+      payload: response.data.grumbs
+    });
+    }).catch(err => {
+      console.log(err, "boo!");
+    })
+
+}
+
+
+export function getNegativeGrumbs() {
+  axios.get('/api/grumbs/negative')
+   .then(response => {
+      store.dispatch({
+      type: GET_GRUMBS,
+      payload: response.data.grumbs
+    });
+    }).catch(err => {
+      console.log(err, "boo!");
+    })
+
+}
+
+export function getPopularGrumbs() {
+  axios.get('/api/grumbs/popular')
+   .then(response => {
+      store.dispatch({
+      type: GET_GRUMBS,
+      payload: response.data.grumbs
+    });
+    }).catch(err => {
+      console.log(err, "boo!");
+    })
+
+}
+
+
+export function getRecentGrumbs() {
+  axios.get('/api/grumbs/recent')
+   .then(response => {
+      store.dispatch({
+      type: GET_GRUMBS,
+      payload: response.data.grumbs
+    });
+    }).catch(err => {
+      console.log(err, "boo!");
+    })
+
+}
+
 export function searchGrumbs(data) {
   axios({
         method: 'post',

@@ -4,6 +4,7 @@ import GrumbleList from './GrumbleList'
 // import { getGrumbs } from '../actions/action'
 // import { getVotes } from '../actions/action'
 import GrumbForm from './GrumbForm'
+import FilterBar from './FilterBar'
 
 
 class MyComponent extends Component {
@@ -18,6 +19,7 @@ class MyComponent extends Component {
       <div className="containerHome">
           <div className="mainGrumbs">
             <GrumbForm />
+            <FilterBar />
             <GrumbleList data={this.props.grumbData} />
           </div>
       </div>
