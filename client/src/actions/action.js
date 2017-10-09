@@ -237,7 +237,11 @@ export function voteUp(data) {
       .then(response => {
           console.log("Upvote Submitted Successfully", response);
 
-      }).then(e =>{getVotes()})
+      }).then(e =>{
+          getGrumbs({userid: data.userid, grumbid: data.grumbid})
+          singleGrumb({userid: data.userid, grumbid: data.grumbid})
+          getResponses({userid: data.userid, grumbid: data.grumbid})
+        })
 
 
       .catch(err => {
@@ -263,7 +267,11 @@ export function voteDown(data) {
       .then(response => {
           console.log("Downvote Submitted Successfully", response);
 
-      }).then(e => {getVotes()})
+       }).then(e =>{
+          getGrumbs({userid: data.userid, grumbid: data.grumbid})
+          singleGrumb({userid: data.userid, grumbid: data.grumbid})
+          getResponses({userid: data.userid, grumbid: data.grumbid})
+        })
 
       .catch(err => {
           console.log("Downvote Not Submitted. Crap.", err);
