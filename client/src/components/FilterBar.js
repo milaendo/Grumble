@@ -1,40 +1,43 @@
 import React, { Component } from 'react'
 import { getGrumbs, getPositiveGrumbs, getNegativeGrumbs, getPopularGrumbs, getRecentGrumbs } from '../actions/action'
+import { Menu } from 'semantic-ui-react'
+
 
 class FilterBar extends Component {
+	state = {}
 
-	handleAll = (e) => {
-		getGrumbs()
+	handleItemClick = (e, { name }) => {
+		this.setState({ activeItem: name })
+		switch(name) {
+			case 'All':
+				getGrumbs()
+				break;
+			case 'positive':
+				getPositiveGrumbs()
+				break;
+			case 'Negative':
+				getNegativeGrumbs()
+				break;
+			case 'Popular':
+				getPopularGrumbs()
+				break;
+			case 'MostRecent':
+				getRecentGrumbs()
+		}
 	}
 
-	handlePositive = (e) => {
-		getPositiveGrumbs()
-	}
-
-	handleNegative = (e) => {
-		getNegativeGrumbs()
-	}
-
-	handlePopular = (e) => {
-		getPopularGrumbs()
-	}
-
-	handleRecent = (e) => {
-		getRecentGrumbs()
-	}
-
-
-
-
-  render() {
+	render() {
+		const { activeItem } = this.state
     return (
     	<div className="filterBar">
-    		<button onClick={this.handleAll}>All</button>
-    		<button onClick={this.handlePositive}>Positive</button>
-    		<button onClick={this.handleNegative}>Negative</button>
-    		<button onClick={this.handlePopular}>Popular</button>
-    		<button onClick={this.handleRecent}>Most Recent</button>
-    	</div>     
+				<Menu tabular>
+	    		<Menu.Item name='All' active={activeItem === 'All'} onClick={this.handleItemClick} />
+	    		<Menu.Item name='positive' active={activeItem === 'positive'} onClick={this.handleItemClick} />
+	    		<Menu.Item name='Negative' active={activeItem === 'Negative'} onClick={this.handleItemClick} />
+	    		<Menu.Item name='Popular' active={activeItem === 'Popular'} onClick={this.handleItemClick} />
+	    		<Menu.Item name='MostRecent'active={activeItem === 'MostRecent'}  onClick={this.handleItemClick} />
+				</Menu>
+    	</div>
     )
   }
 }

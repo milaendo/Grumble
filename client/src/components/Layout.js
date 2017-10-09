@@ -8,6 +8,7 @@ import { Menu, Input } from 'semantic-ui-react'
 import Harold from './Harold'
 import Trending from './Trending'
 import { withRouter } from 'react-router-dom'
+import grump3bar from "../images/grump3bar.jpg"
 
 
 
@@ -55,7 +56,6 @@ class Layout extends Component {
         </Menu>
         <div className="flexer">
           <div>
-            <Harold />
             <Trending />
           </div>
           <div>{this.props.children}</div>

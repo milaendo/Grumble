@@ -13,7 +13,6 @@ class GrumbleList extends Component {
     return (
       <Comment.Group size='massive'>
       	<div className="container">
-            <Header as='h2' dividing>Grumbs:</Header>
           		{this.props.data.map(item => (
                 <div key={item.id} className="voteGrumb">
                     <div>
