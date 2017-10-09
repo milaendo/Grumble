@@ -159,9 +159,46 @@ body .ui.comments {
 	background-color:rgb(102, 99, 168);
 	color: white;
 }
+
+
+
+
+.topHeader{
+	height: 100px;
+	display: flex;
+	background-color: white;
+
+}
+
+.logoHeader{
+	font-family: 'Permanent Marker', cursive;
+	font-size: 64px;
+	color: rgb(102, 99, 168);
+	text-align: center;
+	margin-left: 65px;
+	line-height: 100px;
+
+}
+
+
+.haroldHeader {
+	height: 100px;
+	width: 300px;
+	background-image: url('../images/grump3bar.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: white;
+}
+
+
+.headlineHeader {
+	line-height: 100px;
+
 .ui.card, .ui.cards>.card.card{
 	width:300px
 }
 .filterBar{
 	margin-left: 20px;
+
 }
