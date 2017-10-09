@@ -13,10 +13,10 @@ class GrumbleItem extends Component {
   render() {
     return this.props.active ?
     	<div className="grumbItem">
-        		<div>
+        		<div className='biggerMargin'>
               <Comment.Metadata>{this.props.display_name} says:</Comment.Metadata>
               <Comment.Text as='h2' className="singleGrumb">{this.props.grumb}</Comment.Text>
-              <Comment.Metadata>{moment(this.props.timestamp).format('MMM Do YYYY')} Votes: {this.props.upvote + this.props.downvote}</Comment.Metadata>
+              <Comment.Metadata>{moment(this.props.timestamp).format('MMM Do YYYY')} |Votes: {this.props.upvote + this.props.downvote}|</Comment.Metadata>
         		</div>
     	</div> :
 
