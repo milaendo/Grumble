@@ -50,9 +50,9 @@ class Vote extends Component {
     return this.props.isAuthenticated ?
     	<div className="voteButton">
     		<div className="voteCenter">
-    			<Icon link name='chevron up' color={foundVoter != 0 ? 'purple' : 'black'} type="submit" onClick={this.handleUpClick}></Icon>
+    			<Icon link name='chevron up' color={foundVoter != 0 ? 'olive' : 'black'} type="submit" onClick={this.handleUpClick}></Icon>
     			<div className="voteCount">{totalDiff}</div>
-    			<Icon link name='chevron down' color={foundVoter != 0 ? 'purple' : 'black'} type="submit" onClick={this.handleDownClick}></Icon>
+    			<Icon link name='chevron down' color={foundVoter != 0 ? 'olive' : 'black'} type="submit" onClick={this.handleDownClick}></Icon>
         </div>
     	</div> :
     	<div>

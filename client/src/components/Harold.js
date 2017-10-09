@@ -10,9 +10,9 @@ class Harold extends Component {
 				<Card>
 					<img id='harold'src={harold} alt='harold'/>
 						<Card.Content>
-							<Card.Header>Harold</Card.Header>
-							<Card.Meta><span>Oct 13 2017</span></Card.Meta>
+							<Card.Header as='h2'>Grumb of the day:</Card.Header>
 							<Card.Header>Get off my lawn!!</Card.Header>
+							<Card.Meta as='h1'>Harold <span>  |Oct 13 2017|</span></Card.Meta>
 						</Card.Content>
 				</Card>
 			</div>
