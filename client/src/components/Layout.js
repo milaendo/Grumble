@@ -9,6 +9,8 @@ import Harold from './Harold'
 import Trending from './Trending'
 import { withRouter } from 'react-router-dom'
 import haroldHeader from '../images/grump3bar.jpg'
+import grump3bar from "../images/grump3bar.jpg"
+
 
 
 
@@ -65,7 +67,6 @@ class Layout extends Component {
         </Menu>
         <div className="flexer">
           <div>
-            <Harold />
             <Trending />
           </div>
           <div>{this.props.children}</div>
