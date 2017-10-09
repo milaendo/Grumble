@@ -15,8 +15,8 @@
 	display:flex;
 }
 .voteCount {
-	/*margin: 0 auto;
-	font-size: 24px;*/
+	/*margin: 0 auto;*/
+	font-size: 24px;
 	text-align: center;
 	color:black;
 }
@@ -29,6 +29,7 @@
 	display: flex;
 	border: 1px solid #ccc;
 	background-color: white;
+	padding:20px;
 }
 
 .voteGrumb:hover {
@@ -69,8 +70,16 @@ h2 {
 .singleGrumb {
 	margin: auto;
 }
-
-
+.singleGrumbBox{
+	margin-left: 20px;
+}
+.largerFont{
+	font-size: 20px;
+	padding:10px;
+}
+.biggerMargin{
+	margin-left: 20px;
+}
 footer {
 	/*width: 1000px;*/
 	margin: 0 auto;
