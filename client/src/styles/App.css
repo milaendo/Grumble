@@ -150,7 +150,9 @@ margin-top:450px;
 }
 .ui.feed>.event>.content h1.date {
 	font-size: 25px;
+	color:rgb(102, 99, 168);
 }
 .ui.feed>.event>.content div.summary{
 	font-size: 20px;
+	padding:10px 0px;
 }
