@@ -135,7 +135,8 @@ router.post('/downvote', function(req, res, next){
     	}
     	else if(results.length>0){
     		res.json({
-    			message:'YOU ALREADY VOTED IDIOT'
+    			message:'YOU ALREADY VOTED IDIOT',
+    			success: true
     		})
     	}
     	////voting
@@ -281,6 +282,8 @@ router.get('/responses/:grumbid', function(req, res, next){
 	SELECT 
     SUM(v.downvote) AS downvote,
     SUM(v.upvote) AS upvote,
+    SUM(v.upvote) - SUM(v.downvote) AS differential,
+    SUM(v.upvote) + SUM(v.downvote) AS total,
     v.grumbid,
     g.*,
     u.display_name
@@ -292,7 +295,7 @@ router.get('/responses/:grumbid', function(req, res, next){
     users u ON g.userid = u.id
     WHERE g.parentid = ?
 	GROUP BY g.id
-	ORDER BY g.timestamp DESC
+	ORDER BY differential DESC
 	`
 
 	conn.query(sql, [id], function(err,results,next){
@@ -321,13 +324,21 @@ router.get('/singleGrumb/:grumbid', function(req,res,next){
 
 	const sql=`	
 	SELECT 
-    g.*, u.display_name
+    SUM(v.downvote) AS downvote,
+    SUM(v.upvote) AS upvote,
+    SUM(v.upvote) - SUM(v.downvote) AS differential,
+    SUM(v.upvote) + SUM(v.downvote) AS total,
+    v.grumbid,
+    g.*,
+    u.display_name
 	FROM
     grumbs g
+        LEFT JOIN
+    votes v ON g.id = grumbid
         JOIN
     users u ON g.userid = u.id
-	WHERE
-    parentid IS NULL AND g.id = ?`
+    WHERE g.id = ?`
+
 
 	conn.query(sql, [id], function(err,results,next){
 		if(err){
@@ -353,6 +364,8 @@ router.get('/grumbs', function(req, res, next) {
 	SELECT 
     SUM(v.downvote) AS downvote,
     SUM(v.upvote) AS upvote,
+    SUM(v.upvote) - SUM(v.downvote) AS differential,
+    SUM(v.upvote) + SUM(v.downvote) AS total,
     v.grumbid,
     g.*,
     u.display_name
@@ -362,9 +375,162 @@ router.get('/grumbs', function(req, res, next) {
     votes v ON g.id = grumbid
         JOIN
     users u ON g.userid = u.id
-    WHERE g.parentid IS NULL
+    WHERE g.parentid IS NULL AND g.active IS TRUE
 	GROUP BY g.id
-	ORDER BY g.timestamp DESC`
+	ORDER BY differential DESC`
+
+	conn.query(sql, function(err, results, fields){
+		if (err){
+			res.json({
+				message: 'Could not pull data'
+			})
+		}
+		else {
+			res.json({
+				message: 'Data sucessfully pulled',
+				grumbs: results
+			})
+		}
+	})
+});
+
+/////////////////GET POSITIVE GRUMBS/////////////////////////////
+
+router.get('/grumbs/positive', function(req, res, next) {
+
+	const sql=`
+	SELECT 
+    SUM(v.downvote) AS downvote,
+    SUM(v.upvote) AS upvote,
+    SUM(v.upvote) - SUM(v.downvote) AS differential,
+    SUM(v.upvote) + SUM(v.downvote) AS total,
+    v.grumbid,
+    g.*,
+    u.display_name
+	FROM
+    grumbs g
+        LEFT JOIN
+    votes v ON g.id = grumbid
+        JOIN
+    users u ON g.userid = u.id
+    WHERE g.parentid IS NULL AND g.active IS TRUE AND v.grumbid IS NOT NULL
+	GROUP BY g.id
+	ORDER BY differential DESC`
+
+	conn.query(sql, function(err, results, fields){
+		if (err){
+			res.json({
+				message: 'Could not pull data'
+			})
+		}
+		else {
+			res.json({
+				message: 'Data sucessfully pulled',
+				grumbs: results
+			})
+		}
+	})
+});
+
+/////////////////GET NEGATIVE GRUMBS/////////////////////////////
+
+router.get('/grumbs/negative', function(req, res, next) {
+
+	const sql=`
+	SELECT 
+    SUM(v.downvote) AS downvote,
+    SUM(v.upvote) AS upvote,
+    SUM(v.upvote) - SUM(v.downvote) AS differential,
+    SUM(v.upvote) + SUM(v.downvote) AS total,
+    v.grumbid,
+    g.*,
+    u.display_name
+	FROM
+    grumbs g
+        LEFT JOIN
+    votes v ON g.id = grumbid
+        JOIN
+    users u ON g.userid = u.id
+    WHERE g.parentid IS NULL AND g.active IS TRUE AND v.grumbid IS NOT NULL
+	GROUP BY g.id
+	ORDER BY differential ASC`
+
+	conn.query(sql, function(err, results, fields){
+		if (err){
+			res.json({
+				message: 'Could not pull data'
+			})
+		}
+		else {
+			res.json({
+				message: 'Data sucessfully pulled',
+				grumbs: results
+			})
+		}
+	})
+});
+
+
+/////////////////GET MOST POPULAR GRUMBS/////////////////////////////
+
+router.get('/grumbs/popular', function(req, res, next) {
+
+	const sql=`
+	SELECT 
+    SUM(v.downvote) AS downvote,
+    SUM(v.upvote) AS upvote,
+    SUM(v.upvote) - SUM(v.downvote) AS differential,
+    SUM(v.upvote) + SUM(v.downvote) AS total,
+    v.grumbid,
+    g.*,
+    u.display_name
+	FROM
+    grumbs g
+        LEFT JOIN
+    votes v ON g.id = grumbid
+        JOIN
+    users u ON g.userid = u.id
+    WHERE g.parentid IS NULL AND g.active IS TRUE 
+	GROUP BY g.id
+	ORDER BY total DESC `
+
+	conn.query(sql, function(err, results, fields){
+		if (err){
+			res.json({
+				message: 'Could not pull data'
+			})
+		}
+		else {
+			res.json({
+				message: 'Data sucessfully pulled',
+				grumbs: results
+			})
+		}
+	})
+});
+
+////////////////////MOST RECENT GRUMBS///////////////////////////////
+
+router.get('/grumbs/recent', function(req, res, next) {
+
+	const sql=`
+	SELECT 
+    SUM(v.downvote) AS downvote,
+    SUM(v.upvote) AS upvote,
+    SUM(v.upvote) - SUM(v.downvote) AS differential,
+    SUM(v.upvote) + SUM(v.downvote) AS total,
+    v.grumbid,
+    g.*,
+    u.display_name
+	FROM
+    grumbs g
+        LEFT JOIN
+    votes v ON g.id = grumbid
+        JOIN
+    users u ON g.userid = u.id
+    WHERE g.parentid IS NULL AND g.active IS TRUE 
+	GROUP BY g.id
+	ORDER BY g.timestamp DESC `
 
 	conn.query(sql, function(err, results, fields){
 		if (err){
@@ -395,6 +561,8 @@ router.post('/search', function(req, res, next){
 	SELECT 
     SUM(v.downvote) AS downvote,
     SUM(v.upvote) AS upvote,
+    SUM(v.upvote) - SUM(v.downvote) AS differential,
+    SUM(v.upvote) + SUM(v.downvote) AS total,
     v.grumbid,
     g.*,
     u.display_name
@@ -406,7 +574,7 @@ router.post('/search', function(req, res, next){
     users u ON g.userid = u.id
     WHERE g.parentid IS NULL AND MATCH(u.display_name) AGAINST (?) OR MATCH(g.grumb) AGAINST (?)
 	GROUP BY g.id
-	ORDER BY g.timestamp DESC`
+	ORDER BY differential DESC`
 
 	conn.query(sql,[search, search], function(err, results, fields){
 		if(err) {

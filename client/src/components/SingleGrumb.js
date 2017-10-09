@@ -15,11 +15,11 @@ class SingleGrumb extends Component {
 			<Comment className="singleGrumbBox">
 				<Comment.Metadata className='largerFont'>{this.props.display_name} says:</Comment.Metadata>
 				<Comment.Text as='h2' className="singleGrumb">{this.props.grumb}</Comment.Text>
-				<Comment.Metadata className='largerFont'>{moment(this.props.timestamp).format('MMM Do YYYY')}</Comment.Metadata>
+				<Comment.Metadata className='largerFont'>{moment(this.props.timestamp).format('MMM Do YYYY')} |Total Votes: {this.props.upvote + this.props.downvote}|</Comment.Metadata>
 			</Comment> 	:
 			<Comment className="singleGrumbBox">
 					<Comment.Text as='h1' className="singleGrumb">This grumb is no more!!</Comment.Text>
-					<Comment.Metadata>Grumbled by: {this.props.display_name} {moment(this.props.timestamp).format('MMM Do YYYY')}</Comment.Metadata>
+					<Comment.Metadata>Grumbled by: {this.props.display_name} {moment(this.props.timestamp).format('MMM Do YYYY')} |Total Votes: {this.props.upvote + this.props.downvote}|</Comment.Metadata>
 			</Comment>
 		)
 	}
