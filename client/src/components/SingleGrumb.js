@@ -1,36 +1,26 @@
 import React, { Component } from 'react'
+import { Button, Comment, Form, Header } from 'semantic-ui-react'
+import moment from 'moment'
+
+
 
 class SingleGrumb extends Component {
-	
+
 	static defaultProps = {
 		active: true
 	}
 
 	render () {
 		return (this.props.active ?
-			<div className="singleGrumbBox">
-				<div>
-					<h1 className="singleGrumb">{this.props.grumb}</h1>
-				</div>
-				<div>
-					<h3>Grumbled by: {this.props.display_name}</h3>
-				</div>
-				<div>
-					<span>{this.props.timestamp}</span>
-				</div>
-			</div> 	:
-			<div className="singleGrumbBox">
-				<div>
-					<h1 className="singleGrumb">This grumb is no more!!</h1>
-				</div>
-				<div>
-					<h3>Grumbled by: {this.props.display_name}</h3>
-				</div>
-				<div>
-					<span>{this.props.timestamp}</span>
-				</div>
-			</div>
-		)	
+			<Comment className="singleGrumbBox">
+					<Comment.Text as='h1' className="singleGrumb">{this.props.grumb}</Comment.Text>
+					<Comment.Metadata>Grumbled by: {this.props.display_name} {moment(this.props.timestamp).format('MMM Do YYYY')}</Comment.Metadata>
+			</Comment> 	:
+			<Comment className="singleGrumbBox">
+					<Comment.Text as='h1' className="singleGrumb">This grumb is no more!!</Comment.Text>
+					<Comment.Metadata>Grumbled by: {this.props.display_name} {moment(this.props.timestamp).format('MMM Do YYYY')}</Comment.Metadata>
+			</Comment>
+		)
 	}
 }
 

@@ -5,6 +5,7 @@ import Vote from './Vote'
 import { Link } from 'react-router-dom'
 import { Button, Comment, Form, Header } from 'semantic-ui-react'
 
+
 class GrumbleList extends Component {
 
 

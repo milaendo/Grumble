@@ -5,7 +5,9 @@ import { getVotes } from '../actions/action'
 import { searchGrumbs } from '../actions/action'
 import { connect } from 'react-redux'
 import { Menu, Input } from 'semantic-ui-react'
+import Harold from './Harold'
 import { withRouter } from 'react-router-dom'
+
 
 
 class Layout extends Component {
@@ -50,7 +52,11 @@ class Layout extends Component {
             <Menu.Item as={Link} to="/Login" name='Login/Logout' active={activeItem === 'Login/Logout'} onClick={this.handleItemClick}>{loginStatus}</Menu.Item>
             <Menu.Item><Input icon='search' placeholder='Search...' name='search' onChange={this.handleChange} value={this.state.search} onClick={this.handleSubmit} /></Menu.Item>
         </Menu>
-        {this.props.children}
+        <div className="flexer">
+          <Harold />
+          <div>{this.props.children}</div>
+        </div>
+
         <footer>
           &copy; 2017 Grumbliees International
         </footer>
