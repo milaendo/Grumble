@@ -6,6 +6,7 @@ import { searchGrumbs } from '../actions/action'
 import { connect } from 'react-redux'
 import { Menu, Input } from 'semantic-ui-react'
 import Harold from './Harold'
+import Trending from './Trending'
 import { withRouter } from 'react-router-dom'
 
 
@@ -48,12 +49,15 @@ class Layout extends Component {
         <Menu>
             <Menu.Item as={Link} to='/' name='Home' className="logo">Grumble :-|</Menu.Item>
             <Menu.Item as={Link} to="/" name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick, this.handleHomeClick}>Home</Menu.Item>
-            <Menu.Item as={Link} to='/registration' name='SignUp' active={activeItem === 'SignUp'} onClick={this.handleItemClick}>Sign Up</Menu.Item>
-            <Menu.Item as={Link} to="/Login" name='Login/Logout' active={activeItem === 'Login/Logout'} onClick={this.handleItemClick}>{loginStatus}</Menu.Item>
             <Menu.Item><Input icon='search' placeholder='Search...' name='search' onChange={this.handleChange} value={this.state.search} onClick={this.handleSubmit} /></Menu.Item>
+            <Menu.Item position='right' as={Link} to='/registration' name='SignUp' active={activeItem === 'SignUp'} onClick={this.handleItemClick}>Sign Up</Menu.Item>
+            <Menu.Item postition='right' as={Link} to="/Login" name='Login/Logout' active={activeItem === 'Login/Logout'} onClick={this.handleItemClick}>{loginStatus}</Menu.Item>
         </Menu>
         <div className="flexer">
-          <Harold />
+          <div>
+            <Harold />
+            <Trending />
+          </div>
           <div>{this.props.children}</div>
         </div>
 

@@ -86,10 +86,7 @@ footer {
 	text-align: center;
 	clear: both;
 }
-button {
-	border-radius: 5px;
-	background-color: white;
-}
+
 input{
 	border-radius: 5px;
 	background-color: white;
@@ -144,4 +141,23 @@ body .ui.comments {
 }
 #grumbform{
 	margin-left: 70px;
+}
+.list{
+margin-top:450px;
+}
+.ui.feed>.event>.content h1.date {
+	font-size: 25px;
+	color:rgb(102, 99, 168);
+}
+.ui.feed>.event>.content div.summary{
+	font-size: 20px;
+	padding:10px 0px;
+}
+.ui.primary.button, button.primary.ui.labeled.icon.button{
+	background-color:rgb(102, 99, 168);
+	color: white;
+}
+.ui.button.button{
+	background-color:rgb(102, 99, 168);
+	color: white;
 }
