@@ -12,10 +12,10 @@ const conn = mysql.createPool({
   database: config.get('db.database'),
   user: config.get('db.user'),
   password: config.get('db.password'),
-})
+});
 conn.on("error",function(err){
 	console.log(err)
-})
+});
 
 
 
@@ -51,7 +51,7 @@ router.post('/getvote', function(req, res, next){
 			}
 		}
 	})
-})
+});
 
 
 
@@ -85,7 +85,7 @@ router.get('/getvotes', function(req, res, next){
 			}
 		}
 	})
-})
+});
 
 //////////downvote////////////////
 
@@ -188,7 +188,7 @@ router.post('/downvote', function(req, res, next){
     	}
     })
 	
-})
+});
 
 //////////////upvote////////////////
 
@@ -240,7 +240,7 @@ router.post('/upvote', function(req,res,next){
 
     })
 	
-})
+});
 
 //////post response////////////
 
@@ -268,7 +268,7 @@ router.post('/response', function(req,res,next){
 			})
 		}
 	})
-})
+});
 
 /////////////////////GET RESPONSES////////////////////////////////////////////
 
@@ -309,7 +309,7 @@ router.get('/responses/:grumbid', function(req, res, next){
 			})
 		}
 	})
-})
+});
 
 
 
@@ -343,7 +343,7 @@ router.get('/singleGrumb/:grumbid', function(req,res,next){
 			})
 		}
 	})
-})
+});
 
 //////////////GET GRUMBS/////////////////////////////////
 
@@ -375,6 +375,48 @@ router.get('/grumbs', function(req, res, next) {
 		else {
 			res.json({
 				message: 'Data sucessfully pulled',
+				grumbs: results
+			})
+		}
+	})
+});
+
+
+
+////////////SEARCH GRUMBS/////////////////////////////////////////////
+
+router.post('/search', function(req, res, next){
+
+
+	const search = req.body.search
+	console.log("search", search)
+
+	const sql=`
+	SELECT 
+    SUM(v.downvote) AS downvote,
+    SUM(v.upvote) AS upvote,
+    v.grumbid,
+    g.*,
+    u.display_name
+	FROM
+    grumbs g
+        LEFT JOIN
+    votes v ON g.id = v.grumbid
+        JOIN
+    users u ON g.userid = u.id
+    WHERE g.parentid IS NULL AND MATCH(u.display_name) AGAINST (?) OR MATCH(g.grumb) AGAINST (?)
+	GROUP BY g.id
+	ORDER BY g.timestamp DESC`
+
+	conn.query(sql,[search, search], function(err, results, fields){
+		if(err) {
+			res.json({
+				message: 'Could not search data'
+			})
+		}
+		else {
+			res.json({
+				message: 'Search success!',
 				grumbs: results
 			})
 		}
@@ -455,7 +497,7 @@ router.post('/token', function(req, res, next) {
       console.log(err)
     })
   })
-})
+});
 
 
 
@@ -484,6 +526,13 @@ router.post('/grumb', function(req,res,next){
 			})
 		}
 	})
-})
+});
 
 module.exports = router
+
+
+
+
+
+
+

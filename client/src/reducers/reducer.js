@@ -1,5 +1,5 @@
 
-import {GET_GRUMBS, ONE_GRUMB, CLEAR_GRUMB, CLEAR_RESPONSES, GET_RESPONSES, GET_VOTES, GET_VOTE} from '../actions/actionValues'
+import {GET_GRUMBS, SEARCH_GRUMBS, ONE_GRUMB, CLEAR_GRUMB, CLEAR_RESPONSES, GET_RESPONSES, GET_VOTES, GET_VOTE} from '../actions/actionValues'
 
 const initialState = {
   grumbs: [],
@@ -15,6 +15,8 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_GRUMBS:
+      return {...state, grumbs: action.payload}
+    case SEARCH_GRUMBS:
       return {...state, grumbs: action.payload}
     case ONE_GRUMB:
     	return {...state, grumb: action.payload}
