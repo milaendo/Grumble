@@ -89,8 +89,8 @@ input{
 
 
 .signWrap {
-	/*width: 900px;*/
-	margin:  auto;
+	width: 900px;
+	margin-left: 80px;
 	text-align: center;
 }
 #logIN {
