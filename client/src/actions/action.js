@@ -46,11 +46,11 @@ export function response(data) {
       .then(response => {
           console.log(response, "working response");
 
-      }).then(e =>{getResponses(data.parentid)})
+      }).then(e =>{getResponses({grumbid: data.parentid, userid: data.userid})})
 
 
       .catch(err => {
-          console.log(err, "not working response");
+          console.log(err, "not working response")
       });
 }
 
@@ -71,7 +71,7 @@ export function grumbSubmit(data) {
       .then(response => {
           console.log(response, "yay");
 
-      }).then(e => {getGrumbs()})
+      }).then(e => {getGrumbs(userid)})
 
       .catch(err => {
           console.log(err, "boo!");

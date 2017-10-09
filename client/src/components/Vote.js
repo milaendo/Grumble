@@ -51,14 +51,14 @@ class Vote extends Component {
     	<div className="voteButton">
     		<div>
     			<button className={this.props.voteStatus ? "buttonUpVoted" : "buttonUp"} type="submit" onClick={this.handleUpClick}></button>
-    			<div className="voteCount">{this.props.differential}</div>
+    			<div className="voteCount">{this.props.differential ? this.props.differential : 0}</div>
     			<button className={this.props.voteStatus ? "buttonDownVoted" : "buttonDown"} type="submit" onClick={this.handleDownClick}></button>
         </div>
     	</div> :
     	<div>
     		<div className="voteButton">
     			<button className="buttonUpVoted" type="submit"></button>
-    			<div className="voteCount">{this.props.differential}</div>
+    			<div className="voteCount">{this.props.differential ? this.props.differential : 0}</div>
     			<button className="buttonDownVoted" type="submit"></button>
     		</div>
     	</div>
