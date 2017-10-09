@@ -6,6 +6,7 @@ import { searchGrumbs } from '../actions/action'
 import { connect } from 'react-redux'
 import { Menu, Input } from 'semantic-ui-react'
 import Harold from './Harold'
+import Trending from './Trending'
 import { withRouter } from 'react-router-dom'
 
 
@@ -53,7 +54,10 @@ class Layout extends Component {
             <Menu.Item><Input icon='search' placeholder='Search...' name='search' onChange={this.handleChange} value={this.state.search} onClick={this.handleSubmit} /></Menu.Item>
         </Menu>
         <div className="flexer">
-          <Harold />
+          <div>
+            <Harold />
+            <Trending />
+          </div>
           <div>{this.props.children}</div>
         </div>
 

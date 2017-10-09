@@ -145,3 +145,12 @@ body .ui.comments {
 #grumbform{
 	margin-left: 70px;
 }
+.list{
+margin-top:450px;
+}
+.ui.feed>.event>.content h1.date {
+	font-size: 25px;
+}
+.ui.feed>.event>.content div.summary{
+	font-size: 20px;
+}
