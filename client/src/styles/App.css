@@ -39,6 +39,7 @@
 
 form {
 	margin: 10px;
+	font-family: 'Open Sans Condensed';
 }
 
 form > h3 {
@@ -55,12 +56,19 @@ margin:30px;
 	margin: 15px;
 	border-radius: 5px;
 	border-style: inherit;
-	border: 1px solid black;
+	border: 3px solid rgb(102, 99, 168);
+	font-size: 25px;
+	font-family: 'Open Sans Condensed';
 }
 
 .link {
 	text-decoration: none;
 	color: black;
+}
+
+
+.trending {
+ color: rgb(83, 80, 151);
 }
 
 h2 {
@@ -110,7 +118,10 @@ input{
 textarea {
 	border-radius: 4px;
 	width:100%;
+
 }
+
+
 #grumbdby {
 	color:rgb(131, 119, 188);
 }
@@ -161,22 +172,30 @@ body .ui.comments {
 }
 
 
+div .ui.menu {
+	margin-top: -48px;
+}
+
+
 
 
 .topHeader{
 	height: 100px;
 	display: flex;
-	background-color: white;
+	justify-content: center;
+	background-color: rgb(126, 123, 229);
+	background-position: center;
 
 }
 
 .logoHeader{
-	font-family: 'Permanent Marker', cursive;
-	font-size: 64px;
-	color: rgb(102, 99, 168);
+	font-family: 'Averia Libre';
+	font-weight: normal;
+	font-size: 84px;
 	text-align: center;
-	margin-left: 65px;
-	line-height: 100px;
+	line-height: 90px;
+	color: rgb(35, 34, 64);
+
 
 }
 
@@ -184,16 +203,35 @@ body .ui.comments {
 .haroldHeader {
 	height: 100px;
 	width: 300px;
-	background-image: url('../images/grump3bar.jpg');
+	background-image: url('../images/grump3bar3.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+
+.haroldDelete {
+	width: 900px;
+	height: 100px;
+	background-image:url('../images/backgrounds/blahblahblah.jpg');
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-color: white;
+}
+
+.haroldDeleteLarge {
+	width: 900px;
+	height: 250px;
+	background-image:url('../images/backgrounds/blahblahblah.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 
 .headlineHeader {
 	line-height: 100px;
+}
 
 .ui.card, .ui.cards>.card.card{
 	width:300px

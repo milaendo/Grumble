@@ -8,7 +8,7 @@ class Trending extends Component {
 			<div className='list'>
 				<Card>
 					<Card.Content>
-						<Card.Header as='h1'>Trending</Card.Header>
+						<Card.Header as='h1' className="trending">Trending</Card.Header>
 					</Card.Content>
 					<Card.Content>
 						<Feed>

@@ -32,7 +32,7 @@ class GrumbForm extends Component {
     	<div id='grumbform'>
     		<Form onSubmit={this.handleSubmit} className='formGrumb'>
 					<Form.Field>
-	    			<Form.TextArea onChange={this.handleChange} name="grumb" value={this.state.grumb} placeholder={localStorage.getItem('displayName')+" ,What do you want to Grumble about today?" } />
+	    			<Form.TextArea onChange={this.handleChange} className="responseInput" name="grumb" value={this.state.grumb} placeholder={localStorage.getItem('displayName')+", what do you want to Grumble about today?" } />
 					</Form.Field>
 					<Form.Field>
 						<Button content='Submit' labelPosition='left' icon='edit' primary />
