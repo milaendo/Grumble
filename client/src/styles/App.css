@@ -1,16 +1,12 @@
-
-
 .containerHome {
 	float:left;
 	margin-left: 20px;
 }
-
 .container {
 	float:left;
-	margin-left: 20px;
+	margin: 30px;
 	position: relative;
 }
-
 .flexer {
 	display:flex;
 }
@@ -20,7 +16,6 @@
 	text-align: center;
 	color:black;
 }
-
 .voteGrumb {
 	width: 1000px;
 	border: 1px solid black;
@@ -31,24 +26,18 @@
 	background-color: white;
 	padding:20px;
 }
-
 .voteGrumb:hover {
 	background-color: rgb(245,248,250);
-
 }
-
 form {
 	margin: 10px;
 }
-
 form > h3 {
 	font-size: 24px;
 }
-
 .responseBox {
 margin:30px;
 }
-
 .responseInput {
 	/*width: 945px;
 	height: 250px;*/
@@ -57,16 +46,13 @@ margin:30px;
 	border-style: inherit;
 	border: 1px solid black;
 }
-
 .link {
 	text-decoration: none;
 	color: black;
 }
-
 h2 {
 	font-size: 36px;
 }
-
 .singleGrumb {
 	margin: auto;
 }
@@ -86,14 +72,11 @@ footer {
 	text-align: center;
 	clear: both;
 }
-
 input{
 	border-radius: 5px;
 	background-color: white;
 	width:100%;
 }
-
-
 .signWrap {
 	width: 900px;
 	margin-left: 80px;
@@ -126,9 +109,10 @@ textarea {
 	width:50px;
 	height:50px;
 }
-#harold{
-	height:100%;
-	width:300px;
+#harold {
+	height:250px;
+	width:250px;
+	border-radius: 50%;
 }
 .haroldCard{
 	float: left;
@@ -142,7 +126,6 @@ body .ui.comments {
 #grumbform{
 	margin-left: 20px;
 }
-
 .ui.feed>.event>.content h1.date {
 	font-size: 25px;
 	color:rgb(102, 99, 168);
@@ -159,17 +142,12 @@ body .ui.comments {
 	background-color:rgb(102, 99, 168);
 	color: white;
 }
-
-
-
-
 .topHeader{
 	height: 100px;
 	display: flex;
 	background-color: white;
 
 }
-
 .logoHeader{
 	font-family: 'Permanent Marker', cursive;
 	font-size: 64px;
@@ -177,10 +155,7 @@ body .ui.comments {
 	text-align: center;
 	margin-left: 65px;
 	line-height: 100px;
-
 }
-
-
 .haroldHeader {
 	height: 100px;
 	width: 300px;
@@ -190,15 +165,18 @@ body .ui.comments {
 	background-size: cover;
 	background-color: white;
 }
-
-
 .headlineHeader {
 	line-height: 100px;
-
+}
 .ui.card, .ui.cards>.card.card{
 	width:300px
 }
 .filterBar{
 	margin-left: 20px;
-
+}
+.ui.div.menu{
+	margin-top: -48px;
+}
+.list{
+	margin-top: 400px;
 }

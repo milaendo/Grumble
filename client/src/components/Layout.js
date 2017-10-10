@@ -67,11 +67,11 @@ class Layout extends Component {
         </Menu>
         <div className="flexer">
           <div>
+            <Harold />
             <Trending />
           </div>
           <div>{this.props.children}</div>
         </div>
-
         <footer>
           &copy; 2017 Grumbliees International
         </footer>
